@@ -1,0 +1,19 @@
+// 1. Resources
+@import "01_main/mq", "01_main/colors", "01_main/borders", "01_main/zindex",
+  "01_main/shadows", "01_main/fonts", "01_main/base", "01_main/utils",
+  "01_main/mixins/mixin-hover";
+// // 2. External Tools
+//@import "02_external/prism";
+
+// // 3. Elements
+//@import "03_elements/buttons";
+
+// // 4. Components
+@import "04_components/calendar-monthly/calendar-monthly.scss";
+
+// @import //Layouts - navbar - footer
+//"04_components/layouts/slices-layout",
+
+// // // 5. Pages
+// @import
+//'05_pages/something';

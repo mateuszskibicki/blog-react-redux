@@ -1,0 +1,12 @@
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-pointer-scale {
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.02);
+    z-index: 100;
+  }
+}

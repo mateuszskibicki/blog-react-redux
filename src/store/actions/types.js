@@ -1,0 +1,3 @@
+//common
+export const LOADING_DATA_START = "LOADING_DATA_START";
+export const LOADING_DATA_STOP = "LOADING_DATA_STOP";
