@@ -3,6 +3,8 @@ import React from "react";
 import { Provider as ReduxProvider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import configureStore from "./store/store";
+import MainLayout from "./components/layout/MainLayout";
+import AuthorPage from "./components/pages/AuthorPage";
 const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
 
 function App() {
@@ -10,10 +12,13 @@ function App() {
     <ReduxProvider store={reduxStore}>
       <Router>
         <div className="app">
-          <Switch>
-            <Route path="/" component={Home} exact />
-            <Route component={ErrorComponent} />
-          </Switch>
+          <MainLayout>
+            <Switch>
+              <Route path="/" component={Home} exact />
+              <Route path="/author/:uid" component={AuthorPage} exact />
+              <Route component={ErrorComponent} />
+            </Switch>
+          </MainLayout>
         </div>
       </Router>
     </ReduxProvider>
