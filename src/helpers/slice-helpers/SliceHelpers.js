@@ -23,6 +23,7 @@ export const sliceHelper = body => {
 
   let slicesData;
 
+  // eslint-disable-next-line array-callback-return
   slicesData = body.map(slice => {
     if (slice.slice_type === "text_block") return textBlockSlice(slice);
     if (slice.slice_type === "code_component") return codeSlice(slice);

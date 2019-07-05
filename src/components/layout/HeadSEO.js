@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 
-export const HeadSEO = props => {
+const HeadSEO = props => {
   const {
     title = null,
     description = null,
@@ -111,3 +111,5 @@ HeadSEO.propTypes = {
     article_modified_time: PropTypes.string
   })
 };
+
+export default HeadSEO;
