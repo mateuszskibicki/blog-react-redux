@@ -35,7 +35,7 @@ export const getAllArticles = ({
 
     //Prismic connection
     const prismicConnection = await Prismic.getApi(
-      process.env.REACT_APP_PRISMIC_API_ENDPOIT,
+      process.env.REACT_APP_PRISMIC_API_ENDPOINT,
       {
         accessToken: process.env.REACT_APP_PRISMIC_API_TOKEN
       }
