@@ -1,11 +1,12 @@
 import "./scss/styles.scss";
-import React from "react";
+import React, { Suspense } from "react";
 import { Provider as ReduxProvider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import configureStore from "./store/store";
 
 //components
 import MainLayout from "./components/layout/MainLayout";
+import Loader from "./components/layout/Loader";
 const AuthorPage = React.lazy(() => import("./components/pages/AuthorPage"));
 
 //redux store
@@ -17,11 +18,13 @@ function App() {
       <Router>
         <div className="app">
           <MainLayout>
-            <Switch>
-              <Route path="/" component={Home} exact />
-              <Route path="/author/:uid" component={AuthorPage} exact />
-              <Route component={ErrorComponent} />
-            </Switch>
+            <Suspense fallback={<Loader />}>
+              <Switch>
+                <Route path="/" component={Home} exact />
+                <Route path="/author/:uid" component={AuthorPage} exact />
+                <Route component={ErrorComponent} />
+              </Switch>
+            </Suspense>
           </MainLayout>
         </div>
       </Router>

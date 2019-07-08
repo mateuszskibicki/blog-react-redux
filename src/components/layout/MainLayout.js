@@ -1,15 +1,19 @@
-import React, { Suspense } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-const Navbar = React.lazy(() => import("./Navbar"));
-const Footer = React.lazy(() => import("./Footer"));
-const Loader = React.lazy(() => import("./Loader"));
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import Loader from "./Loader";
+
+// const Navbar = React.lazy(() => import("./Navbar"));
+// const Footer = React.lazy(() => import("./Footer"));
+// const Loader = React.lazy(() => import("./Loader"));
 
 const MainLayout = ({ loading, children }) => {
   return (
-    <Suspense fallback="">
+    <>
       <Navbar />
       <Link to="/author/mateusz-skibicki">
         <button className="btn">good</button>
@@ -23,7 +27,7 @@ const MainLayout = ({ loading, children }) => {
       {loading && <Loader />}
       {!loading && children && children}
       <Footer />
-    </Suspense>
+    </>
   );
 };
 
