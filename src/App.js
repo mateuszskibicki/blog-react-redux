@@ -8,6 +8,9 @@ import configureStore from "./store/store";
 import MainLayout from "./components/layout/MainLayout";
 import Loader from "./components/layout/Loader";
 const AuthorPage = React.lazy(() => import("./components/pages/AuthorPage"));
+const SingleArticlePage = React.lazy(() =>
+  import("./components/pages/SingleArticlePage")
+);
 
 //redux store
 const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
@@ -22,6 +25,11 @@ function App() {
               <Switch>
                 <Route path="/" component={Home} exact />
                 <Route path="/author/:uid" component={AuthorPage} exact />
+                <Route
+                  path="/articles/:uid"
+                  component={SingleArticlePage}
+                  exact
+                />
                 <Route component={ErrorComponent} />
               </Switch>
             </Suspense>

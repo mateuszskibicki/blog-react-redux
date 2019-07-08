@@ -7,22 +7,24 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Loader from "./Loader";
 
-// const Navbar = React.lazy(() => import("./Navbar"));
-// const Footer = React.lazy(() => import("./Footer"));
-// const Loader = React.lazy(() => import("./Loader"));
-
 const MainLayout = ({ loading, children }) => {
   return (
     <>
       <Navbar />
       <Link to="/author/mateusz-skibicki">
-        <button className="btn">good</button>
+        <button className="btn">user: good</button>
       </Link>
       <Link to="/author/mateusz-skibicki1">
-        <button className="btn">fake</button>
+        <button className="btn">user: fake</button>
       </Link>
       <Link to="/author/mateusz-skibicki2">
-        <button className="btn">fake2</button>
+        <button className="btn">user: fake2</button>
+      </Link>
+      <Link to="/articles/99">
+        <button className="btn">article: good</button>
+      </Link>
+      <Link to="/articles/dummy12312313">
+        <button className="btn">article: fake</button>
       </Link>
       {loading && <Loader />}
       {!loading && children && children}

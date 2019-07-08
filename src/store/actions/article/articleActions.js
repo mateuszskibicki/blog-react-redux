@@ -3,7 +3,7 @@ import {
   GET_ARTICLE_BY_UID,
   GET_3_LAST_ARTICLES,
   SET_ERROR_SINGLE_ARTICLE_TRUE,
-  SET_ERROR_SINGLE_ARTICLE_FALSE,
+  // SET_ERROR_SINGLE_ARTICLE_FALSE,
   SET_CURRENT_ARTICLE_UID
 } from "../types";
 // loading
@@ -12,15 +12,15 @@ import { setLoadingStart, setLoadingStop } from "../common/loadingActions";
 import { singleArticleHelper } from "../../../helpers/article/ArticleHelpers";
 import { articlesListHelper } from "../../../helpers/articles/ArticlesHelpers";
 
-// Set single article error to true
-export const setSingleArticleErrorToTrue = () => dispatch => {
-  dispatch({ type: SET_ERROR_SINGLE_ARTICLE_TRUE });
-};
+// // Set single article error to true
+// export const setSingleArticleErrorToTrue = () => dispatch => {
+//   dispatch({ type: SET_ERROR_SINGLE_ARTICLE_TRUE });
+// };
 
-// Set single article error to false
-export const setSingleArticleErrorToFalse = () => dispatch => {
-  dispatch({ type: SET_ERROR_SINGLE_ARTICLE_FALSE });
-};
+// // Set single article error to false
+// export const setSingleArticleErrorToFalse = () => dispatch => {
+//   dispatch({ type: SET_ERROR_SINGLE_ARTICLE_FALSE });
+// };
 
 // Set single article current UID (when it exists and we're not calling anything)
 export const setCurrentArticleUID = ({ articleUID }) => dispatch => {
@@ -52,7 +52,10 @@ export const getArticleByUID = ({
 
     //If there is no articles data -> put error true and stop loading
     if (!data) {
-      dispatch(setSingleArticleErrorToTrue());
+      dispatch({
+        type: SET_ERROR_SINGLE_ARTICLE_TRUE,
+        payload: { articleUID }
+      });
       return dispatch(setLoadingStop());
     }
 
@@ -89,7 +92,6 @@ export const getArticleByUID = ({
   } catch (err) {
     //If error return like there is no data and stop loading
     console.log("ERROR CATCH GET_ARTICLE_BY_UID");
-    dispatch(setSingleArticleErrorToTrue());
     dispatch(setLoadingStop());
   }
 };

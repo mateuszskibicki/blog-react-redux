@@ -6,8 +6,6 @@ import reducer, {
   initialState
 } from "../../../store/reducers/articleSingleReducer";
 import {
-  setSingleArticleErrorToFalse,
-  setSingleArticleErrorToTrue,
   setCurrentArticleUID,
   // getSingleArticleByUIDPrismicQuery,
   getArticleByUID
@@ -16,7 +14,6 @@ import {
   LOADING_DATA_START,
   LOADING_DATA_STOP,
   SET_ERROR_SINGLE_ARTICLE_TRUE,
-  SET_ERROR_SINGLE_ARTICLE_FALSE,
   SET_CURRENT_ARTICLE_UID,
   GET_ARTICLE_BY_UID,
   GET_3_LAST_ARTICLES
@@ -38,20 +35,6 @@ describe("Redux - author", () => {
     //       accessToken: process.env.REACT_APP_PRISMIC_API_TOKEN
     //     });
     //   });
-
-    //SET ERROR TO TRUE
-    test("setSingleArticleErrorToTrue - should set single article error to true", async () => {
-      const store = mockStore({ ...initialState });
-      await store.dispatch(setSingleArticleErrorToTrue());
-      expect(store.getActions()[0].type).toBe(SET_ERROR_SINGLE_ARTICLE_TRUE);
-    });
-
-    //SET ERROR TO FALSE
-    test("setSingleArticleErrorToFalse - should set single article error to false", async () => {
-      const store = mockStore({ ...initialState });
-      await store.dispatch(setSingleArticleErrorToFalse());
-      expect(store.getActions()[0].type).toBe(SET_ERROR_SINGLE_ARTICLE_FALSE);
-    });
 
     //SET CURRENT ARTICLE UID
     test("setCurrentArticleUID - should set single article error to false", async () => {
@@ -108,22 +91,12 @@ describe("Redux - author", () => {
     //SET ERROR TO TRUE
     test("SET_ERROR_SINGLE_ARTICLE_TRUE - should change error to true", async () => {
       const errorResponse = {
-        type: SET_ERROR_SINGLE_ARTICLE_TRUE
+        type: SET_ERROR_SINGLE_ARTICLE_TRUE,
+        payload: { articleUID: "123" }
       };
       const reducerState = reducer(initialState, errorResponse);
       expect(reducerState).toBeDefined();
-      expect(reducerState.error).toBeTruthy();
-    });
-
-    //SET ERROR TO FALSE
-    test("SET_ERROR_SINGLE_ARTICLE_FALSE - should change error to false", async () => {
-      const successResponse = {
-        type: SET_ERROR_SINGLE_ARTICLE_FALSE
-      };
-      const localInitialState = { false: true };
-      const reducerState = reducer(localInitialState, successResponse);
-      expect(reducerState).toBeDefined();
-      expect(reducerState.error).toBeFalsy();
+      expect(reducerState[errorResponse.payload.articleUID].error).toBeTruthy();
     });
 
     //SET CURRENT USER ID
