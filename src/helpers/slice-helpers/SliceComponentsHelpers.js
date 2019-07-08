@@ -1,17 +1,17 @@
-import dynamic from "next/dynamic";
-const TextBlockSlice = dynamic(() =>
+import React, { Suspense } from "react";
+const TextBlockSlice = React.lazy(() =>
   import("../../components/slices/TextBlockSlice")
 );
-const CodeSlice = dynamic(() => import("../../components/slices/CodeSlice"));
-const SingleMediaSlice = dynamic(() =>
+const CodeSlice = React.lazy(() => import("../../components/slices/CodeSlice"));
+const SingleMediaSlice = React.lazy(() =>
   import("../../components/slices/SingleMediaSlice")
 );
-const MultipleMediaSlice = dynamic(() =>
+const MultipleMediaSlice = React.lazy(() =>
   import("../../components/slices/MultipleMediaSlice")
 );
 
 export const sliceComponentsHelper = slices => {
-  if (!slice || !slice.length || slice.length === 0) return null;
+  if (!slices || !slices.length || slices.length === 0) return null;
   let componentsToDisplay = [];
   componentsToDisplay =
     !slices || !slices.length
@@ -20,7 +20,7 @@ export const sliceComponentsHelper = slices => {
           if (slice === null || !slice.type) return "";
           if (slice.type === "text_block")
             return <TextBlockSlice key={index} content={slice} />;
-          if (slice.type === "code_component")
+          if (slice && slice.type === "code_component" && slice.language)
             return <CodeSlice key={index} content={slice} />;
           if (slice.type === "single_media_block")
             return <SingleMediaSlice key={index} content={slice} />;
@@ -28,5 +28,5 @@ export const sliceComponentsHelper = slices => {
             return <MultipleMediaSlice key={index} content={slice} />;
           return "";
         });
-  return componentsToDisplay;
+  return <Suspense fallback={null}>{componentsToDisplay}</Suspense>;
 };

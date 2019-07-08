@@ -7,9 +7,12 @@ import {
   getArticleByUID,
   setCurrentArticleUID
 } from "../../store/actions/article/articleActions";
+import { sliceComponentsHelper } from "../../helpers/slice-helpers/SliceComponentsHelpers";
 //components
-const HeadSEO = React.lazy(() => import("../layout/HeadSEO"));
+import HeadSEO from "../layout/HeadSEO";
 const ErrorPage = React.lazy(() => import("../layout/ErrorPage"));
+const ArticleHeader = React.lazy(() => import("../articles/ArticleHeader"));
+const ArticlesList = React.lazy(() => import("../articles/ArticlesList"));
 
 const SingleArticlePage = memo(
   ({ match, article, getArticleByUID }) => {
@@ -40,10 +43,27 @@ const SingleArticlePage = memo(
 
     if (articleData)
       return (
-        <Suspense fallback={null}>
+        <>
           <HeadSEO SEO={SEO} />
-          <h1>article page</h1>
-        </Suspense>
+          <ArticleHeader
+            title={articleData.title}
+            short_description={articleData.short_description}
+            series={articleData.series}
+            categories={articleData.categories}
+            tags={articleData.tags}
+            date={articleData.date}
+            author={articleData.author}
+            big_img={articleData.big_img}
+          />
+          {articleData.content &&
+            articleData.content.length > 0 &&
+            sliceComponentsHelper(articleData.content)}
+          {article.lastArticles && article.lastArticles.length > 0 && (
+            <Suspense fallback={null}>
+              <ArticlesList articles={article.lastArticles} />
+            </Suspense>
+          )}
+        </>
       );
 
     return null;

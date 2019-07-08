@@ -1,8 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SingleMediaSlice = ({ slice }) => {
-  if (!slice) return null;
+const SingleMediaSlice = ({ content }) => {
+  if (!content) return null;
+
+  const {
+    title,
+    description,
+    button_title,
+    button_url,
+    image,
+    media_position,
+    text_align,
+    media_type,
+    youtube
+  } = content;
+
   return (
     <section className="my-3 single-media-slice">
       <div className="container-fluid" style={{ maxWidth: "1400px" }}>

@@ -2,8 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { RichText } from "prismic-reactjs";
 
-const TextBlockSlice = ({ slice }) => {
-  if (!slice) return null;
+const TextBlockSlice = ({ content }) => {
+  if (!content) return null;
+
+  const { title, text_align, button_url, button_title, description } = content;
+
   return (
     <section className="my-2 slice-text-box">
       <div className={`container ${text_align && "text-" + text_align}`}>

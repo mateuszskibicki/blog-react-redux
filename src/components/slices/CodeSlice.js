@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Prism from "prismjs";
 
-const CodeSlice = ({ slice }) => {
-  if (!slice) return null;
-
+const CodeSlice = ({ content }) => {
   const [show, setShow] = useState(false);
+
+  const { title, language, code } = content;
 
   const copyToClipboard = () => {
     const el = document.createElement("textarea");

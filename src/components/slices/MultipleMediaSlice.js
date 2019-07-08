@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const MultipleMediaSlice = ({ slice }) => {
-  if (!slice) return null;
+const MultipleMediaSlice = ({ content }) => {
+  if (!content) return null;
+
+  const { title, button_title, button_url, media } = content;
 
   const mediaImage = (singleMedia, index) => {
     return (
