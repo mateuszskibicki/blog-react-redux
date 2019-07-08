@@ -13,7 +13,7 @@
 
 html,
 body {
-  background-color: $white-primary;
+  background-color: rgba($white-primary, 0.3);
   font-family: $font-titillium;
   width: auto;
   overflow-x: hidden;
@@ -24,7 +24,7 @@ body {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 9px;
 }
 
 /* Track */

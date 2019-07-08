@@ -14,9 +14,9 @@ const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
 
 function App() {
   return (
-    <ReduxProvider store={reduxStore}>
-      <Router>
-        <div className="app">
+    <div className="app">
+      <ReduxProvider store={reduxStore}>
+        <Router>
           <MainLayout>
             <Suspense fallback={<Loader />}>
               <Switch>
@@ -26,9 +26,9 @@ function App() {
               </Switch>
             </Suspense>
           </MainLayout>
-        </div>
-      </Router>
-    </ReduxProvider>
+        </Router>
+      </ReduxProvider>
+    </div>
   );
 }
 

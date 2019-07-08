@@ -6,7 +6,6 @@
   transition: 0.3s;
   cursor: pointer;
   &:hover {
-    transform: scale(1.02);
-    z-index: 100;
+    transform: scale(1.05);
   }
 }
