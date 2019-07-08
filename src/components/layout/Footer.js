@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
 
-export const Footer = memo(() => {
+const Footer = memo(() => {
   return (
     <div className="container">
       <div className="row">
@@ -72,3 +72,5 @@ export const Footer = memo(() => {
     </div>
   );
 });
+
+export default Footer;

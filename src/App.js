@@ -3,8 +3,12 @@ import React from "react";
 import { Provider as ReduxProvider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import configureStore from "./store/store";
+
+//components
 import MainLayout from "./components/layout/MainLayout";
-import AuthorPage from "./components/pages/AuthorPage";
+const AuthorPage = React.lazy(() => import("./components/pages/AuthorPage"));
+
+//redux store
 const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
 
 function App() {

@@ -1,9 +1,4 @@
-import {
-  TextHelper,
-  SmallTextHelper
-  //UrlHelper,
-  //ArrayHelper
-} from "../../PrismicHelpers";
+import { TextHelper, SmallTextHelper } from "../../PrismicHelpers";
 
 export const codeSlice = data => {
   //If wrong type of data return null

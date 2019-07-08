@@ -1,9 +1,9 @@
-import React, { memo } from "react";
+import React, { memo, Suspense } from "react";
 import { Link } from "react-router-dom";
 import NavbarSearch from "./NavbarSearch";
-import SearchResults from "./SearchResults";
+const SearchResults = React.lazy(() => import("./SearchResults"));
 
-export const Navbar = memo(() => {
+const Navbar = memo(() => {
   return (
     <div className="container-fluid mx-0 mb-3 navbar shadow">
       <div className="container navbar__wrapper flex-nowrap">
@@ -34,8 +34,12 @@ export const Navbar = memo(() => {
         <div className="navbar__right-part">
           <NavbarSearch />
         </div>
-        <SearchResults />
+        <Suspense fallback="">
+          <SearchResults />
+        </Suspense>
       </div>
     </div>
   );
 });
+
+export default Navbar;
