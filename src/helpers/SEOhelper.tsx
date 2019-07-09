@@ -10,7 +10,7 @@ export const SEOhelper = (response: any): ISEO | null => {
   )
     return null;
 
-  const seoData = response;
+  const seoData: any = response;
 
   let seoObject: ISEO = {
     title: TextHelper(seoData.seo_title),

@@ -5,12 +5,12 @@ import { multipleMediaSlice } from "./single-slice-helpers/multipleMediaSlice";
 
 // Remove null from array (locally when testing)
 export const filterArray = (array: Array<any>): Array<any> => {
-  let index = -1,
-    arr_length = array ? array.length : 0,
-    resIndex = -1,
-    result = [];
+  let index: number = -1,
+    arr_length: Array<number> | number = array ? array.length : 0,
+    resIndex: number = -1,
+    result: Array<any> = [];
   while (++index < arr_length) {
-    let value = array[index];
+    let value: object = array[index];
     if (value) {
       result[++resIndex] = value;
     }
