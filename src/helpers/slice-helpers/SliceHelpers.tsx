@@ -4,7 +4,7 @@ import { singleMediaSlice } from "./single-slice-helpers/singleMediaSlice";
 import { multipleMediaSlice } from "./single-slice-helpers/multipleMediaSlice";
 
 // Remove null from array (locally when testing)
-export const filterArray = array => {
+export const filterArray = (array: Array<any>): Array<any> => {
   let index = -1,
     arr_length = array ? array.length : 0,
     resIndex = -1,
@@ -18,20 +18,23 @@ export const filterArray = array => {
   return result;
 };
 
-export const sliceHelper = body => {
+export const sliceHelper = (body: Array<any>): Array<any> | null => {
   if (!body || body.length === 0) return null;
 
-  let slicesData;
+  let slicesData: Array<any>;
 
   // eslint-disable-next-line array-callback-return
-  slicesData = body.map(slice => {
-    if (slice.slice_type === "text_block") return textBlockSlice(slice);
-    if (slice.slice_type === "code_component") return codeSlice(slice);
-    if (slice.slice_type === "single_media_block")
-      return singleMediaSlice(slice);
-    if (slice.slice_type === "multiple_media_blocks")
-      return multipleMediaSlice(slice);
-  });
+  slicesData = body.map(
+    (slice: any): any => {
+      if (slice.slice_type === "text_block") return textBlockSlice(slice);
+      if (slice.slice_type === "code_component") return codeSlice(slice);
+      if (slice.slice_type === "single_media_block")
+        return singleMediaSlice(slice);
+      if (slice.slice_type === "multiple_media_blocks")
+        return multipleMediaSlice(slice);
+      return null;
+    }
+  );
 
   //Return array of objects filtered if there is any null
   return filterArray(slicesData);

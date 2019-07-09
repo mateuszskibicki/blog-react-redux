@@ -1,13 +1,8 @@
-import {
-  TextHelper,
-  SmallTextHelper,
-  UrlHelper
-  //ArrayHelper,
-  //NumberHelper
-} from "./PrismicHelpers";
+import { TextHelper, SmallTextHelper, UrlHelper } from "./PrismicHelpers";
+import { ISEO } from "../types";
 
 //SEO HELPER
-export const SEOhelper = response => {
+export const SEOhelper = (response: any): ISEO | null => {
   if (
     typeof response !== "object" ||
     response === null ||
@@ -17,7 +12,7 @@ export const SEOhelper = response => {
 
   const seoData = response;
 
-  let seoObject = {
+  let seoObject: ISEO = {
     title: TextHelper(seoData.seo_title),
     description: TextHelper(seoData.seo_description),
     keywords: TextHelper(seoData.seo_keywords),

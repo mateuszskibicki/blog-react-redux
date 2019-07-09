@@ -1,6 +1,7 @@
 import { TextHelper, SmallTextHelper } from "../../PrismicHelpers";
+import { ICodeSlice } from "../../../types";
 
-export const codeSlice = data => {
+export const codeSlice = (data: any): ICodeSlice | null => {
   //If wrong type of data return null
   if (!data || !data.slice_type || !data.primary) return null;
   //Always take the slice_type and return it with data, helper will know what to display/render

@@ -3,11 +3,12 @@ import {
   SmallTextHelper,
   UrlHelper,
   ImgHelper,
-  //ArrayHelper,
   EmbedHelper
 } from "../../PrismicHelpers";
 
-export const multipleMediaSlice = data => {
+import { IMultipleMediaSliceSingle, IMultipleMediaSlice } from "../../../types";
+
+export const multipleMediaSlice = (data: any): IMultipleMediaSlice | null => {
   //If wrong type of data return null
   if (!data || !data.slice_type || !data.primary) return null;
   //Always take the slice_type and return it with data, helper will know what to display/render
@@ -25,15 +26,18 @@ export const multipleMediaSlice = data => {
     button_url: UrlHelper(sliceFixedData.button_url),
     media: !(sliceRepetableData && sliceRepetableData.length > 0)
       ? null
-      : sliceRepetableData.map(element => {
-          return {
-            title: TextHelper(element.title),
-            description: TextHelper(element.description),
-            image: ImgHelper(element.image),
-            image_alternative: TextHelper(element.image_alternative),
-            media_type: SmallTextHelper(element.media_type),
-            youtube: EmbedHelper(element.youtube)
-          };
-        })
+      : sliceRepetableData.map(
+          (element: any): IMultipleMediaSliceSingle | null => {
+            if (!element) return null;
+            return {
+              title: TextHelper(element.title),
+              description: TextHelper(element.description),
+              image: ImgHelper(element.image),
+              image_alternative: TextHelper(element.image_alternative),
+              media_type: SmallTextHelper(element.media_type),
+              youtube: EmbedHelper(element.youtube)
+            };
+          }
+        )
   };
 };
