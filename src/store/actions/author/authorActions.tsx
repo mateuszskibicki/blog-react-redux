@@ -5,20 +5,31 @@ import { setLoadingStart, setLoadingStop } from "../common/loadingActions";
 // helpers
 import { authorPageHelper } from "../../../helpers/author/AuthorPageHelpers";
 import { articlesListHelper } from "../../../helpers/articles/ArticlesHelpers";
-
+import { Dispatch } from "react";
+import { IgetRelatedToAuthorArticles } from "../../../types";
 // Get author data by UID from prismic CMS
-export const getAuthorByUidPrismic = uid => async dispatch => {
+export const getAuthorByUidPrismic = (uid: any) => async (
+  dispatch: Dispatch<any>
+): Promise<any> => {
   try {
     // Start loading
     dispatch(setLoadingStart());
 
     //Prismic connection
-    const prismicConnection = await Prismic.getApi(
-      process.env.REACT_APP_PRISMIC_API_ENDPOINT,
-      {
-        accessToken: process.env.REACT_APP_PRISMIC_API_TOKEN
-      }
-    );
+    const PrismicEndpoint: string | null =
+      process.env.REACT_APP_PRISMIC_API_ENDPOINT || null;
+    const PrismicToken: string | null =
+      process.env.REACT_APP_PRISMIC_API_TOKEN || null;
+
+    if (!PrismicEndpoint || !PrismicToken) {
+      dispatch({ type: SET_ERROR_AUTHOR_BY_UID_TRUE, payload: { uid } });
+      dispatch(setLoadingStop());
+      return;
+    }
+
+    const prismicConnection = await Prismic.getApi(PrismicEndpoint, {
+      accessToken: PrismicToken
+    });
 
     //Get author by uid from URL query
     const data = await prismicConnection.getByUID("author", uid);
@@ -32,7 +43,14 @@ export const getAuthorByUidPrismic = uid => async dispatch => {
 
     //If there is author use helper to sanitize data
     const authorData = authorPageHelper(data);
-    const userId = authorData[uid].author.id;
+
+    if (!authorData || !authorData[uid]) {
+      dispatch({ type: SET_ERROR_AUTHOR_BY_UID_TRUE, payload: { uid } });
+      dispatch(setLoadingStop());
+      return;
+    }
+
+    const userId: string = authorData[uid].author.id;
 
     //Get related articles
     const connectedArticles = await getRelatedToAuthorArticles({
@@ -41,15 +59,20 @@ export const getAuthorByUidPrismic = uid => async dispatch => {
     });
 
     //If there is no article related to this author
-    if (!connectedArticles.results || connectedArticles.results.length === 0) {
-      authorData[uid].articles = null;
+    if (
+      !connectedArticles ||
+      !connectedArticles.results ||
+      connectedArticles.results.length === 0
+    ) {
       dispatch({ type: GET_AUTHOR_BY_UID, payload: authorData });
       dispatch(setLoadingStop());
       return;
     }
 
+    const authorFullObject = authorData[uid];
+
     //If there is at least 1 article, add minified array to authorData object
-    authorData[uid].articles = articlesListHelper(connectedArticles);
+    authorFullObject.articles = articlesListHelper(connectedArticles);
 
     // Dispatch object and at the very end set loading to false
     dispatch({
@@ -64,10 +87,10 @@ export const getAuthorByUidPrismic = uid => async dispatch => {
   }
 };
 
-export const getRelatedToAuthorArticles = async ({
-  prismicConnection,
-  userId
-}) => {
+export const getRelatedToAuthorArticles = async (
+  args: IgetRelatedToAuthorArticles
+): Promise<any> => {
+  const { prismicConnection, userId } = args;
   try {
     const connectedArticles = await prismicConnection.query(
       [

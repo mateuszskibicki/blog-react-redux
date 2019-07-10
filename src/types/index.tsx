@@ -1,3 +1,5 @@
+import { type } from "os";
+
 /**
 |--------------------------------------------------
 | Helpers
@@ -101,4 +103,48 @@ export interface ITextBlockSlice {
   button_title: string | null;
   button_url: string | null;
   text_align: string | null;
+}
+
+export type TAllSlices =
+  | ICodeSlice
+  | ISingleMediaSlice
+  | IMultipleMediaSlice
+  | ITextBlockSlice;
+
+/**
+|--------------------------------------------------
+| Redux
+|--------------------------------------------------
+*/
+
+export interface IPrismicConnection {
+  query: any;
+}
+
+export interface IgetRelatedToAuthorArticles {
+  prismicConnection: IPrismicConnection;
+  userId: string;
+}
+
+export interface IAuthorSingle {
+  uid: string;
+  id: string;
+  short_description: string;
+  full_name: string;
+  image: IImg;
+  image_avatar: IImg;
+  email: string | null;
+  instagram: string | null;
+  facebook: string | null;
+  github: string | null;
+  linkedin: string | null;
+  content: Array<any>;
+  articles: Array<any>;
+}
+
+export interface IAuthorSinglePage {
+  error?: boolean;
+  author: IAuthorSingle;
+  SEO: ISEO;
+  articles: Array<any>;
 }

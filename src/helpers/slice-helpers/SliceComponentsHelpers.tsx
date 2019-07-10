@@ -1,6 +1,6 @@
-import React, { Suspense, ReactElement } from "react";
+import React, { Suspense } from "react";
 
-import { ISliceComponentProps } from "../../types";
+import { ISliceComponentProps, TAllSlices } from "../../types";
 
 const TextBlockSlice: React.FunctionComponent<
   ISliceComponentProps
@@ -21,17 +21,17 @@ const MultipleMediaSlice: React.FunctionComponent<
   (): Promise<any> => import("../../components/slices/MultipleMediaSlice")
 );
 
-export const sliceComponentsHelper = (slices: any): ReactElement | null => {
+export const sliceComponentsHelper = (slices: any): JSX.Element | null => {
   if (!slices || !slices.length || slices.length === 0) return null;
-  let componentsToDisplay: Array<any> = [];
+  let componentsToDisplay: Array<any> | JSX.Element[] = [];
   componentsToDisplay =
     !slices || !slices.length
       ? null
-      : slices.map((slice: any, index: string) => {
+      : slices.map((slice: TAllSlices, index: string) => {
           if (slice === null || !slice.type) return "";
           if (slice.type === "text_block")
             return <TextBlockSlice key={index} content={slice} />;
-          if (slice && slice.type === "code_component" && slice.language)
+          if (slice && slice.type === "code_component")
             return <CodeSlice key={index} content={slice} />;
           if (slice.type === "single_media_block")
             return <SingleMediaSlice key={index} content={slice} />;

@@ -7,15 +7,18 @@ import configureStore from "./store/store";
 //components
 import MainLayout from "./components/layout/MainLayout";
 import Loader from "./components/layout/Loader";
-const AuthorPage = React.lazy(() => import("./components/pages/AuthorPage"));
-const SingleArticlePage = React.lazy(() =>
-  import("./components/pages/SingleArticlePage")
+const AuthorPage: React.FunctionComponent = React.lazy(
+  (): Promise<any> => import("./components/pages/AuthorPage")
+);
+const SingleArticlePage: React.FunctionComponent = React.lazy(
+  (): Promise<any> => import("./components/pages/SingleArticlePage")
 );
 
 //redux store
+//@ts-ignore
 const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
 
-function App() {
+function App(): JSX.Element {
   return (
     <div className="app">
       <ReduxProvider store={reduxStore}>
