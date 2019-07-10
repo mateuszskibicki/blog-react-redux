@@ -5,12 +5,20 @@ import {
   SET_CURRENT_ARTICLE_UID
 } from "../actions/types";
 
-export const initialState = {
+interface IInitialState {
+  currentArticleUID: null | string;
+  lastArticles: null | Array<any>;
+}
+
+export const initialState: IInitialState = {
   currentArticleUID: null,
   lastArticles: null
 };
 
-export default function(state = initialState, action) {
+export default function(
+  state = initialState,
+  action: { type: string; payload: any }
+) {
   switch (action.type) {
     case SET_ERROR_SINGLE_ARTICLE_TRUE:
       return {

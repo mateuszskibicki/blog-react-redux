@@ -1,10 +1,12 @@
-import { type } from "os";
-
 /**
 |--------------------------------------------------
 | Helpers
 |--------------------------------------------------
 */
+export interface IAction {
+  type: string;
+  payload?: any;
+}
 
 export interface IUrl {
   url: string;
@@ -117,15 +119,22 @@ export type TAllSlices =
 |--------------------------------------------------
 */
 
+//prismic connection
 export interface IPrismicConnection {
   query: any;
 }
 
+// ------
+//authors
+// ------
+
+//get author articles
 export interface IgetRelatedToAuthorArticles {
   prismicConnection: IPrismicConnection;
   userId: string;
 }
 
+//single author
 export interface IAuthorSingle {
   uid: string;
   id: string;
@@ -142,9 +151,18 @@ export interface IAuthorSingle {
   articles: Array<any>;
 }
 
+//author single page
 export interface IAuthorSinglePage {
   error?: boolean;
   author: IAuthorSingle;
   SEO: ISEO;
   articles: Array<any>;
 }
+
+// ------
+//search
+// ------
+
+// ------
+//articles
+// ------

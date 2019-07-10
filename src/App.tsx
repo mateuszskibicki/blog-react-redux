@@ -43,7 +43,7 @@ function App(): JSX.Element {
   );
 }
 
-const Home = () => <p>home</p>;
-const ErrorComponent = () => <p>Error</p>;
+const Home: React.FunctionComponent = (): JSX.Element => <p>home</p>;
+const ErrorComponent: React.FunctionComponent = (): JSX.Element => <p>Error</p>;
 
 export default App;

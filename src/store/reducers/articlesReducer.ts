@@ -4,7 +4,18 @@ import {
   SET_ERROR_ALL_ARTICLES_TRUE
 } from "../actions/types";
 
-export const initialState = {
+import { ISEO } from "../../types";
+
+interface IInitialState {
+  error: boolean;
+  currentPage: null | string | number;
+  totalPages: null | string | number;
+  category: null | string;
+  searchText: null | string;
+  SEO: null | ISEO;
+}
+
+export const initialState: IInitialState = {
   error: false,
   currentPage: null,
   totalPages: null,
@@ -13,7 +24,10 @@ export const initialState = {
   SEO: null
 };
 
-export default function(state = initialState, action) {
+export default function(
+  state = initialState,
+  action: { type: string; payload: any }
+) {
   switch (action.type) {
     case SET_ERROR_ALL_ARTICLES_FALSE:
       return {

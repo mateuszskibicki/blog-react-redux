@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 // actions
 import { getAuthorByUidPrismic } from "../../store/actions/author/authorActions";
 //types
-import { ISEO, IAuthorSingle } from "../../types";
+import { ISEO, IAuthorSingle, IAction } from "../../types";
 //components
 const HeadSEO: React.FunctionComponent<{ SEO: ISEO | null }> = React.lazy(
   (): Promise<any> => import("../layout/HeadSEO")
@@ -16,7 +16,7 @@ const ErrorPage: React.StatelessComponent = React.lazy(
 type Props = {
   match: any;
   authors: any | null;
-  getAuthorByUidPrismic: (uid: string) => Promise<void>;
+  getAuthorByUidPrismic: (uid: string) => IAction;
 };
 
 const AuthorPage: React.FunctionComponent<Props> = memo(
@@ -59,7 +59,7 @@ const AuthorPage: React.FunctionComponent<Props> = memo(
     return null;
   },
   //memo
-  (prevProps: any, nextProps: any): boolean => {
+  (prevProps, nextProps): boolean => {
     const prevUID = prevProps.match.params.uid;
     const nextUID = nextProps.match.params.uid;
     if (prevUID === nextUID) {

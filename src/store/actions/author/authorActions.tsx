@@ -21,6 +21,7 @@ export const getAuthorByUidPrismic = (uid: any) => async (
     const PrismicToken: string | null =
       process.env.REACT_APP_PRISMIC_API_TOKEN || null;
 
+    //If no settings -> return error
     if (!PrismicEndpoint || !PrismicToken) {
       dispatch({ type: SET_ERROR_AUTHOR_BY_UID_TRUE, payload: { uid } });
       dispatch(setLoadingStop());
@@ -44,12 +45,14 @@ export const getAuthorByUidPrismic = (uid: any) => async (
     //If there is author use helper to sanitize data
     const authorData = authorPageHelper(data);
 
+    //If no data -> return error
     if (!authorData || !authorData[uid]) {
       dispatch({ type: SET_ERROR_AUTHOR_BY_UID_TRUE, payload: { uid } });
       dispatch(setLoadingStop());
       return;
     }
 
+    //If get user ID
     const userId: string = authorData[uid].author.id;
 
     //Get related articles

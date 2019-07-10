@@ -11,14 +11,21 @@ import {
   articlesListHelper,
   allArticlesPageSEOHelper
 } from "../../../helpers/articles/ArticlesHelpers";
+import { Dispatch } from "react";
+
+import { ISEO, IPrismicConnection } from "../../../types";
 
 // Set articles error to true
-export const setArticlesErrorToTrue = () => dispatch => {
+export const setArticlesErrorToTrue = () => (
+  dispatch: Dispatch<{ type: string }>
+) => {
   dispatch({ type: SET_ERROR_ALL_ARTICLES_TRUE });
 };
 
 // Set articles error to false
-export const setArticlesErrorToFalse = () => dispatch => {
+export const setArticlesErrorToFalse = () => (
+  dispatch: Dispatch<{ type: string }>
+) => {
   dispatch({ type: SET_ERROR_ALL_ARTICLES_FALSE });
 };
 
@@ -28,22 +35,31 @@ export const getAllArticles = ({
   category = null,
   searchText = null,
   SEO = null
-}) => async dispatch => {
+}) => async (dispatch: any) => {
   try {
     // Start loading
     dispatch(setLoadingStart());
 
     //Prismic connection
-    const prismicConnection = await Prismic.getApi(
-      process.env.REACT_APP_PRISMIC_API_ENDPOINT,
-      {
-        accessToken: process.env.REACT_APP_PRISMIC_API_TOKEN
-      }
-    );
+    const PrismicEndpoint: string | null =
+      process.env.REACT_APP_PRISMIC_API_ENDPOINT || null;
+    const PrismicToken: string | null =
+      process.env.REACT_APP_PRISMIC_API_TOKEN || null;
+
+    //If no settings -> return error
+    if (!PrismicEndpoint || !PrismicToken) {
+      dispatch({ type: SET_ERROR_ALL_ARTICLES_TRUE });
+      dispatch(setLoadingStop());
+      return;
+    }
+
+    const prismicConnection = await Prismic.getApi(PrismicEndpoint, {
+      accessToken: PrismicToken
+    });
 
     //Empty data at the very beginning
-    let data = null;
-    let SEOdata = SEO || null;
+    let data: null | any = null;
+    let SEOdata: null | ISEO = SEO || null;
 
     //Articles query
     if (!category && !searchText) {
@@ -133,10 +149,12 @@ export const queryCommonPart = {
   ]
 };
 
-export const getAllArticlesPrismicQuery = async ({
-  prismicConnection,
-  page
+export const getAllArticlesPrismicQuery = async (args: {
+  prismicConnection: IPrismicConnection;
+  page: string | number;
 }) => {
+  const { prismicConnection, page } = args;
+
   return await prismicConnection.query(
     Prismic.Predicates.at("document.type", "single-article"),
     {
@@ -146,11 +164,17 @@ export const getAllArticlesPrismicQuery = async ({
   );
 };
 
-export const getAllArticlesByCategoryPrismicQuery = async ({
-  prismicConnection,
-  page,
-  category
+export const getAllArticlesByCategoryPrismicQuery = async (args: {
+  prismicConnection: IPrismicConnection;
+  page: string | number;
+  category: string | null;
 }) => {
+  const { prismicConnection, page, category } = args;
+
+  // if missing data at least last articles
+  if (!category)
+    return await getAllArticlesPrismicQuery({ prismicConnection, page });
+
   return await prismicConnection.query(
     [
       Prismic.Predicates.at("document.type", "single-article"),
@@ -163,11 +187,17 @@ export const getAllArticlesByCategoryPrismicQuery = async ({
   );
 };
 
-export const getAllArticlesBySearchTextPrismicQuery = async ({
-  prismicConnection,
-  page,
-  searchText
+export const getAllArticlesBySearchTextPrismicQuery = async (args: {
+  prismicConnection: IPrismicConnection;
+  page: string | number;
+  searchText: string | null;
 }) => {
+  const { prismicConnection, page, searchText } = args;
+
+  // if missing data at least last articles
+  if (!searchText)
+    return await getAllArticlesPrismicQuery({ prismicConnection, page });
+
   return await prismicConnection.query(
     [
       Prismic.Predicates.at("document.type", "single-article"),
@@ -180,12 +210,18 @@ export const getAllArticlesBySearchTextPrismicQuery = async ({
   );
 };
 
-export const getAllArticlesByCategoryAndSearchTextPrismicQuery = async ({
-  prismicConnection,
-  page,
-  category,
-  searchText
+export const getAllArticlesByCategoryAndSearchTextPrismicQuery = async (args: {
+  prismicConnection: IPrismicConnection;
+  page: string | number;
+  category: string | null;
+  searchText: string | null;
 }) => {
+  const { prismicConnection, page, category, searchText } = args;
+
+  // if missing data at least last articles
+  if (!category || !searchText)
+    return await getAllArticlesPrismicQuery({ prismicConnection, page });
+
   return await prismicConnection.query(
     [
       Prismic.Predicates.at("document.type", "single-article"),
@@ -199,7 +235,10 @@ export const getAllArticlesByCategoryAndSearchTextPrismicQuery = async ({
   );
 };
 
-export const getAllArticlesSEOPrismicQuery = async ({ prismicConnection }) => {
+export const getAllArticlesSEOPrismicQuery = async (args: {
+  prismicConnection: IPrismicConnection;
+}) => {
+  const { prismicConnection } = args;
   return await prismicConnection.query(
     Prismic.Predicates.at("document.type", "all-articles-seo")
   );

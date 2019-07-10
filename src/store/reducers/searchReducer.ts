@@ -7,14 +7,24 @@ import {
   SET_ERROR_SEARCH_TEXT_FALSE
 } from "../actions/types";
 
-export const initialState = {
+interface IInitialState {
+  loading: boolean;
+  error: boolean;
+  articles: Array<any> | null;
+  searchText: string;
+}
+
+export const initialState: IInitialState = {
   loading: false,
   error: false,
   articles: null,
   searchText: ""
 };
 
-export default function(state = initialState, action) {
+export default function(
+  state = initialState,
+  action: { type: string; payload: any }
+) {
   switch (action.type) {
     case SET_ERROR_SEARCH_TEXT_TRUE:
       return {

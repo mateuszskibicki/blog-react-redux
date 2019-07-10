@@ -1,10 +1,17 @@
 import { LOADING_DATA_START, LOADING_DATA_STOP } from "../actions/types";
 
-export const initialState = {
+interface IInitialState {
+  loading: boolean;
+}
+
+export const initialState: IInitialState = {
   loading: false
 };
 
-export default function(state = initialState, action) {
+export default function(
+  state = initialState,
+  action: { type: string; payload: any }
+) {
   switch (action.type) {
     case LOADING_DATA_START:
       return {

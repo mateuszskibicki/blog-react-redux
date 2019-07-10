@@ -23,7 +23,7 @@ const MultipleMediaSlice: React.FunctionComponent<
 
 export const sliceComponentsHelper = (slices: any): JSX.Element | null => {
   if (!slices || !slices.length || slices.length === 0) return null;
-  let componentsToDisplay: Array<any> | JSX.Element[] = [];
+  let componentsToDisplay: Array<TAllSlices> | JSX.Element[] = [];
   componentsToDisplay =
     !slices || !slices.length
       ? null
