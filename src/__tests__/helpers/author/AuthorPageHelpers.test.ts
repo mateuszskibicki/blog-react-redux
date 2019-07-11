@@ -8,6 +8,7 @@ describe("AuthorPageHelpers", () => {
 
   test("authorPageHelper - should return null when provided data is incorrect", () => {
     expect(authorPageHelper("string")).toBeNull();
+    //@ts-ignore
     expect(authorPageHelper()).toBeNull();
     expect(authorPageHelper({})).toBeNull();
     expect(authorPageHelper([])).toBeNull();

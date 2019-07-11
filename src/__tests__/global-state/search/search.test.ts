@@ -37,6 +37,7 @@ describe("Redux - author", () => {
     //SET ERROR TO TRUE
     test("setErrorSearchTextTrue - should set search error to true", async () => {
       const store = mockStore({ ...initialState });
+      //@ts-ignore
       await store.dispatch(setErrorSearchTextTrue());
       expect(store.getActions()[0].type).toBe(SET_ERROR_SEARCH_TEXT_TRUE);
     });
@@ -44,6 +45,7 @@ describe("Redux - author", () => {
     //SET ERROR TO FALSE
     test("setErrorSearchTextFalse - should set search error to false", async () => {
       const store = mockStore({ ...initialState });
+      //@ts-ignore
       await store.dispatch(setErrorSearchTextFalse());
       expect(store.getActions()[0].type).toBe(SET_ERROR_SEARCH_TEXT_FALSE);
     });
@@ -51,6 +53,7 @@ describe("Redux - author", () => {
     //SET LOADING TO TRUE
     test("setLoadingSearchTextStart - should set search loading to true", async () => {
       const store = mockStore({ ...initialState });
+      //@ts-ignore
       await store.dispatch(setLoadingSearchTextStart());
       expect(store.getActions()[0].type).toBe(SET_LOADING_SEARCH_START);
     });
@@ -58,6 +61,7 @@ describe("Redux - author", () => {
     //SET LOADING TO FALSE
     test("setLoadingSearchTextStop - should set search loading to false", async () => {
       const store = mockStore({ ...initialState });
+      //@ts-ignore
       await store.dispatch(setLoadingSearchTextStop());
       expect(store.getActions()[0].type).toBe(SET_LOADING_SEARCH_STOP);
     });
@@ -66,6 +70,7 @@ describe("Redux - author", () => {
     test("setLoadingSearchTextStop - should set search loading to false", async () => {
       const store = mockStore({ ...initialState });
       const newSearchText = "dummy12345 aaa";
+      //@ts-ignore
       await store.dispatch(setSearchText(newSearchText));
       expect(store.getActions()[0].type).toBe(SET_SEARCH_TEXT);
       expect(store.getActions()[0].payload.searchText).toBe(newSearchText);
@@ -74,6 +79,7 @@ describe("Redux - author", () => {
     //getArticlesBySearchText - should do nothing when searchText isn't provided just change loading to stop
     test("getArticlesBySearchText - should do nothing when searchText isn't provided just change loading to stop", async () => {
       const store = mockStore({ ...initialState });
+      //@ts-ignore
       await store.dispatch(getArticlesBySearchText({ searchText: "" }));
       expect(store.getActions()[0].type).toBe(SET_LOADING_SEARCH_STOP);
     });
@@ -82,6 +88,7 @@ describe("Redux - author", () => {
     test("getArticlesBySearchText - should return empty array when dummy text is provided", async () => {
       const store = mockStore({ ...initialState });
       const searchText = "dummy12345 aaa";
+      //@ts-ignore
       await store.dispatch(getArticlesBySearchText({ searchText }));
       const storeActions = store.getActions();
       expect(storeActions[0].type).toBe(SET_LOADING_SEARCH_START);
@@ -122,6 +129,7 @@ describe("Redux - author", () => {
         type: SET_ERROR_SEARCH_TEXT_FALSE
       };
       const localInitialState = { error: true };
+      //@ts-ignore
       const reducerState = reducer(localInitialState, successResponse);
       expect(reducerState).toBeDefined();
       expect(reducerState.error).toBeFalsy();
@@ -143,6 +151,7 @@ describe("Redux - author", () => {
         type: SET_LOADING_SEARCH_STOP
       };
       const localInitialState = { error: true };
+      //@ts-ignore
       const reducerState = reducer(localInitialState, successResponse);
       expect(reducerState).toBeDefined();
       expect(reducerState.loading).toBeFalsy();

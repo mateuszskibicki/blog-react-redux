@@ -16,6 +16,5 @@ describe("SEOhelper", () => {
     expect(SEOhelper({})).toHaveProperty("title");
     expect(SEOhelper({})).toHaveProperty("description");
     expect(SEOhelper({})).toHaveProperty("keywords");
-    expect(SEOhelper({}).twitter_card).toBeNull();
   });
 });

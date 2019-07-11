@@ -10,8 +10,7 @@ import {
   LOADING_DATA_START,
   LOADING_DATA_STOP,
   GET_AUTHOR_BY_UID,
-  SET_ERROR_AUTHOR_BY_UID_TRUE,
-  SET_ERROR_AUTHOR_BY_UID_FALSE
+  SET_ERROR_AUTHOR_BY_UID_TRUE
 } from "../../../store/actions/types";
 
 const middlewares = [thunk];
@@ -26,6 +25,7 @@ describe("Redux - author", () => {
     test("getAuthorByUidPrismic /author/fake-wrong - should return error - author with unexisting uid", async () => {
       const userUid = "fake-wrong";
       const store = mockStore({ ...initialState });
+      //@ts-ignore
       await store.dispatch(getAuthorByUidPrismic(userUid));
       const storeActions = store.getActions();
       expect(storeActions[0].type).toBe(LOADING_DATA_START);
@@ -37,6 +37,7 @@ describe("Redux - author", () => {
     test("getAuthorByUidPrismic /author/mateusz-skibicki - should get author with existing uid", async () => {
       const userUid = "mateusz-skibicki";
       const store = mockStore({ ...initialState });
+      //@ts-ignore
       await store.dispatch(getAuthorByUidPrismic(userUid));
       const storeActions = store.getActions();
       expect(storeActions[0].type).toBe(LOADING_DATA_START);
@@ -52,7 +53,9 @@ describe("Redux - author", () => {
     test("getRelatedToAuthorArticles /author/mateusz-skibicki - should get author's array with related articles", async () => {
       //const userUid = "mateusz-skibicki";
       const userId = "XMgXAhAAAKkidmRE";
+
       const prismicConnection = await Prismic.getApi(
+        //@ts-ignore
         process.env.REACT_APP_PRISMIC_API_ENDPOINT,
         {
           accessToken: process.env.REACT_APP_PRISMIC_API_TOKEN
@@ -84,16 +87,6 @@ describe("Redux - author", () => {
       };
       expect(reducer(initialState, wrongResponse)).toBeDefined();
       expect(reducer(initialState, wrongResponse)).toMatchObject(initialState);
-    });
-
-    //SET ERROR TO FALSE
-    test("SET_ERROR_AUTHOR_BY_UID_FALSE - should change error to false", async () => {
-      const successResponse = {
-        type: SET_ERROR_AUTHOR_BY_UID_FALSE
-      };
-      const localInitialState = { false: true };
-      expect(reducer(localInitialState, successResponse)).toBeDefined();
-      expect(reducer(localInitialState, successResponse).error).toBeFalsy();
     });
 
     //UPDATE REDUCER WITH CORRECT AUTHOR DATA

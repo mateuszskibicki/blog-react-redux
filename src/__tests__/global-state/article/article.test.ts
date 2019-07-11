@@ -1,7 +1,5 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
-// import Prismic from "prismic-javascript";
-// import { PrismicConfig } from "../../../prismic-config/PrismicAPI";
 import reducer, {
   initialState
 } from "../../../store/reducers/articleSingleReducer";
@@ -39,6 +37,7 @@ describe("Redux - author", () => {
     //SET CURRENT ARTICLE UID
     test("setCurrentArticleUID - should set single article error to false", async () => {
       const store = mockStore({ ...initialState });
+      //@ts-ignore
       await store.dispatch(setCurrentArticleUID({ articleUID: "12345" }));
       expect(store.getActions()[0].type).toBe(SET_CURRENT_ARTICLE_UID);
     });
@@ -66,6 +65,7 @@ describe("Redux - author", () => {
     test("getArticleByUID /articles/dummy-uid - should return null and set error to true", async () => {
       const articleUID = "dummy-uid";
       const store = mockStore({ ...initialState });
+      //@ts-ignore
       await store.dispatch(getArticleByUID({ articleUID }));
       const storeActions = store.getActions();
       expect(storeActions[0].type).toBe(LOADING_DATA_START);
@@ -96,6 +96,7 @@ describe("Redux - author", () => {
       };
       const reducerState = reducer(initialState, errorResponse);
       expect(reducerState).toBeDefined();
+      //@ts-ignore
       expect(reducerState[errorResponse.payload.articleUID].error).toBeTruthy();
     });
 
@@ -109,6 +110,7 @@ describe("Redux - author", () => {
       };
       const reducerState = reducer(initialState, successResponse);
       expect(reducerState).toBeDefined();
+      //@ts-ignore
       expect(reducerState.error).toBeFalsy();
       expect(reducerState.currentArticleUID).toBe(
         successResponse.payload.articleUID
@@ -125,6 +127,7 @@ describe("Redux - author", () => {
       };
       const reducerState = reducer(initialState, successResponse);
       expect(reducerState).toBeDefined();
+      //@ts-ignore
       expect(reducerState.error).toBeFalsy();
       expect(Array.isArray(reducerState.lastArticles)).toBeTruthy();
       expect(reducerState.lastArticles[0].uid).toBe(1);
@@ -141,10 +144,12 @@ describe("Redux - author", () => {
       };
       const reducerState = reducer(initialState, successResponse);
       expect(reducerState).toBeDefined();
+      //@ts-ignore
       expect(reducerState.error).toBeFalsy();
       expect(reducerState.currentArticleUID).toBe(
         successResponse.payload.articleUID
       );
+      //@ts-ignore
       expect(reducerState[successResponse.payload.articleUID].uid).toBe(
         successResponse.payload.articleUID
       );

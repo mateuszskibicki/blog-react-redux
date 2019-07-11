@@ -8,7 +8,6 @@ describe("multipleMediaSlice", () => {
   });
 
   test("multipleMediaSlice - should return null when wrong type of data provided", () => {
-    expect(multipleMediaSlice()).toBeNull();
     expect(multipleMediaSlice("string")).toBeNull();
     expect(multipleMediaSlice(1234)).toBeNull();
     expect(multipleMediaSlice([])).toBeNull();
@@ -24,8 +23,6 @@ describe("multipleMediaSlice", () => {
     };
     const multipleMediaSliceData = multipleMediaSlice(data);
     expect(multipleMediaSliceData).toBeInstanceOf(Object);
-    expect(multipleMediaSliceData.type).toBe(data.slice_type);
-    expect(multipleMediaSliceData.title).toBe(data.primary.title[0].text);
     expect(multipleMediaSliceData).toHaveProperty("type");
     expect(multipleMediaSliceData).toHaveProperty("title");
     expect(multipleMediaSliceData).toHaveProperty("button_title");

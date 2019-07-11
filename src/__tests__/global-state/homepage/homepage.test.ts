@@ -16,6 +16,7 @@ describe("Redux - homepage", () => {
     describe("getHomepageDataPrismic", () => {
       test("/ - Get homepage data from prismic ", async () => {
         const store = mockStore({ ...initialState });
+        //@ts-ignore
         await store.dispatch(getHomepageDataPrismic());
         expect(store.getActions()[0].type).toBe(LOADING_DATA_START);
         expect(store.getActions()[1].type).toBe(GET_HOMEPAGE_DATA_PRISMIC);

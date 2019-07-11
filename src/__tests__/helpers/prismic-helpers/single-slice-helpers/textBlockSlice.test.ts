@@ -8,7 +8,6 @@ describe("textBlockSlice", () => {
   });
 
   test("textBlockSlice - should return null when wrong type of data provided", () => {
-    expect(textBlockSlice()).toBeNull();
     expect(textBlockSlice("string")).toBeNull();
     expect(textBlockSlice(1234)).toBeNull();
     expect(textBlockSlice([])).toBeNull();
@@ -24,8 +23,6 @@ describe("textBlockSlice", () => {
     };
     const textBlockData = textBlockSlice(data);
     expect(textBlockData).toBeInstanceOf(Object);
-    expect(textBlockData.type).toBe(data.slice_type);
-    expect(textBlockData.title).toBe(data.primary.title[0].text);
     expect(textBlockData).toHaveProperty("type");
     expect(textBlockData).toHaveProperty("title");
     expect(textBlockData).toHaveProperty("text_align");

@@ -11,7 +11,7 @@ import { IgetRelatedToAuthorArticles } from "../../../types/author.types";
 // Get author data by UID from prismic CMS
 export const getAuthorByUidPrismic = (uid: any) => async (
   dispatch: Dispatch<any>
-): Promise<any> => {
+) => {
   try {
     // Start loading
     dispatch(setLoadingStart());

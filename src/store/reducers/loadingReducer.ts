@@ -10,7 +10,7 @@ export const initialState: IInitialState = {
 
 export default function(
   state = initialState,
-  action: { type: string; payload: any }
+  action: { type: string; payload?: any }
 ) {
   switch (action.type) {
     case LOADING_DATA_START:

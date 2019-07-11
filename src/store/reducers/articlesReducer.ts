@@ -26,7 +26,7 @@ export const initialState: IInitialState = {
 
 export default function(
   state = initialState,
-  action: { type: string; payload: any }
+  action: { type: string; payload?: any }
 ) {
   switch (action.type) {
     case SET_ERROR_ALL_ARTICLES_FALSE:
