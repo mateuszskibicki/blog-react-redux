@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 // actions
 import { getAuthorByUidPrismic } from "../../store/actions/author/authorActions";
 //types
-import { ISEO, IAuthorSingle, IAction } from "../../types";
+import { ISEO, IAction } from "../../types/common.types";
+import { IAuthorSingle } from "../../types/author.types";
 //components
 const HeadSEO: React.FunctionComponent<{ SEO: ISEO | null }> = React.lazy(
   (): Promise<any> => import("../layout/HeadSEO")

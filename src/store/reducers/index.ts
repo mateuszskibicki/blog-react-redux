@@ -6,7 +6,7 @@ import articlesReducer from "./articlesReducer";
 import articleSingleReducer from "./articleSingleReducer";
 import searchReducer from "./searchReducer";
 
-export default combineReducers<object>({
+export default combineReducers({
   loading: loadingReducer,
   homepage: homepageReducer,
   authors: authorReducer,

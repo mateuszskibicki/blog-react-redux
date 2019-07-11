@@ -1,4 +1,8 @@
-import { TextHelper, SmallTextHelper, UrlHelper } from "./PrismicHelpers";
+import {
+  TextHelper,
+  SmallTextHelper,
+  UrlHelper
+} from "prismic-helpers-sanitize";
 import { ISEO } from "../types/common.types";
 
 //SEO HELPER

@@ -4,7 +4,7 @@ import {
   SET_ERROR_ALL_ARTICLES_TRUE
 } from "../actions/types";
 
-import { ISEO } from "../../types";
+import { ISEO } from "../../types/common.types";
 
 interface IInitialState {
   error: boolean;

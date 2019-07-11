@@ -1,4 +1,4 @@
-import { TextHelper, SmallTextHelper } from "../../PrismicHelpers";
+import { TextHelper, SmallTextHelper } from "prismic-helpers-sanitize";
 import { ICodeSlice } from "../../../types/slices.types";
 
 export const codeSlice = (data: any): ICodeSlice | null => {

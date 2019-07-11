@@ -4,7 +4,7 @@ import {
   UrlHelper,
   ImgHelper,
   EmbedHelper
-} from "../../PrismicHelpers";
+} from "prismic-helpers-sanitize";
 
 import {
   IMultipleMediaSliceSingle,

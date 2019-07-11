@@ -3,7 +3,7 @@ import {
   SmallTextHelper,
   UrlHelper,
   ArrayHelper
-} from "../../PrismicHelpers";
+} from "prismic-helpers-sanitize";
 
 import { ITextBlockSlice } from "../../../types/slices.types";
 

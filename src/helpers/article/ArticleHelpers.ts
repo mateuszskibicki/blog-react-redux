@@ -1,4 +1,8 @@
-import { TextHelper, SmallTextHelper, ImgHelper } from "../PrismicHelpers";
+import {
+  TextHelper,
+  SmallTextHelper,
+  ImgHelper
+} from "prismic-helpers-sanitize";
 import { SEOhelper } from "../SEOhelper";
 import { sliceHelper } from "../slice-helpers/SliceHelpers";
 
