@@ -6,7 +6,8 @@ import { setLoadingStart, setLoadingStop } from "../common/loadingActions";
 import { authorPageHelper } from "../../../helpers/author/AuthorPageHelpers";
 import { articlesListHelper } from "../../../helpers/articles/ArticlesHelpers";
 import { Dispatch } from "react";
-import { IgetRelatedToAuthorArticles } from "../../../types";
+
+import { IgetRelatedToAuthorArticles } from "../../../types/author.types";
 // Get author data by UID from prismic CMS
 export const getAuthorByUidPrismic = (uid: any) => async (
   dispatch: Dispatch<any>

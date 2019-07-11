@@ -1,5 +1,5 @@
 import { LOADING_DATA_START, LOADING_DATA_STOP } from "../types";
-import { IAction } from "../../../types";
+import { IAction } from "../../../types/common.types";
 import { Dispatch } from "react";
 
 // Set loading to true

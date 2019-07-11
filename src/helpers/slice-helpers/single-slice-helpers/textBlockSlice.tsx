@@ -5,7 +5,7 @@ import {
   ArrayHelper
 } from "../../PrismicHelpers";
 
-import { ITextBlockSlice } from "../../../types";
+import { ITextBlockSlice } from "../../../types/slices.types";
 
 export const textBlockSlice = (data: any): ITextBlockSlice | null => {
   //If wrong type of data return null

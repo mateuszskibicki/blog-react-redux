@@ -1,5 +1,5 @@
 import { TextHelper, SmallTextHelper, UrlHelper } from "./PrismicHelpers";
-import { ISEO } from "../types";
+import { ISEO } from "../types/common.types";
 
 //SEO HELPER
 export const SEOhelper = (response: any): ISEO | null => {

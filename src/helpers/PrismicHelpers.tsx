@@ -1,4 +1,4 @@
-import { IImg, IUrl } from "../types";
+import { IImg, IUrl } from "../types/common.types";
 
 export const TextHelper = (object: Array<any> | undefined): string | null => {
   if (object && object[0] && object[0].text && object[0].text.length > 0)

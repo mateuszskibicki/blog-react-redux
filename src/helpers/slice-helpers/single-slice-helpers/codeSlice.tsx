@@ -1,5 +1,5 @@
 import { TextHelper, SmallTextHelper } from "../../PrismicHelpers";
-import { ICodeSlice } from "../../../types";
+import { ICodeSlice } from "../../../types/slices.types";
 
 export const codeSlice = (data: any): ICodeSlice | null => {
   //If wrong type of data return null

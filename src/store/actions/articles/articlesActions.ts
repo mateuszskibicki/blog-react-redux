@@ -13,7 +13,7 @@ import {
 } from "../../../helpers/articles/ArticlesHelpers";
 import { Dispatch } from "react";
 
-import { ISEO, IPrismicConnection } from "../../../types";
+import { ISEO, IPrismicConnection } from "../../../types/common.types";
 
 // Set articles error to true
 export const setArticlesErrorToTrue = () => (

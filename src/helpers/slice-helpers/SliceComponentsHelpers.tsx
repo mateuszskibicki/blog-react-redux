@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-import { ISliceComponentProps, TAllSlices } from "../../types";
+import { ISliceComponentProps, TAllSlices } from "../../types/slices.types";
 
 const TextBlockSlice: React.FunctionComponent<
   ISliceComponentProps

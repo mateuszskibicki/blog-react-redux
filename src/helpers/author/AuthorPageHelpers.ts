@@ -2,12 +2,14 @@ import { TextHelper, ImgHelper } from "../PrismicHelpers";
 import { SEOhelper } from "../SEOhelper";
 import { sliceHelper } from "../slice-helpers/SliceHelpers";
 
-export const authorPageHelper = data => {
+import { IAuthorSingle } from "../../types/author.types";
+
+export const authorPageHelper = (data: any): any | null => {
   if (!data || !data.data) return null;
 
   const authorData = data.data;
 
-  const author = {
+  const author: IAuthorSingle = {
     uid: data.uid,
     id: data.id,
     short_description: TextHelper(authorData.short_description),

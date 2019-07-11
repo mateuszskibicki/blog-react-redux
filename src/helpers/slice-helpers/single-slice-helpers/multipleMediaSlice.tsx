@@ -6,7 +6,10 @@ import {
   EmbedHelper
 } from "../../PrismicHelpers";
 
-import { IMultipleMediaSliceSingle, IMultipleMediaSlice } from "../../../types";
+import {
+  IMultipleMediaSliceSingle,
+  IMultipleMediaSlice
+} from "../../../types/slices.types";
 
 export const multipleMediaSlice = (data: any): IMultipleMediaSlice | null => {
   //If wrong type of data return null

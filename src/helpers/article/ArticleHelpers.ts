@@ -2,11 +2,13 @@ import { TextHelper, SmallTextHelper, ImgHelper } from "../PrismicHelpers";
 import { SEOhelper } from "../SEOhelper";
 import { sliceHelper } from "../slice-helpers/SliceHelpers";
 
-export const singleArticleHelper = data => {
-  if (!data || !data.data) return null;
-  const articleData = data.data;
+import { ISingleArticlePage } from "../../types/article.types";
 
-  const article = {
+export const singleArticleHelper = (data: any): ISingleArticlePage | null => {
+  if (!data || !data.data) return null;
+  const articleData: any = data.data;
+
+  const article: ISingleArticlePage = {
     uid: data.uid,
     title: TextHelper(articleData.title),
     short_description: TextHelper(articleData.short_description),
