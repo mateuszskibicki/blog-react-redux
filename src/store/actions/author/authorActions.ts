@@ -95,6 +95,9 @@ export const getRelatedToAuthorArticles = async (
   args: IgetRelatedToAuthorArticles
 ): Promise<any> => {
   const { prismicConnection, userId } = args;
+
+  if (!prismicConnection.query) return null;
+
   try {
     const connectedArticles = await prismicConnection.query(
       [

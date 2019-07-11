@@ -47,5 +47,6 @@ export interface ISEO {
 }
 
 export interface IPrismicConnection {
-  query: any;
+  query?: Function;
+  getByUID?: Function;
 }

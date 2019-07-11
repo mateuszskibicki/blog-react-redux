@@ -10,35 +10,53 @@ import {
 } from "../types";
 
 import { getAllArticlesBySearchTextPrismicQuery } from "../articles/articlesActions";
-
 import { articlesListHelper } from "../../../helpers/articles/ArticlesHelpers";
+//types
+import { Dispatch } from "react";
+import { ISingleArticle } from "../../../types/article.types";
 
 // Set loading to true -> search by text
-export const setSearchText = searchText => dispatch => {
+export const setSearchText = (searchText: string) => (
+  dispatch: Dispatch<{ type: string; payload?: { searchText: string } }>
+) => {
   dispatch({ type: SET_SEARCH_TEXT, payload: { searchText } });
 };
 
 // Set loading to true -> search by text
-export const setLoadingSearchTextStart = () => dispatch => {
+export const setLoadingSearchTextStart = () => (
+  dispatch: Dispatch<{ type: string }>
+) => {
   dispatch({ type: SET_LOADING_SEARCH_START });
 };
 
 // Set loading to false -> search by text
-export const setLoadingSearchTextStop = () => dispatch => {
+export const setLoadingSearchTextStop = () => (
+  dispatch: Dispatch<{ type: string }>
+) => {
   dispatch({ type: SET_LOADING_SEARCH_STOP });
 };
 
 // Set error to true -> search by text
-export const setErrorSearchTextTrue = () => dispatch => {
+export const setErrorSearchTextTrue = () => (
+  dispatch: Dispatch<{ type: string }>
+) => {
   dispatch({ type: SET_ERROR_SEARCH_TEXT_TRUE });
 };
 
 // Set error to false -> search by text
-export const setErrorSearchTextFalse = () => dispatch => {
+export const setErrorSearchTextFalse = () => (
+  dispatch: Dispatch<{ type: string }>
+) => {
   dispatch({ type: SET_ERROR_SEARCH_TEXT_FALSE });
 };
 
-export const getArticlesBySearchText = ({ searchText }) => async dispatch => {
+export const getArticlesBySearchText = ({
+  searchText
+}: {
+  searchText: string;
+}) => async (
+  dispatch: Dispatch<{ type: string; payload?: any } | Function>
+) => {
   try {
     if (!searchText || searchText.trim().length === 0) {
       return dispatch(setLoadingSearchTextStop());
@@ -49,12 +67,20 @@ export const getArticlesBySearchText = ({ searchText }) => async dispatch => {
     dispatch(setErrorSearchTextFalse());
 
     //Prismic connection
-    const prismicConnection = await Prismic.getApi(
-      process.env.REACT_APP_PRISMIC_API_ENDPOINT,
-      {
-        accessToken: process.env.REACT_APP_PRISMIC_API_TOKEN
-      }
-    );
+    const PrismicEndpoint: string | null =
+      process.env.REACT_APP_PRISMIC_API_ENDPOINT || null;
+    const PrismicToken: string | null =
+      process.env.REACT_APP_PRISMIC_API_TOKEN || null;
+
+    //If no settings -> return error
+    if (!PrismicEndpoint || !PrismicToken) {
+      dispatch(setErrorSearchTextTrue());
+      return dispatch(setLoadingSearchTextStop());
+    }
+
+    const prismicConnection = await Prismic.getApi(PrismicEndpoint, {
+      accessToken: PrismicToken
+    });
 
     //Articles query
     const data = await getAllArticlesBySearchTextPrismicQuery({
@@ -70,7 +96,7 @@ export const getArticlesBySearchText = ({ searchText }) => async dispatch => {
     }
 
     //Sanitize data
-    const articlesData = articlesListHelper(data);
+    const articlesData: ISingleArticle[] | null = articlesListHelper(data);
 
     dispatch({
       type: GET_ARTICLES_BY_SEARCH_TEXT,

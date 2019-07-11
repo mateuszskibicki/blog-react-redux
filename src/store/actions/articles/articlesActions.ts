@@ -155,6 +155,8 @@ export const getAllArticlesPrismicQuery = async (args: {
 }) => {
   const { prismicConnection, page } = args;
 
+  if (!prismicConnection.query) return null;
+
   return await prismicConnection.query(
     Prismic.Predicates.at("document.type", "single-article"),
     {
@@ -170,6 +172,8 @@ export const getAllArticlesByCategoryPrismicQuery = async (args: {
   category: string | null;
 }) => {
   const { prismicConnection, page, category } = args;
+
+  if (!prismicConnection.query) return null;
 
   // if missing data at least last articles
   if (!category)
@@ -193,6 +197,8 @@ export const getAllArticlesBySearchTextPrismicQuery = async (args: {
   searchText: string | null;
 }) => {
   const { prismicConnection, page, searchText } = args;
+
+  if (!prismicConnection.query) return null;
 
   // if missing data at least last articles
   if (!searchText)
@@ -218,6 +224,8 @@ export const getAllArticlesByCategoryAndSearchTextPrismicQuery = async (args: {
 }) => {
   const { prismicConnection, page, category, searchText } = args;
 
+  if (!prismicConnection.query) return null;
+
   // if missing data at least last articles
   if (!category || !searchText)
     return await getAllArticlesPrismicQuery({ prismicConnection, page });
@@ -239,6 +247,9 @@ export const getAllArticlesSEOPrismicQuery = async (args: {
   prismicConnection: IPrismicConnection;
 }) => {
   const { prismicConnection } = args;
+
+  if (!prismicConnection.query) return null;
+
   return await prismicConnection.query(
     Prismic.Predicates.at("document.type", "all-articles-seo")
   );

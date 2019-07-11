@@ -1,9 +1,9 @@
+import { Dispatch } from "react";
 import Prismic from "prismic-javascript";
 import {
   GET_ARTICLE_BY_UID,
   GET_3_LAST_ARTICLES,
   SET_ERROR_SINGLE_ARTICLE_TRUE,
-  // SET_ERROR_SINGLE_ARTICLE_FALSE,
   SET_CURRENT_ARTICLE_UID
 } from "../types";
 // loading
@@ -11,19 +11,18 @@ import { setLoadingStart, setLoadingStop } from "../common/loadingActions";
 // helpers
 import { singleArticleHelper } from "../../../helpers/article/ArticleHelpers";
 import { articlesListHelper } from "../../../helpers/articles/ArticlesHelpers";
-
-// // Set single article error to true
-// export const setSingleArticleErrorToTrue = () => dispatch => {
-//   dispatch({ type: SET_ERROR_SINGLE_ARTICLE_TRUE });
-// };
-
-// // Set single article error to false
-// export const setSingleArticleErrorToFalse = () => dispatch => {
-//   dispatch({ type: SET_ERROR_SINGLE_ARTICLE_FALSE });
-// };
+//types
+import { ISingleArticlePage } from "../../../types/article.types";
+import { IPrismicConnection } from "../../../types/common.types";
 
 // Set single article current UID (when it exists and we're not calling anything)
-export const setCurrentArticleUID = ({ articleUID }) => dispatch => {
+export const setCurrentArticleUID = ({
+  articleUID
+}: {
+  articleUID: string;
+}) => (
+  dispatch: Dispatch<{ type: string; payload: { articleUID: string } }>
+) => {
   dispatch({ type: SET_CURRENT_ARTICLE_UID, payload: { articleUID } });
 };
 
@@ -31,21 +30,33 @@ export const setCurrentArticleUID = ({ articleUID }) => dispatch => {
 export const getArticleByUID = ({
   articleUID,
   lastArticles
-}) => async dispatch => {
+}: {
+  articleUID: string;
+  lastArticles: Array<any>;
+}) => async (dispatch: Dispatch<{ type: string; payload?: any }>) => {
   try {
     // Start loading
     dispatch(setLoadingStart());
 
     //Prismic connection
-    const prismicConnection = await Prismic.getApi(
-      process.env.REACT_APP_PRISMIC_API_ENDPOINT,
-      {
-        accessToken: process.env.REACT_APP_PRISMIC_API_TOKEN
-      }
-    );
+    const PrismicEndpoint: string | null =
+      process.env.REACT_APP_PRISMIC_API_ENDPOINT || null;
+    const PrismicToken: string | null =
+      process.env.REACT_APP_PRISMIC_API_TOKEN || null;
+
+    //If no settings -> return error
+    if (!PrismicEndpoint || !PrismicToken) {
+      dispatch({ type: SET_ERROR_SINGLE_ARTICLE_TRUE });
+      dispatch(setLoadingStop());
+      return;
+    }
+
+    const prismicConnection = await Prismic.getApi(PrismicEndpoint, {
+      accessToken: PrismicToken
+    });
 
     //Article query
-    const data = await getSingleArticleByUIDPrismicQuery({
+    const data: Promise<any> = await getSingleArticleByUIDPrismicQuery({
       prismicConnection,
       articleUID
     });
@@ -60,7 +71,7 @@ export const getArticleByUID = ({
     }
 
     //Last articles data
-    let lastArticlesData = lastArticles;
+    let lastArticlesData: any[] = lastArticles;
     //If there is no last 3 articles in redux state --> lastArticles
     if (!lastArticlesData) {
       lastArticlesData = await getLast3ArticlesPrismicQuery({
@@ -75,7 +86,7 @@ export const getArticleByUID = ({
     }
 
     //Sanitize data
-    const articleData = singleArticleHelper(data);
+    const articleData: ISingleArticlePage | null = singleArticleHelper(data);
 
     //Dispatch data to the reducer
     dispatch({
@@ -99,7 +110,12 @@ export const getArticleByUID = ({
 export const getSingleArticleByUIDPrismicQuery = async ({
   prismicConnection,
   articleUID
+}: {
+  prismicConnection: IPrismicConnection;
+  articleUID: string;
 }) => {
+  if (!prismicConnection.getByUID || !articleUID) return null;
+
   return await prismicConnection.getByUID("single-article", articleUID, {
     fetchLinks: [
       "author.uid",
@@ -110,7 +126,13 @@ export const getSingleArticleByUIDPrismicQuery = async ({
   });
 };
 
-export const getLast3ArticlesPrismicQuery = async ({ prismicConnection }) => {
+export const getLast3ArticlesPrismicQuery = async ({
+  prismicConnection
+}: {
+  prismicConnection: IPrismicConnection;
+}) => {
+  if (!prismicConnection.query) return null;
+
   return await prismicConnection.query(
     Prismic.Predicates.at("document.type", "single-article"),
     {
