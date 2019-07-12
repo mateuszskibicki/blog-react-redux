@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { Link } from "react-router-dom";
 import NavbarSearch from "./NavbarSearch";
 
-const SearchResults: any = React.lazy(() => import("./SearchResults"));
+const SearchResults = React.lazy(() => import("./SearchResults"));
 
 const Navbar: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => {
   return (

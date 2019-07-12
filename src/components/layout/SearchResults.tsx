@@ -7,7 +7,7 @@ import { SearchSingleResult } from "./SearchSingleResult";
 import { ISearchResults } from "../../types/search.types";
 import { ISingleArticle } from "../../types/article.types";
 
-const SearchResults: React.FC<ISearchResults> = ({
+const SearchResults: any = ({
   articles,
   error,
   loading,

@@ -5,21 +5,20 @@ import {
   getArticlesBySearchText
 } from "../../store/actions/search/searchActions";
 
-interface IProps {
-  searchText: string;
-  getArticlesBySearchText: Function;
-  setSearchText: Function;
-}
-
-const NavbarSearch: React.FunctionComponent<IProps> = ({
+const NavbarSearch: any = ({
   searchText,
   getArticlesBySearchText,
   setSearchText
-}: IProps) => {
-  const onChangeSearchText = (e: React.ChangeEvent<HTMLInputElement>) => {
+}: any) => {
+  const onChangeSearchText = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value;
     setSearchText(value);
-    if (value && value.trim().length > 0 && value !== searchText) {
+    if (
+      value &&
+      value.trim().length > 0 &&
+      value !== searchText &&
+      getArticlesBySearchText
+    ) {
       getArticlesBySearchText({ searchText: value });
     }
   };

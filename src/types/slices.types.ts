@@ -23,7 +23,7 @@ export interface ISingleMediaSlice {
   media_position: string | null;
   text_align: string | null;
   media_type: string | null;
-  youtube: string | null;
+  youtube: any | null;
 }
 
 //multiple media slice -> single element
@@ -33,7 +33,7 @@ export interface IMultipleMediaSliceSingle {
   image: IImg | null;
   image_alternative: string | null;
   media_type: string | null;
-  youtube: string | null;
+  youtube: any | null;
 }
 
 //multiple media slice

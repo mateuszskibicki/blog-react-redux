@@ -1,11 +1,23 @@
 import React from "react";
-import PropTypes from "prop-types";
+//@ts-ignore
 import { RichText } from "prismic-reactjs";
 
-const TextBlockSlice = ({ content }) => {
+import { ITextBlockSlice } from "../../types/slices.types";
+
+const TextBlockSlice: React.FC<{ content: ITextBlockSlice }> = ({
+  content
+}: {
+  content: ITextBlockSlice;
+}): JSX.Element | null => {
   if (!content) return null;
 
-  const { title, text_align, button_url, button_title, description } = content;
+  const {
+    title,
+    text_align,
+    button_url,
+    button_title,
+    description
+  }: ITextBlockSlice = content;
 
   return (
     <section className="my-2 slice-text-box">
@@ -26,17 +38,6 @@ const TextBlockSlice = ({ content }) => {
       </div>
     </section>
   );
-};
-
-TextBlockSlice.propTypes = {
-  content: PropTypes.shape({
-    title: PropTypes.string,
-    text_align: PropTypes.string,
-    type: PropTypes.string,
-    button_url: PropTypes.string,
-    button_title: PropTypes.string,
-    description: PropTypes.arrayOf(PropTypes.object)
-  })
 };
 
 export default TextBlockSlice;

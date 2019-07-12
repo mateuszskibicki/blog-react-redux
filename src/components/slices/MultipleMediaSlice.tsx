@@ -1,17 +1,34 @@
 import React from "react";
-import PropTypes from "prop-types";
+import {
+  IMultipleMediaSlice,
+  IMultipleMediaSliceSingle
+} from "../../types/slices.types";
 
-const MultipleMediaSlice = ({ content }) => {
+const MultipleMediaSlice = ({
+  content
+}: {
+  content: IMultipleMediaSlice;
+}): JSX.Element | null => {
   if (!content) return null;
 
-  const { title, button_title, button_url, media } = content;
+  const {
+    title,
+    button_title,
+    button_url,
+    media
+  }: IMultipleMediaSlice = content;
 
-  const mediaImage = (singleMedia, index) => {
+  const mediaImage: React.FC<IMultipleMediaSliceSingle> = (
+    singleMedia: IMultipleMediaSliceSingle,
+    index: number
+  ): JSX.Element | null => {
+    if (!singleMedia.image) return null;
+
     return (
       <div className="col-12 col-sm-6 col-md-4 col-xl-3 " key={index}>
         <img
           src={singleMedia.image.url}
-          alt={singleMedia.image.alt}
+          alt={singleMedia.image.alt ? singleMedia.image.alt : ""}
           className="img-fluid shadow"
         />
         <h3 className="mt-2 mb-2">{singleMedia.title}</h3>
@@ -20,7 +37,12 @@ const MultipleMediaSlice = ({ content }) => {
     );
   };
 
-  const mediaYoutube = (singleMedia, index) => {
+  const mediaYoutube: React.FC<IMultipleMediaSliceSingle> = (
+    singleMedia: IMultipleMediaSliceSingle,
+    index: number
+  ): JSX.Element | null => {
+    if (!singleMedia.youtube || !singleMedia.youtube.html) return null;
+
     return (
       <div className="col-12 col-md-6 col-xl-4" key={index}>
         <div dangerouslySetInnerHTML={{ __html: singleMedia.youtube.html }} />
@@ -30,7 +52,7 @@ const MultipleMediaSlice = ({ content }) => {
     );
   };
 
-  if (!media || media.length === 0) return "";
+  if (!media || media.length === 0) return null;
 
   return (
     <section className="my-3 multiple-media-slice">
@@ -57,27 +79,6 @@ const MultipleMediaSlice = ({ content }) => {
       </div>
     </section>
   );
-};
-
-MultipleMediaSlice.propTypes = {
-  content: PropTypes.shape({
-    type: PropTypes.string,
-    title: PropTypes.string,
-    button_title: PropTypes.string,
-    button_url: PropTypes.string,
-    media: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        description: PropTypes.string,
-        image: PropTypes.shape({
-          url: PropTypes.string,
-          alt: PropTypes.string
-        }),
-        media_type: PropTypes.string,
-        youtube: PropTypes.object
-      })
-    )
-  })
 };
 
 export default MultipleMediaSlice;

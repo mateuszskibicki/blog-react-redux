@@ -1,13 +1,20 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+//@ts-ignore
 import Prism from "prismjs";
 
-const CodeSlice = ({ content }) => {
-  const [show, setShow] = useState(false);
+import { ICodeSlice } from "../../types/slices.types";
 
-  const { title, language, code } = content;
+const CodeSlice: React.FC<{ content: ICodeSlice }> = ({
+  content
+}: {
+  content: ICodeSlice;
+}) => {
+  const [show, setShow] = useState<boolean>(false);
 
-  const copyToClipboard = () => {
+  const { title, language, code }: ICodeSlice = content;
+
+  const copyToClipboard = (): void | null => {
+    if (!code) return null;
     const el = document.createElement("textarea");
     el.value = code;
     document.body.appendChild(el);
@@ -81,14 +88,6 @@ const CodeSlice = ({ content }) => {
       )}
     </section>
   );
-};
-
-CodeSlice.propTypes = {
-  content: PropTypes.shape({
-    title: PropTypes.string,
-    language: PropTypes.string,
-    code: PropTypes.string
-  })
 };
 
 export default CodeSlice;

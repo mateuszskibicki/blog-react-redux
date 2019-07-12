@@ -6,4 +6,5 @@ export interface ISearchResults {
   loading: boolean;
   searchText: string | null;
   setSearchText: Function;
+  getArticlesBySearchText?: Function;
 }
