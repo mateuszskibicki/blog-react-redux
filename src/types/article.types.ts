@@ -27,6 +27,7 @@ export interface ISingleArticle {
   date: string | null;
   small_img: IImg | null;
   xs_img: IImg | null;
+  big_img?: IImg | null;
   author: ISmallAuthor | null;
 }
 

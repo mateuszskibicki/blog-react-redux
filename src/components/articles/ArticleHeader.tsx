@@ -1,11 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 import CategoriesList from "./CategoriesList";
 import TagsList from "./TagsList";
 import SeriesList from "./SeriesList";
 import AuthorPreview from "./AuthorPreview";
 
-const ArticleHeader = ({
+import { IArticleHeader } from "../../types/article.types";
+
+const ArticleHeader: React.FC<IArticleHeader> = ({
   title,
   short_description,
   series,
@@ -14,7 +15,7 @@ const ArticleHeader = ({
   date,
   big_img,
   author
-}) => (
+}: IArticleHeader): JSX.Element => (
   <>
     {big_img && (
       <div className="container-fluid p-0 m-0 d-block d-lg-none">
@@ -61,27 +62,5 @@ const ArticleHeader = ({
     </div>
   </>
 );
-
-ArticleHeader.propTypes = {
-  title: PropTypes.string,
-  short_description: PropTypes.string,
-  series: PropTypes.string,
-  categories: PropTypes.string,
-  tags: PropTypes.string,
-  date: PropTypes.string,
-  big_img: PropTypes.shape({
-    url: PropTypes.string,
-    alt: PropTypes.string
-  }),
-  author: PropTypes.shape({
-    uid: PropTypes.string,
-    full_name: PropTypes.string,
-    short_description: PropTypes.string,
-    image_avatar: PropTypes.shape({
-      url: PropTypes.string,
-      alt: PropTypes.string
-    })
-  })
-};
 
 export default ArticleHeader;

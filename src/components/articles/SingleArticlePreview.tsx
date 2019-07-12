@@ -1,12 +1,16 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import CategoriesList from "./CategoriesList";
 import TagsList from "./TagsList";
 import SeriesList from "./SeriesList";
 import AuthorPreview from "./AuthorPreview";
+import { ISingleArticle } from "../../types/article.types";
 
-export const SingleArticlePreview = ({
+interface IProps {
+  article: ISingleArticle;
+}
+
+export const SingleArticlePreview: React.FC<IProps> = ({
   article: {
     uid,
     date,
@@ -18,7 +22,7 @@ export const SingleArticlePreview = ({
     small_img,
     author
   }
-}) => {
+}: IProps): JSX.Element => {
   return (
     <div className="col-12 col-xs-8 col-sm-6 col-md-4 p-0 ">
       <div className="m-2 shadow">
@@ -26,7 +30,7 @@ export const SingleArticlePreview = ({
           <Link to={`/articles/${uid}`}>
             <img
               src={small_img.url}
-              alt={small_img.alt}
+              alt={small_img.alt ? small_img.alt : ""}
               className="img-fluid cursor-pointer"
             />
           </Link>
@@ -54,33 +58,4 @@ export const SingleArticlePreview = ({
       </div>
     </div>
   );
-};
-
-SingleArticlePreview.propTypes = {
-  article: PropTypes.shape({
-    uid: PropTypes.string,
-    date: PropTypes.string,
-    series: PropTypes.string,
-    short_description: PropTypes.string,
-    tags: PropTypes.string,
-    categories: PropTypes.string,
-    title: PropTypes.string,
-    small_img: PropTypes.shape({
-      url: PropTypes.string,
-      alt: PropTypes.string
-    }),
-    xs_img: PropTypes.shape({
-      url: PropTypes.string,
-      alt: PropTypes.string
-    }),
-    author: PropTypes.shape({
-      full_name: PropTypes.string,
-      image_avatar: PropTypes.shape({
-        url: PropTypes.string,
-        alt: PropTypes.string
-      }),
-      short_description: PropTypes.string,
-      uid: PropTypes.string
-    })
-  })
 };

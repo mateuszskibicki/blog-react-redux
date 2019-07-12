@@ -27,7 +27,7 @@ const ArticleHeader: React.FunctionComponent<IArticleHeader> = React.lazy(() =>
   import("../articles/ArticleHeader")
 );
 const ArticlesList: React.FunctionComponent<{
-  articles: ISingleArticle[] | null;
+  articles: ISingleArticle[];
 }> = React.lazy(() => import("../articles/ArticlesList"));
 
 const SingleArticlePage = memo(
