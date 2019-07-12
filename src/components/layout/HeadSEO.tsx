@@ -1,8 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 
-const HeadSEO = props => {
+import { ISEO } from "../../types/common.types";
+
+const HeadSEO: React.FC<{ SEO: ISEO }> = (props: {
+  SEO: ISEO;
+}): JSX.Element => {
   const {
     title = null,
     description = null,
@@ -80,36 +83,6 @@ const HeadSEO = props => {
       {og_image && <meta property="og:image" content={og_image} />}
     </Helmet>
   );
-};
-
-HeadSEO.propTypes = {
-  SEO: PropTypes.shape({
-    title: PropTypes.string,
-    description: PropTypes.string,
-    keywords: PropTypes.string,
-    geo_region: PropTypes.string,
-    robots: PropTypes.string,
-    item_prop_name: PropTypes.string,
-    item_prop_description: PropTypes.string,
-    twitter_card: PropTypes.string,
-    twitter_site: PropTypes.string,
-    twitter_title: PropTypes.string,
-    twitter_description: PropTypes.string,
-    twitter_creator: PropTypes.string,
-    og_title: PropTypes.string,
-    og_type: PropTypes.string,
-    og_url: PropTypes.string,
-    og_description: PropTypes.string,
-    og_site_name: PropTypes.string,
-    article_section: PropTypes.string,
-    article_tag: PropTypes.string,
-    fb_admins: PropTypes.string,
-    item_prop_image: PropTypes.string,
-    twitter_image: PropTypes.string,
-    og_image: PropTypes.string,
-    article_published_time: PropTypes.string,
-    article_modified_time: PropTypes.string
-  })
 };
 
 export default HeadSEO;

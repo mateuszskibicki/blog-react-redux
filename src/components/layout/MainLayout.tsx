@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -7,7 +6,12 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Loader from "./Loader";
 
-const MainLayout = ({ loading, children }) => {
+interface IProps {
+  loading: boolean;
+  children: any;
+}
+
+const MainLayout = ({ loading, children }: IProps) => {
   return (
     <>
       <Navbar />
@@ -37,11 +41,7 @@ MainLayout.defaultProps = {
   loading: false
 };
 
-MainLayout.propTypes = {
-  loading: PropTypes.bool
-};
-
-const mapStateToProps = ({ loading }) => loading;
+const mapStateToProps = ({ loading }: { loading: boolean }) => loading;
 
 export default connect(
   mapStateToProps,

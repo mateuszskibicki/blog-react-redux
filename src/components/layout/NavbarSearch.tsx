@@ -1,17 +1,22 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   setSearchText,
   getArticlesBySearchText
 } from "../../store/actions/search/searchActions";
 
-const NavbarSearch = ({
+interface IProps {
+  searchText: string;
+  getArticlesBySearchText: Function;
+  setSearchText: Function;
+}
+
+const NavbarSearch: React.FunctionComponent<IProps> = ({
   searchText,
   getArticlesBySearchText,
   setSearchText
-}) => {
-  const onChangeSearchText = e => {
+}: IProps) => {
+  const onChangeSearchText = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchText(value);
     if (value && value.trim().length > 0 && value !== searchText) {
@@ -47,16 +52,7 @@ const NavbarSearch = ({
   );
 };
 
-NavbarSearch.propTypes = {
-  articles: PropTypes.arrayOf(PropTypes.object),
-  error: PropTypes.bool,
-  loading: PropTypes.bool,
-  searchText: PropTypes.string,
-  getArticlesBySearchText: PropTypes.func,
-  setSearchText: PropTypes.func
-};
-
-const mapStateToProps = ({ search }) => search;
+const mapStateToProps = ({ search }: any) => search;
 const mapDispatchToProps = { setSearchText, getArticlesBySearchText };
 
 export default connect(

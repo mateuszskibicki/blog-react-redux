@@ -14,14 +14,14 @@ const ErrorPage: React.StatelessComponent = React.lazy(
   (): Promise<any> => import("../layout/ErrorPage")
 );
 
-type Props = {
+type IProps = {
   match: any;
   authors: any | null;
   getAuthorByUidPrismic: (uid: string) => IAction;
 };
 
-const AuthorPage: React.FunctionComponent<Props> = memo(
-  ({ match, authors, getAuthorByUidPrismic }): JSX.Element | null => {
+const AuthorPage: React.FunctionComponent<IProps> = memo(
+  ({ match, authors, getAuthorByUidPrismic }: IProps): JSX.Element | null => {
     //uid
     const uid: string = match.params.uid;
 

@@ -29,3 +29,14 @@ export interface ISingleArticle {
   xs_img: IImg | null;
   author: ISmallAuthor | null;
 }
+
+export interface IArticleHeader {
+  title: string | null;
+  short_description: string | null;
+  series: string | null;
+  categories: string | null;
+  tags: string | null;
+  date: string | null;
+  author: ISmallAuthor | null;
+  big_img: IImg | null;
+}

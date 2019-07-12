@@ -1,11 +1,19 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+
+import { ISingleArticle } from "../../types/article.types";
+
+interface IProps {
+  article: ISingleArticle;
+  onExitSearch: React.MouseEventHandler;
+}
 
 export const SearchSingleResult = ({
   article: { uid, date, title, xs_img },
   onExitSearch
-}) => {
+}: IProps): JSX.Element | null => {
+  if (!uid || !xs_img || !xs_img.url) return null;
+
   return (
     <div className="col-12 mb-2 navbar__search-results--single">
       <div className="row justify-content-center align-items-center">
@@ -13,7 +21,7 @@ export const SearchSingleResult = ({
           <Link to={`/articles/${uid}`}>
             <img
               src={xs_img.url}
-              alt={xs_img.alt}
+              alt={xs_img.alt ? xs_img.alt : ""}
               className="img-fluid rounded-circle shadow-sm cursor-pointer-scale"
               onClick={onExitSearch}
             />
@@ -52,32 +60,32 @@ export const SearchSingleResult = ({
   );
 };
 
-SearchSingleResult.propTypes = {
-  onExitSearch: PropTypes.func,
-  article: PropTypes.shape({
-    uid: PropTypes.string,
-    date: PropTypes.string,
-    series: PropTypes.string,
-    short_description: PropTypes.string,
-    tags: PropTypes.string,
-    categories: PropTypes.string,
-    title: PropTypes.string,
-    small_img: PropTypes.shape({
-      url: PropTypes.string,
-      alt: PropTypes.string
-    }),
-    xs_img: PropTypes.shape({
-      url: PropTypes.string,
-      alt: PropTypes.string
-    }),
-    author: PropTypes.shape({
-      full_name: PropTypes.string,
-      image_avatar: PropTypes.shape({
-        url: PropTypes.string,
-        alt: PropTypes.string
-      }),
-      short_description: PropTypes.string,
-      uid: PropTypes.string
-    })
-  })
-};
+// SearchSingleResult.propTypes = {
+//   onExitSearch: PropTypes.func,
+//   article: PropTypes.shape({
+//     uid: PropTypes.string,
+//     date: PropTypes.string,
+//     series: PropTypes.string,
+//     short_description: PropTypes.string,
+//     tags: PropTypes.string,
+//     categories: PropTypes.string,
+//     title: PropTypes.string,
+//     small_img: PropTypes.shape({
+//       url: PropTypes.string,
+//       alt: PropTypes.string
+//     }),
+//     xs_img: PropTypes.shape({
+//       url: PropTypes.string,
+//       alt: PropTypes.string
+//     }),
+//     author: PropTypes.shape({
+//       full_name: PropTypes.string,
+//       image_avatar: PropTypes.shape({
+//         url: PropTypes.string,
+//         alt: PropTypes.string
+//       }),
+//       short_description: PropTypes.string,
+//       uid: PropTypes.string
+//     })
+//   })
+// };

@@ -1,22 +1,24 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { setSearchText } from "../../store/actions/search/searchActions";
 import { SearchSingleResult } from "./SearchSingleResult";
 
-const SearchResults = ({
+import { ISearchResults } from "../../types/search.types";
+import { ISingleArticle } from "../../types/article.types";
+
+const SearchResults: React.FC<ISearchResults> = ({
   articles,
   error,
   loading,
   searchText,
   setSearchText
-}) => {
-  const onExitSearch = () => {
+}: ISearchResults) => {
+  const onExitSearch: React.MouseEventHandler = (): void => {
     setSearchText("");
   };
 
-  if (!searchText || searchText.trim().length === 0) return "";
+  if (!searchText || searchText.trim().length === 0) return null;
   return (
     <div className="navbar__search-results shadow">
       {loading && (
@@ -78,7 +80,7 @@ const SearchResults = ({
       {!loading && !error && articles && articles.length > 0 && (
         <div className="container">
           <div className="row">
-            {articles.map(article => (
+            {articles.map((article: ISingleArticle) => (
               <SearchSingleResult
                 article={article}
                 key={article.uid}
@@ -120,15 +122,7 @@ const SearchResults = ({
   );
 };
 
-SearchResults.propTypes = {
-  articles: PropTypes.arrayOf(PropTypes.object),
-  error: PropTypes.bool,
-  loading: PropTypes.bool,
-  searchText: PropTypes.string,
-  setSearchText: PropTypes.func
-};
-
-const mapStateToProps = ({ search }) => search;
+const mapStateToProps = ({ search }: any) => search;
 const mapDispatchToProps = { setSearchText };
 
 export default connect(

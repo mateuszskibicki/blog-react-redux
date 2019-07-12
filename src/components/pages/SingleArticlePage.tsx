@@ -1,6 +1,5 @@
 // main
 import React, { useEffect, Suspense, memo } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 // actions
 import {
@@ -8,31 +7,58 @@ import {
   setCurrentArticleUID
 } from "../../store/actions/article/articleActions";
 import { sliceComponentsHelper } from "../../helpers/slice-helpers/SliceComponentsHelpers";
+//types
+import { ISEO } from "../../types/common.types";
+import {
+  IArticleHeader,
+  ISingleArticlePage,
+  ISingleArticle
+} from "../../types/article.types";
 //components
-import HeadSEO from "../layout/HeadSEO";
-const ErrorPage = React.lazy(() => import("../layout/ErrorPage"));
-const ArticleHeader = React.lazy(() => import("../articles/ArticleHeader"));
-const ArticlesList = React.lazy(() => import("../articles/ArticlesList"));
+const HeadSEO: React.LazyExoticComponent<
+  React.FunctionComponent<{
+    SEO: ISEO;
+  }>
+> = React.lazy(() => import("../layout/HeadSEO"));
+const ErrorPage: React.FunctionComponent<{}> = React.lazy(() =>
+  import("../layout/ErrorPage")
+);
+const ArticleHeader: React.FunctionComponent<IArticleHeader> = React.lazy(() =>
+  import("../articles/ArticleHeader")
+);
+const ArticlesList: React.FunctionComponent<{
+  articles: ISingleArticle[] | null;
+}> = React.lazy(() => import("../articles/ArticlesList"));
 
 const SingleArticlePage = memo(
-  ({ match, article, getArticleByUID }) => {
-    const uid = match.params.uid;
+  ({
+    match,
+    article,
+    getArticleByUID
+  }: {
+    match: any;
+    article: any;
+    getArticleByUID: Function;
+  }) => {
+    const uid: string = match.params.uid;
 
-    async function getSingleArticleByUID() {
+    async function getSingleArticleByUID(): Promise<any> {
       await setCurrentArticleUID({ articleUID: uid });
       if (!article[uid]) {
         await getArticleByUID({ articleUID: uid });
       }
     }
 
-    useEffect(() => {
+    useEffect((): void => {
       getSingleArticleByUID();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [uid]);
 
-    const error = article[uid] && article[uid].error ? true : null;
-    const SEO = article[uid] && article[uid].SEO ? article[uid].SEO : null;
-    const articleData = article[uid] ? article[uid] : null;
+    const error: boolean | null =
+      article[uid] && article[uid].error ? true : null;
+    const SEO: ISEO =
+      article[uid] && article[uid].SEO ? article[uid].SEO : null;
+    const articleData: ISingleArticlePage = article[uid] ? article[uid] : null;
 
     if (error)
       return (
@@ -69,7 +95,7 @@ const SingleArticlePage = memo(
     return null;
   },
   //memo
-  (prevProps, nextProps) => {
+  (prevProps, nextProps): boolean => {
     const prevUID = prevProps.match.params.uid;
     const nextUID = nextProps.match.params.uid;
     if (prevUID === nextUID) {
@@ -79,14 +105,8 @@ const SingleArticlePage = memo(
   }
 );
 
-SingleArticlePage.propTypes = {
-  getArticleByUID: PropTypes.func,
-  match: PropTypes.object,
-  article: PropTypes.object
-};
-
-const mapStateToProps = ({ article }) => ({ article });
-const mapDispatchToProps = { getArticleByUID };
+const mapStateToProps = ({ article }: { article: any }) => ({ article });
+const mapDispatchToProps: { getArticleByUID: Function } = { getArticleByUID };
 
 export default connect(
   mapStateToProps,
