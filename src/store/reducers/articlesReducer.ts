@@ -1,5 +1,6 @@
 import {
   GET_ALL_ARTICLES,
+  GET_ALL_ARTICLES_INITIAL_STATE,
   SET_ERROR_ALL_ARTICLES_FALSE,
   SET_ERROR_ALL_ARTICLES_TRUE
 } from "../actions/types";
@@ -42,6 +43,16 @@ export default function(
     case GET_ALL_ARTICLES:
       return {
         ...state,
+        currentPage: action.payload.page,
+        totalPages: action.payload.totalPages,
+        category: action.payload.category,
+        searchText: action.payload.searchText,
+        SEO: action.payload.SEO,
+        [action.payload.page]: action.payload.articlesData
+      };
+    case GET_ALL_ARTICLES_INITIAL_STATE:
+      return {
+        ...initialState,
         currentPage: action.payload.page,
         totalPages: action.payload.totalPages,
         category: action.payload.category,

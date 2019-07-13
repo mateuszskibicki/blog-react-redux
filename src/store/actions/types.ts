@@ -7,6 +7,8 @@ export const GET_HOMEPAGE_DATA_PRISMIC: string = "GET_HOMEPAGE_DATA_PRISMIC";
 
 // Articles
 export const GET_ALL_ARTICLES: string = "GET_ALL_ARTICLES";
+export const GET_ALL_ARTICLES_INITIAL_STATE: string =
+  "GET_ALL_ARTICLES_INITIAL_STATE";
 export const SET_ERROR_ALL_ARTICLES_TRUE: string =
   "SET_ERROR_ALL_ARTICLES_TRUE";
 export const SET_ERROR_ALL_ARTICLES_FALSE: string =

@@ -18,7 +18,8 @@ import {
   LOADING_DATA_STOP,
   SET_ERROR_ALL_ARTICLES_FALSE,
   SET_ERROR_ALL_ARTICLES_TRUE,
-  GET_ALL_ARTICLES
+  GET_ALL_ARTICLES,
+  GET_ALL_ARTICLES_INITIAL_STATE
 } from "../../../store/actions/types";
 
 const middlewares = [thunk];
@@ -155,7 +156,8 @@ describe("Redux - author", () => {
       expect(storeActions[1].payload.totalPages).not.toBe(page);
       expect(Array.isArray(storeActions[1].payload.articlesData)).toBeTruthy();
       expect(storeActions[1].payload.articlesData[0]).toBeUndefined();
-      expect(storeActions[2].type).toBe(LOADING_DATA_STOP);
+      expect(storeActions[2].type).toBe(SET_ERROR_ALL_ARTICLES_FALSE);
+      expect(storeActions[3].type).toBe(LOADING_DATA_STOP);
     });
 
     //getAllArticles GET ARRAY WITH ARTICLES - PAGE 1 - no category and no searchText
@@ -175,7 +177,8 @@ describe("Redux - author", () => {
       expect(Array.isArray(storeActions[1].payload.articlesData)).toBeTruthy();
       expect(storeActions[1].payload.articlesData[0]).toBeDefined();
       expect(storeActions[1].payload.articlesData[0].uid).toBeDefined();
-      expect(storeActions[2].type).toBe(LOADING_DATA_STOP);
+      expect(storeActions[2].type).toBe(SET_ERROR_ALL_ARTICLES_FALSE);
+      expect(storeActions[3].type).toBe(LOADING_DATA_STOP);
     });
 
     //getAllArticles GET ARRAY WITH ARTICLES - PAGE 1 - category front-end and no searchText
@@ -188,12 +191,13 @@ describe("Redux - author", () => {
       await store.dispatch(getAllArticles({ page, category, searchText }));
       const storeActions = store.getActions();
       expect(storeActions[0].type).toBe(LOADING_DATA_START);
-      expect(storeActions[1].type).toBe(GET_ALL_ARTICLES);
+      expect(storeActions[1].type).toBe(GET_ALL_ARTICLES_INITIAL_STATE);
       expect(storeActions[1].payload.page).toBe(page);
       expect(storeActions[1].payload.category).toBe(category);
       expect(storeActions[1].payload.searchText).toBe(searchText);
       expect(Array.isArray(storeActions[1].payload.articlesData)).toBeTruthy();
-      expect(storeActions[2].type).toBe(LOADING_DATA_STOP);
+      expect(storeActions[2].type).toBe(SET_ERROR_ALL_ARTICLES_FALSE);
+      expect(storeActions[3].type).toBe(LOADING_DATA_STOP);
     });
 
     //getAllArticles GET ARRAY WITH ARTICLES - PAGE 1 - category front-end and searchText javascript
@@ -206,12 +210,13 @@ describe("Redux - author", () => {
       await store.dispatch(getAllArticles({ page, category, searchText }));
       const storeActions = store.getActions();
       expect(storeActions[0].type).toBe(LOADING_DATA_START);
-      expect(storeActions[1].type).toBe(GET_ALL_ARTICLES);
+      expect(storeActions[1].type).toBe(GET_ALL_ARTICLES_INITIAL_STATE);
       expect(storeActions[1].payload.page).toBe(page);
       expect(storeActions[1].payload.category).toBe(category);
       expect(storeActions[1].payload.searchText).toBe(searchText);
       expect(Array.isArray(storeActions[1].payload.articlesData)).toBeTruthy();
-      expect(storeActions[2].type).toBe(LOADING_DATA_STOP);
+      expect(storeActions[2].type).toBe(SET_ERROR_ALL_ARTICLES_FALSE);
+      expect(storeActions[3].type).toBe(LOADING_DATA_STOP);
     });
   });
 

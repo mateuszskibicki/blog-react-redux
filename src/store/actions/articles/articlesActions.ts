@@ -1,6 +1,7 @@
 import Prismic from "prismic-javascript";
 import {
   GET_ALL_ARTICLES,
+  GET_ALL_ARTICLES_INITIAL_STATE,
   SET_ERROR_ALL_ARTICLES_FALSE,
   SET_ERROR_ALL_ARTICLES_TRUE
 } from "../types";
@@ -126,18 +127,32 @@ export const getAllArticles = ({
     //Sanitize data
     const articlesData = articlesListHelper(data);
 
-    //Dispatch data to the reducer
-    dispatch({
-      type: GET_ALL_ARTICLES,
-      payload: {
-        articlesData,
-        page: pageNumber,
-        totalPages: data.total_pages,
-        category,
-        searchText,
-        SEO: SEOdata
-      }
-    });
+    //Dispatch data to the reducer -> if search or category with new initial state, or with all pages and data
+    if (category || searchText) {
+      dispatch({
+        type: GET_ALL_ARTICLES_INITIAL_STATE,
+        payload: {
+          articlesData,
+          page: pageNumber,
+          totalPages: data.total_pages,
+          category,
+          searchText,
+          SEO: SEOdata
+        }
+      });
+    } else {
+      dispatch({
+        type: GET_ALL_ARTICLES,
+        payload: {
+          articlesData,
+          page: pageNumber,
+          totalPages: data.total_pages,
+          category,
+          searchText,
+          SEO: SEOdata
+        }
+      });
+    }
 
     //Set loading to false
     dispatch(setArticlesErrorToFalse());
