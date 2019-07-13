@@ -3,10 +3,7 @@ import React, { useEffect, Suspense, memo } from "react";
 import queryString from "query-string";
 import { connect } from "react-redux";
 // actions
-import {
-  getAllArticles,
-  setArticlesErrorToFalse
-} from "../../store/actions/articles/articlesActions";
+import { getAllArticles } from "../../store/actions/articles/articlesActions";
 //types
 import { ISEO } from "../../types/common.types";
 import { IArticlesPage, ISingleArticle } from "../../types/article.types";
@@ -89,25 +86,27 @@ const AllArticlesPage: React.FC<IProps | any> = memo(
       );
 
     return (
-      <Suspense fallback={<Loader />}>
+      <>
         <HeadSEO SEO={SEO} />
-        <div className="my-5">
-          {(searchText || category) && (
-            <CategorySearch searchText={searchText} category={category} />
-          )}
-          {articlesArray && articlesArray.length > 0 && (
-            <ArticlesList articles={articlesArray} />
-          )}
-          {totalPages && totalPages > 1 && currentPage && (
-            <Pagination
-              activePage={currentPage}
-              itemsCountPerPage={1}
-              totalItemsCount={3}
-              pageRangeDisplayed={3}
-            />
-          )}
-        </div>
-      </Suspense>
+        <Suspense fallback={<Loader />}>
+          <div className="my-5">
+            {(searchText || category) && (
+              <CategorySearch searchText={searchText} category={category} />
+            )}
+            {articlesArray && articlesArray.length > 0 && (
+              <ArticlesList articles={articlesArray} />
+            )}
+            {totalPages && totalPages > 1 && currentPage && (
+              <Pagination
+                activePage={currentPage}
+                itemsCountPerPage={1}
+                totalItemsCount={3}
+                pageRangeDisplayed={3}
+              />
+            )}
+          </div>
+        </Suspense>
+      </>
     );
   }
   //memo

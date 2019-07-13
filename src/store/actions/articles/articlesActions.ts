@@ -150,7 +150,14 @@ export const getAllArticles = ({
   }
 };
 
-export const queryCommonPart = {
+interface IqueryCommonPart {
+  orderings?: string;
+  fetch?: string[];
+  fetchLinks?: string[];
+  pageSize?: string;
+}
+
+export const queryCommonPart: IqueryCommonPart = {
   orderings: "[my.single-article.date desc]",
   fetch: [
     "single-article.uid",
@@ -172,12 +179,13 @@ export const queryCommonPart = {
   ]
 };
 
-export const getAllArticlesPrismicQuery = async (args: {
+export const getAllArticlesPrismicQuery = async ({
+  prismicConnection,
+  page
+}: {
   prismicConnection: IPrismicConnection;
   page: string | number;
-}) => {
-  const { prismicConnection, page } = args;
-
+}): Promise<any> => {
   if (!prismicConnection.query) return null;
 
   return await prismicConnection.query(
@@ -189,13 +197,15 @@ export const getAllArticlesPrismicQuery = async (args: {
   );
 };
 
-export const getAllArticlesByCategoryPrismicQuery = async (args: {
+export const getAllArticlesByCategoryPrismicQuery = async ({
+  prismicConnection,
+  page,
+  category
+}: {
   prismicConnection: IPrismicConnection;
   page: string | number;
   category: string | null;
-}) => {
-  const { prismicConnection, page, category } = args;
-
+}): Promise<any> => {
   if (!prismicConnection.query) return null;
 
   // if missing data at least last articles
@@ -214,13 +224,15 @@ export const getAllArticlesByCategoryPrismicQuery = async (args: {
   );
 };
 
-export const getAllArticlesBySearchTextPrismicQuery = async (args: {
+export const getAllArticlesBySearchTextPrismicQuery = async ({
+  prismicConnection,
+  page,
+  searchText
+}: {
   prismicConnection: IPrismicConnection;
   page: string | number;
   searchText: string | null;
-}) => {
-  const { prismicConnection, page, searchText } = args;
-
+}): Promise<any> => {
   if (!prismicConnection.query) return null;
 
   // if missing data at least last articles
@@ -239,14 +251,17 @@ export const getAllArticlesBySearchTextPrismicQuery = async (args: {
   );
 };
 
-export const getAllArticlesByCategoryAndSearchTextPrismicQuery = async (args: {
+export const getAllArticlesByCategoryAndSearchTextPrismicQuery = async ({
+  prismicConnection,
+  page,
+  category,
+  searchText
+}: {
   prismicConnection: IPrismicConnection;
   page: string | number;
   category: string | null;
   searchText: string | null;
-}) => {
-  const { prismicConnection, page, category, searchText } = args;
-
+}): Promise<any> => {
   if (!prismicConnection.query) return null;
 
   // if missing data at least last articles
@@ -266,11 +281,11 @@ export const getAllArticlesByCategoryAndSearchTextPrismicQuery = async (args: {
   );
 };
 
-export const getAllArticlesSEOPrismicQuery = async (args: {
+export const getAllArticlesSEOPrismicQuery = async ({
+  prismicConnection
+}: {
   prismicConnection: IPrismicConnection;
-}) => {
-  const { prismicConnection } = args;
-
+}): Promise<any> => {
   if (!prismicConnection.query) return null;
 
   return await prismicConnection.query(

@@ -73,14 +73,16 @@ const AuthorPage: React.FunctionComponent<IProps> = memo(
 
     if (author)
       return (
-        <Suspense fallback={<Loader />}>
+        <>
           <HeadSEO SEO={SEO} />
-          {author && <HeadAboutAuthor author={author} />}
-          {authorContent && sliceComponentsHelper(authorContent)}
-          {authorArticles && authorArticles.length > 0 && (
-            <ArticlesList articles={authorArticles} />
-          )}
-        </Suspense>
+          <Suspense fallback={<Loader />}>
+            {author && <HeadAboutAuthor author={author} />}
+            {authorContent && sliceComponentsHelper(authorContent)}
+            {authorArticles && authorArticles.length > 0 && (
+              <ArticlesList articles={authorArticles} />
+            )}
+          </Suspense>
+        </>
       );
 
     return null;

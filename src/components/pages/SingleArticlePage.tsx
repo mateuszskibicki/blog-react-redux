@@ -31,16 +31,14 @@ const ArticlesList: React.FunctionComponent<{
   articles: ISingleArticle[];
 }> = React.lazy(() => import("../articles/ArticlesList"));
 
-const SingleArticlePage = memo(
-  ({
-    match,
-    article,
-    getArticleByUID
-  }: {
-    match: any;
-    article: any;
-    getArticleByUID: Function;
-  }) => {
+interface IProps {
+  match: any;
+  article: any;
+  getArticleByUID: Function;
+}
+
+const SingleArticlePage: React.FunctionComponent<IProps> = memo(
+  ({ match, article, getArticleByUID }: IProps): JSX.Element | null => {
     const uid: string = match.params.uid;
 
     async function getSingleArticleByUID(): Promise<any> {
@@ -70,25 +68,27 @@ const SingleArticlePage = memo(
 
     if (articleData)
       return (
-        <Suspense fallback={<Loader />}>
+        <>
           <HeadSEO SEO={SEO} />
-          <ArticleHeader
-            title={articleData.title}
-            short_description={articleData.short_description}
-            series={articleData.series}
-            categories={articleData.categories}
-            tags={articleData.tags}
-            date={articleData.date}
-            author={articleData.author}
-            big_img={articleData.big_img}
-          />
-          {articleData.content &&
-            articleData.content.length > 0 &&
-            sliceComponentsHelper(articleData.content)}
-          {article.lastArticles && article.lastArticles.length > 0 && (
-            <ArticlesList articles={article.lastArticles} />
-          )}
-        </Suspense>
+          <Suspense fallback={<Loader />}>
+            <ArticleHeader
+              title={articleData.title}
+              short_description={articleData.short_description}
+              series={articleData.series}
+              categories={articleData.categories}
+              tags={articleData.tags}
+              date={articleData.date}
+              author={articleData.author}
+              big_img={articleData.big_img}
+            />
+            {articleData.content &&
+              articleData.content.length > 0 &&
+              sliceComponentsHelper(articleData.content)}
+            {article.lastArticles && article.lastArticles.length > 0 && (
+              <ArticlesList articles={article.lastArticles} />
+            )}
+          </Suspense>
+        </>
       );
 
     return null;
