@@ -15,6 +15,7 @@ import {
   ISingleArticle
 } from "../../types/article.types";
 //components
+import Loader from "../layout/Loader";
 const HeadSEO: React.LazyExoticComponent<
   React.FunctionComponent<{
     SEO: ISEO;
@@ -62,14 +63,14 @@ const SingleArticlePage = memo(
 
     if (error)
       return (
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loader />}>
           <ErrorPage />
         </Suspense>
       );
 
     if (articleData)
       return (
-        <>
+        <Suspense fallback={<Loader />}>
           <HeadSEO SEO={SEO} />
           <ArticleHeader
             title={articleData.title}
@@ -85,11 +86,9 @@ const SingleArticlePage = memo(
             articleData.content.length > 0 &&
             sliceComponentsHelper(articleData.content)}
           {article.lastArticles && article.lastArticles.length > 0 && (
-            <Suspense fallback={null}>
-              <ArticlesList articles={article.lastArticles} />
-            </Suspense>
+            <ArticlesList articles={article.lastArticles} />
           )}
-        </>
+        </Suspense>
       );
 
     return null;

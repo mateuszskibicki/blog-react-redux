@@ -2,6 +2,15 @@ import { IImg, ISEO } from "./common.types";
 import { ISmallAuthor } from "./author.types";
 import { TAllSlices } from "./slices.types";
 
+export interface IArticlesPage {
+  error: boolean;
+  currentPage: string | null;
+  totalPages: number | null;
+  category: string | null;
+  searchText: string | null;
+  SEO: ISEO | null;
+}
+
 export interface ISingleArticlePage {
   uid: string;
   title: string | null;

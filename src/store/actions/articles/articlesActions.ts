@@ -11,34 +11,50 @@ import {
   articlesListHelper,
   allArticlesPageSEOHelper
 } from "../../../helpers/articles/ArticlesHelpers";
-import { Dispatch } from "react";
-
+//types
+import { Dispatch, ReactText } from "react";
 import { ISEO, IPrismicConnection } from "../../../types/common.types";
 
 // Set articles error to true
 export const setArticlesErrorToTrue = () => (
   dispatch: Dispatch<{ type: string }>
-) => {
+): void => {
   dispatch({ type: SET_ERROR_ALL_ARTICLES_TRUE });
 };
 
 // Set articles error to false
 export const setArticlesErrorToFalse = () => (
   dispatch: Dispatch<{ type: string }>
-) => {
+): void => {
   dispatch({ type: SET_ERROR_ALL_ARTICLES_FALSE });
 };
 
+interface IgetAllArticles {
+  page: string;
+  category: string | null;
+  searchText: string | null;
+  SEO: ISEO | null;
+}
+
 // Get afticles data by page/tag/search_text/category from prismic CMS
 export const getAllArticles = ({
-  page = 1,
+  page = "1",
   category = null,
   searchText = null,
   SEO = null
-}) => async (dispatch: any) => {
+}: IgetAllArticles) => async (dispatch: any): Promise<any> => {
   try {
     // Start loading
     dispatch(setLoadingStart());
+
+    if (!Number(page)) {
+      dispatch({ type: SET_ERROR_ALL_ARTICLES_TRUE });
+      dispatch(setLoadingStop());
+      return;
+    }
+
+    //Check if page is correct
+    const pageNumber: string = !Number(page) ? "1" : page;
 
     //Prismic connection
     const PrismicEndpoint: string | null =
@@ -53,37 +69,43 @@ export const getAllArticles = ({
       return;
     }
 
-    const prismicConnection = await Prismic.getApi(PrismicEndpoint, {
-      accessToken: PrismicToken
-    });
+    const prismicConnection: IPrismicConnection = await Prismic.getApi(
+      PrismicEndpoint,
+      {
+        accessToken: PrismicToken
+      }
+    );
 
     //Empty data at the very beginning
-    let data: null | any = null;
+    let data: any = null;
     let SEOdata: null | ISEO = SEO || null;
 
     //Articles query
     if (!category && !searchText) {
       // all articles
-      data = await getAllArticlesPrismicQuery({ prismicConnection, page });
+      data = await getAllArticlesPrismicQuery({
+        prismicConnection,
+        page: pageNumber
+      });
     } else if (category && !searchText) {
       // all articles based on category
       data = await getAllArticlesByCategoryPrismicQuery({
         prismicConnection,
-        page,
+        page: pageNumber,
         category
       });
     } else if (!category && searchText) {
       // all articles based on searchText
       data = await getAllArticlesBySearchTextPrismicQuery({
         prismicConnection,
-        page,
+        page: pageNumber,
         searchText
       });
     } else if (category && searchText) {
       // all articles based on category and searchText
       data = await getAllArticlesByCategoryAndSearchTextPrismicQuery({
         prismicConnection,
-        page,
+        page: pageNumber,
         category,
         searchText
       });
@@ -109,7 +131,7 @@ export const getAllArticles = ({
       type: GET_ALL_ARTICLES,
       payload: {
         articlesData,
-        page,
+        page: pageNumber,
         totalPages: data.total_pages,
         category,
         searchText,
@@ -118,6 +140,7 @@ export const getAllArticles = ({
     });
 
     //Set loading to false
+    dispatch(setArticlesErrorToFalse());
     dispatch(setLoadingStop());
   } catch (err) {
     //If error return like there is no data and stop loading

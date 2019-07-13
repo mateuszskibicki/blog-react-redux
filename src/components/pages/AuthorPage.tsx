@@ -3,15 +3,25 @@ import React, { useEffect, Suspense, memo } from "react";
 import { connect } from "react-redux";
 // actions
 import { getAuthorByUidPrismic } from "../../store/actions/author/authorActions";
+import { sliceComponentsHelper } from "../../helpers/slice-helpers/SliceComponentsHelpers";
 //types
 import { ISEO, IAction } from "../../types/common.types";
 import { IAuthorSingle } from "../../types/author.types";
+import { TAllSlices } from "../../types/slices.types";
+import { ISingleArticle } from "../../types/article.types";
 //components
+import Loader from "../layout/Loader";
 const HeadSEO: React.FunctionComponent<{ SEO: ISEO | null }> = React.lazy(
   (): Promise<any> => import("../layout/HeadSEO")
 );
 const ErrorPage: React.StatelessComponent = React.lazy(
   (): Promise<any> => import("../layout/ErrorPage")
+);
+const HeadAboutAuthor: React.FC<{ author: IAuthorSingle }> = React.lazy(
+  (): Promise<any> => import("../author/HeadAboutAuthor")
+);
+const ArticlesList: React.FC<{ articles: ISingleArticle[] }> = React.lazy(
+  (): Promise<any> => import("../articles/ArticlesList")
 );
 
 type IProps = {
@@ -36,24 +46,40 @@ const AuthorPage: React.FunctionComponent<IProps> = memo(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [uid]);
 
+    //error
     const error: boolean | null =
       authors[uid] && authors[uid].error ? true : null;
+    //SEO
     const SEO: ISEO | null =
       authors[uid] && authors[uid].SEO ? authors[uid].SEO : null;
-    const author: IAuthorSingle | null = authors[uid] ? authors[uid] : null;
+    //author main info -> header
+    const author: IAuthorSingle | null =
+      authors[uid] && authors[uid].author ? authors[uid].author : null;
+    //author content -> slices
+    const authorContent: TAllSlices[] | null =
+      authors[uid] && authors[uid].author && authors[uid].author.content
+        ? authors[uid].author.content
+        : null;
+    //last articles
+    const authorArticles: ISingleArticle[] | null =
+      authors[uid] && authors[uid].articles ? authors[uid].articles : null;
 
     if (error)
       return (
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loader />}>
           <ErrorPage />
         </Suspense>
       );
 
     if (author)
       return (
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loader />}>
           <HeadSEO SEO={SEO} />
-          <h1>author page</h1>
+          {author && <HeadAboutAuthor author={author} />}
+          {authorContent && sliceComponentsHelper(authorContent)}
+          {authorArticles && authorArticles.length > 0 && (
+            <ArticlesList articles={authorArticles} />
+          )}
         </Suspense>
       );
 

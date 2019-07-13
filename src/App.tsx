@@ -13,6 +13,9 @@ const AuthorPage: React.FunctionComponent = React.lazy(
 const SingleArticlePage: React.FunctionComponent = React.lazy(
   (): Promise<any> => import("./components/pages/SingleArticlePage")
 );
+const AllArticlesPage: React.FunctionComponent = React.lazy(
+  (): Promise<any> => import("./components/pages/AllArticlesPage")
+);
 
 //redux store
 //@ts-ignore
@@ -28,6 +31,7 @@ function App(): JSX.Element {
               <Switch>
                 <Route path="/" component={Home} exact />
                 <Route path="/author/:uid" component={AuthorPage} exact />
+                <Route path="/articles" component={AllArticlesPage} exact />
                 <Route
                   path="/articles/:uid"
                   component={SingleArticlePage}

@@ -30,6 +30,12 @@ const MainLayout = ({ loading, children }: IProps) => {
       <Link to="/articles/dummy12312313">
         <button className="btn">article: fake</button>
       </Link>
+      <Link to="/articles">
+        <button className="btn btn-sm btn-info">articles page 1</button>
+      </Link>
+      <Link to="/articles?page=2">
+        <button className="btn btn-sm btn-info">articles page 2</button>
+      </Link>
       {loading && <Loader />}
       {!loading && children && children}
       <Footer />

@@ -42,7 +42,6 @@ export default function(
     case GET_ALL_ARTICLES:
       return {
         ...state,
-        error: false,
         currentPage: action.payload.page,
         totalPages: action.payload.totalPages,
         category: action.payload.category,
