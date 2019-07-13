@@ -31,12 +31,13 @@ function App(): JSX.Element {
               <Switch>
                 <Route path="/" component={Home} exact />
                 <Route path="/author/:uid" component={AuthorPage} exact />
-                <Route path="/articles" component={AllArticlesPage} exact />
                 <Route
                   path="/articles/:uid"
                   component={SingleArticlePage}
                   exact
                 />
+                <Route path="/articles" component={AllArticlesPage} exact />
+
                 <Route component={ErrorComponent} />
               </Switch>
             </Suspense>

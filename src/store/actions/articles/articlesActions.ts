@@ -12,7 +12,7 @@ import {
   allArticlesPageSEOHelper
 } from "../../../helpers/articles/ArticlesHelpers";
 //types
-import { Dispatch, ReactText } from "react";
+import { Dispatch } from "react";
 import { ISEO, IPrismicConnection } from "../../../types/common.types";
 
 // Set articles error to true
