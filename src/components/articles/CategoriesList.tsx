@@ -9,7 +9,7 @@ const CategoriesList: React.FC<IProps> = ({
 }: IProps): JSX.Element | null => {
   if (!categories) return null;
   return (
-    <div className="mb-2">
+    <div className="mb-1">
       <span className="mr-2 small text-secondary">Categories:</span>
       {categories.split(";").map(
         (singleCategory: string, index: number): JSX.Element | null => {

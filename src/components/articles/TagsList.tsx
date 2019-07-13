@@ -7,7 +7,7 @@ const TagsList: React.FC<{ tags: string }> = ({
 }): JSX.Element | null => {
   if (!tags) return null;
   return (
-    <div className="mb-2">
+    <div className="mb-3">
       <span className="mr-2 small text-secondary">Tags:</span>
       {tags.split(";").map(
         (singleTag: string, index: number): JSX.Element | null => {

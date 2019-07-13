@@ -9,7 +9,7 @@ const SeriesList: React.FC<IProps> = ({
 }: IProps): JSX.Element | null => {
   if (!series) return null;
   return (
-    <div className="mb-2">
+    <div className="mb-1">
       <span className="mr-2 small text-secondary">Series:</span>
       {series.split(";").map(
         (singleSeries: string, index: number): JSX.Element | null => {

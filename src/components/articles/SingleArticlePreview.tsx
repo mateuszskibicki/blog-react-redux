@@ -24,8 +24,8 @@ export const SingleArticlePreview: React.FC<IProps> = ({
   }
 }: IProps): JSX.Element => {
   return (
-    <div className="col-12 col-xs-8 col-sm-6 col-md-4 p-0 ">
-      <div className="m-2 shadow">
+    <div className="col-12 col-xs-8 col-sm-6 col-lg-4 p-0 mb-4">
+      <div className="m-2 d-flex flex-column align-items-stretch shadow">
         {small_img && small_img.url && (
           <Link to={`/articles/${uid}`}>
             <img
@@ -35,8 +35,12 @@ export const SingleArticlePreview: React.FC<IProps> = ({
             />
           </Link>
         )}
-        <div className="py-2 px-3">
-          {date && <p className="mb-2 text-secondary text-right">{date}</p>}
+        <div className="py-3 px-3 d-flex flex-column h-100">
+          {date && (
+            <p className="mb-1 text-secondary text-right">
+              <b>{date}</b>
+            </p>
+          )}
           {title && (
             <Link to={`/articles/${uid}`}>
               <h4 className="mb-2 cursor-pointer">{title}</h4>
@@ -45,11 +49,11 @@ export const SingleArticlePreview: React.FC<IProps> = ({
           {short_description && (
             <p className="mb-2 text-secondary">{short_description}</p>
           )}
-          {author && author.uid && <AuthorPreview author={author} small />}
+          {author && author.uid && <AuthorPreview author={author} />}
           {categories && <CategoriesList categories={categories} />}
           {series && <SeriesList series={series} />}
           {tags && <TagsList tags={tags} />}
-          <div>
+          <div className="mt-auto text-right">
             <Link to={`/articles/${uid}`}>
               <button>article link</button>
             </Link>
