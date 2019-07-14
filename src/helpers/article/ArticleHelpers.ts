@@ -5,7 +5,6 @@ import {
 } from "prismic-helpers-sanitize";
 import { SEOhelper } from "../SEOhelper";
 import { sliceHelper } from "../slice-helpers/SliceHelpers";
-
 import { ISingleArticlePage } from "../../types/article.types";
 
 export const singleArticleHelper = (data: any): ISingleArticlePage | null => {
