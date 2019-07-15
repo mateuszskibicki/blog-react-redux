@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { Link } from "react-router-dom";
+import NavbarHomeCategories from "./NavbarHomeCategories";
 import NavbarSearch from "./NavbarSearch";
 
 const SearchResults = React.lazy(() => import("./SearchResults"));
@@ -27,12 +28,13 @@ const Navbar: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => {
             </svg>
           </Link>
         </div>
-        <h2 className="my-0 ml-4 mr-auto navbar__title">
+        <h2 className="my-0 ml-4 mr-auto navbar__title d-none d-sm-block">
           Code&
           <br />
           Coffee
         </h2>
-        <div className="navbar__right-part">
+        <div className="navbar__right-part d-flex">
+          <NavbarHomeCategories />
           <NavbarSearch />
         </div>
         <Suspense fallback="">

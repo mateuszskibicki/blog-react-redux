@@ -25,6 +25,12 @@ const NavbarSearch: any = ({
 
   return (
     <div className="navbar__search d-flex flex-row align-items-center">
+      <input
+        type="text"
+        className="shadow"
+        onChange={onChangeSearchText}
+        value={searchText}
+      />
       <svg
         aria-hidden="true"
         focusable="false"
@@ -33,7 +39,7 @@ const NavbarSearch: any = ({
         role="img"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"
-        className="svg-inline--fa fa-search fa-w-16"
+        className="svg-inline--fa fa-search fa-w-16 ml-3"
       >
         <path
           fill="currentColor"
@@ -41,12 +47,6 @@ const NavbarSearch: any = ({
           className=""
         />
       </svg>
-      <input
-        type="text"
-        className="shadow"
-        onChange={onChangeSearchText}
-        value={searchText}
-      />
     </div>
   );
 };
