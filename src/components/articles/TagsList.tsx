@@ -1,4 +1,5 @@
 import React from "react";
+import { ButtonSmallOutlined } from "../common/buttons/ButtonSmallOutlined";
 
 const TagsList: React.FC<{ tags: string }> = ({
   tags
@@ -12,15 +13,7 @@ const TagsList: React.FC<{ tags: string }> = ({
       {tags.split(";").map(
         (singleTag: string, index: number): JSX.Element | null => {
           if (!singleTag || singleTag.trim().length === 0) return null;
-          return (
-            <button
-              type="button"
-              className="btn btn-sm py-0 px-1 btn-outline-secondary rounded-0 shadow-sm mr-2"
-              key={index}
-            >
-              {singleTag}
-            </button>
-          );
+          return <ButtonSmallOutlined key={index} text={singleTag} />;
         }
       )}
     </div>

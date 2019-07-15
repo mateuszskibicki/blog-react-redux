@@ -36,6 +36,12 @@ const MainLayout = ({ loading, children }: IProps) => {
       <Link to="/articles?page=2">
         <button className="btn btn-sm btn-info">articles page 2</button>
       </Link>
+      <Link to="/articles?category=front-end">
+        <button className="btn btn-sm btn-info">articles page front-end</button>
+      </Link>
+      <Link to="/articles?searchText=emmm">
+        <button className="btn btn-sm btn-info">articles page front-end</button>
+      </Link>
       {loading && <Loader />}
       {!loading && children && children}
       <Footer />

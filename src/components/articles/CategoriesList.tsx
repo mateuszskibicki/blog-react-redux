@@ -1,4 +1,5 @@
 import React from "react";
+import { ButtonSmallOutlined } from "../common/buttons/ButtonSmallOutlined";
 
 interface IProps {
   categories: string;
@@ -16,13 +17,12 @@ const CategoriesList: React.FC<IProps> = ({
           if (!singleCategory || singleCategory.trim().length === 0)
             return null;
           return (
-            <button
-              type="button"
-              className="btn btn-sm py-0 px-1 btn-outline-secondary rounded-0 shadow-sm mr-2"
+            <ButtonSmallOutlined
               key={index}
-            >
-              {singleCategory}
-            </button>
+              text={singleCategory}
+              internal
+              url={`/articles?category=${singleCategory}`}
+            />
           );
         }
       )}

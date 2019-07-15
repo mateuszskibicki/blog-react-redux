@@ -1,4 +1,5 @@
 import React from "react";
+import { ButtonSmallOutlined } from "../common/buttons/ButtonSmallOutlined";
 
 interface IProps {
   series: string;
@@ -14,15 +15,7 @@ const SeriesList: React.FC<IProps> = ({
       {series.split(";").map(
         (singleSeries: string, index: number): JSX.Element | null => {
           if (!singleSeries || singleSeries.trim().length === 0) return null;
-          return (
-            <button
-              type="button"
-              className="btn btn-sm py-0 px-1 btn-outline-secondary rounded-0 shadow-sm mr-2"
-              key={index}
-            >
-              {singleSeries}
-            </button>
-          );
+          return <ButtonSmallOutlined key={index} text={singleSeries} />;
         }
       )}
     </div>
