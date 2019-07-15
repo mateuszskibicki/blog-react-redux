@@ -28,9 +28,10 @@ const Footer: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => (
             </div>
             <p className="mb-2 text-center">
               <strong>
-                Mateusz Skibicki - code lover, addicted to coffee and cats ©{" "}
-                {new Date().getFullYear()}
+                Code 4 Coffee - Mateusz Skibicki - {new Date().getFullYear()}
+                <br />
               </strong>
+              Code - Coffee - Cats
             </p>
             <div className="d-flex flex-wrap justify-content-start mb-3">
               <a

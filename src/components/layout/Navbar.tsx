@@ -9,7 +9,7 @@ const Navbar: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => {
   return (
     <div className="container-fluid mx-0 mb-3 navbar shadow">
       <div className="container navbar__wrapper flex-nowrap">
-        <div className="row justify-content-between align-items-center navbar__logo">
+        <div className="row justify-content-between align-items-center navbar__logo ml-0">
           <Link to="/">
             <svg
               aria-hidden="true"
@@ -37,7 +37,7 @@ const Navbar: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => {
           <NavbarHomeCategories />
           <NavbarSearch />
         </div>
-        <Suspense fallback="">
+        <Suspense fallback={null}>
           <SearchResults />
         </Suspense>
       </div>
