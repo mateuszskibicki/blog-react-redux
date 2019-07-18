@@ -26,7 +26,7 @@ const HeadAboutAuthor: React.FC<IProps> = ({
           <div className="d-flex flex-wrap justify-content-start">
             {email && (
               <a
-                className="btn rounded-0 border shadow-sm m-1"
+                className="btn rounded border shadow-sm m-1"
                 href={`mailto:${email}`}
               >
                 <i className="far fa-envelope" />
@@ -34,7 +34,7 @@ const HeadAboutAuthor: React.FC<IProps> = ({
             )}
             {instagram && (
               <a
-                className="btn rounded-0 border shadow-sm m-1"
+                className="btn rounded border shadow-sm m-1"
                 target="_blank"
                 rel="noopener noreferrer"
                 href={instagram}
@@ -44,7 +44,7 @@ const HeadAboutAuthor: React.FC<IProps> = ({
             )}
             {facebook && (
               <a
-                className="btn rounded-0 border shadow-sm m-1"
+                className="btn rounded border shadow-sm m-1"
                 target="_blank"
                 rel="noopener noreferrer"
                 href={facebook}
@@ -54,7 +54,7 @@ const HeadAboutAuthor: React.FC<IProps> = ({
             )}
             {github && (
               <a
-                className="btn rounded-0 border shadow-sm m-1"
+                className="btn rounded border shadow-sm m-1"
                 target="_blank"
                 rel="noopener noreferrer"
                 href={github}
@@ -64,7 +64,7 @@ const HeadAboutAuthor: React.FC<IProps> = ({
             )}
             {linkedin && (
               <a
-                className="btn rounded-0 border shadow-sm m-1"
+                className="btn rounded border shadow-sm m-1"
                 target="_blank"
                 rel="noopener noreferrer"
                 href={linkedin}

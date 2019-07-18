@@ -29,7 +29,7 @@ const MultipleMediaSlice = ({
         <img
           src={singleMedia.image.url}
           alt={singleMedia.image.alt ? singleMedia.image.alt : ""}
-          className="img-fluid shadow"
+          className="img-fluid shadow rounded"
         />
         <h3 className="mt-2 mb-2">{singleMedia.title}</h3>
         <p>{singleMedia.description}</p>

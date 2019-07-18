@@ -7,6 +7,9 @@ import configureStore from "./store/store";
 //components
 import MainLayout from "./components/layout/MainLayout";
 import Loader from "./components/layout/Loader";
+const Homepage: React.FunctionComponent = React.lazy(
+  (): Promise<any> => import("./components/pages/Homepage")
+);
 const AuthorPage: React.FunctionComponent = React.lazy(
   (): Promise<any> => import("./components/pages/AuthorPage")
 );
@@ -32,7 +35,7 @@ function App(): JSX.Element {
           <MainLayout>
             <Suspense fallback={<Loader />}>
               <Switch>
-                <Route path="/" component={Home} exact />
+                <Route path="/" component={Homepage} exact />
                 <Route path="/author/:uid" component={AuthorPage} exact />
                 <Route
                   path="/articles/:uid"
@@ -50,7 +53,5 @@ function App(): JSX.Element {
     </div>
   );
 }
-
-const Home: React.FunctionComponent = (): JSX.Element => <p>home</p>;
 
 export default App;

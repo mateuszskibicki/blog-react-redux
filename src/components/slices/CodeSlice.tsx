@@ -31,7 +31,7 @@ const CodeSlice: React.FC<{ content: ICodeSlice }> = ({
     <section className="my-2 container code-slice">
       {title && <h4 className="code-slice__title">{title}</h4>}
       {language === "javascript" && (
-        <pre className="language-javascript shadow">
+        <pre className="language-javascript shadow rounded">
           <code
             className="language-javascript"
             dangerouslySetInnerHTML={{
@@ -45,7 +45,7 @@ const CodeSlice: React.FC<{ content: ICodeSlice }> = ({
         </pre>
       )}
       {language === "html" && (
-        <pre className="language-html shadow">
+        <pre className="language-html shadow rounded">
           <code
             className="language-html"
             dangerouslySetInnerHTML={{
@@ -55,7 +55,7 @@ const CodeSlice: React.FC<{ content: ICodeSlice }> = ({
         </pre>
       )}
       {language === "css" && (
-        <pre className="language-css shadow">
+        <pre className="language-css shadow rounded">
           <code
             className="language-css"
             dangerouslySetInnerHTML={{
@@ -65,7 +65,7 @@ const CodeSlice: React.FC<{ content: ICodeSlice }> = ({
         </pre>
       )}
       {language === "json" && (
-        <pre className="language-javascript shadow">
+        <pre className="language-javascript shadow rounded">
           <code
             className="language-javascript"
             dangerouslySetInnerHTML={{
@@ -78,12 +78,17 @@ const CodeSlice: React.FC<{ content: ICodeSlice }> = ({
           />
         </pre>
       )}
-      <button onClick={copyToClipboard}>
+      <button
+        onClick={copyToClipboard}
+        className="btn btn-main shadow rounded-sm"
+      >
         <i className="far fa-save mr-2" /> Copy to clipboard
       </button>
       {show && (
         <span className="ml-2">
-          <button className="btn btn-copied btn-small">Copied!</button>
+          <button className="btn btn-main-outlined btn-copied shadow">
+            Copied!
+          </button>
         </span>
       )}
     </section>

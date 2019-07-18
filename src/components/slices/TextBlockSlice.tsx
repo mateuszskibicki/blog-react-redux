@@ -29,7 +29,7 @@ const TextBlockSlice: React.FC<{ content: ITextBlockSlice }> = ({
               description.length > 0 &&
               RichText.render(description)}
             {button_url && button_title && (
-              <a className="btn btn-danger" href={button_url}>
+              <a className="btn btn-main" href={button_url}>
                 {button_title}
               </a>
             )}

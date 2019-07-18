@@ -25,13 +25,13 @@ export const SingleArticlePreview: React.FC<IProps> = ({
 }: IProps): JSX.Element => {
   return (
     <div className="col-12 col-xs-8 col-sm-6 col-lg-4 p-0 mb-4">
-      <div className="m-2 d-flex flex-column align-items-stretch shadow">
+      <div className="m-2 d-flex flex-column align-items-stretch shadow rounded">
         {small_img && small_img.url && (
           <Link to={`/articles/${uid}`}>
             <img
               src={small_img.url}
               alt={small_img.alt ? small_img.alt : ""}
-              className="img-fluid cursor-pointer"
+              className="img-fluid cursor-pointer rounded-top"
             />
           </Link>
         )}
@@ -55,7 +55,7 @@ export const SingleArticlePreview: React.FC<IProps> = ({
           {categories && <CategoriesList categories={categories} />}
           {series && <SeriesList series={series} />}
           {tags && <TagsList tags={tags} />}
-          <div className="mt-2 text-right">
+          <div className="mt-2 mb-2 text-right">
             <Link to={`/articles/${uid}`}>
               <button className="btn btn-main shadow-sm">Read more...</button>
             </Link>

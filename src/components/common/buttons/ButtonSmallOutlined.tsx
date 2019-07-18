@@ -21,7 +21,7 @@ export const ButtonSmallOutlined: React.FunctionComponent<IProps> = ({
   if (!url)
     return (
       <button
-        className={`btn btn-sm py-0 px-1 btn-outline-secondary rounded-0 shadow-sm mr-2 ${className &&
+        className={`btn btn-sm py-0 px-1 btn-outline-secondary rounded shadow-sm mr-2 ${className &&
           className}`}
       >
         {text}
@@ -32,7 +32,7 @@ export const ButtonSmallOutlined: React.FunctionComponent<IProps> = ({
     return (
       <Link to={url}>
         <button
-          className={`btn btn-sm py-0 px-1 btn-outline-secondary rounded-0 shadow-sm mr-2 ${className &&
+          className={`btn btn-sm py-0 px-1 btn-outline-secondary rounded shadow-sm mr-2 ${className &&
             className}`}
         >
           {text}
@@ -44,7 +44,7 @@ export const ButtonSmallOutlined: React.FunctionComponent<IProps> = ({
     return (
       <a href={url} target="_blank" rel="noopener noreferrer">
         <button
-          className={`btn btn-sm py-0 px-1 btn-outline-secondary rounded-0 shadow-sm mr-2 ${className &&
+          className={`btn btn-sm py-0 px-1 btn-outline-secondary rounded shadow-sm mr-2 ${className &&
             className}`}
         >
           {text}

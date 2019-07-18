@@ -20,7 +20,7 @@ const SearchResults: any = ({
 
   if (!searchText || searchText.trim().length === 0) return null;
   return (
-    <div className="navbar__search-results shadow">
+    <div className="navbar__search-results shadow rounded">
       {loading && (
         <div className="py-4 w-100 text-center">
           <svg

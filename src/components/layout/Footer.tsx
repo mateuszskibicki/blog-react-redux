@@ -51,13 +51,13 @@ const Footer: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => (
             </div>
             <div className="d-flex flex-wrap justify-content-start mb-3">
               <a
-                className="btn rounded-0 cursor-pointer-scale border shadow-sm m-1"
+                className="btn rounded cursor-pointer-scale border shadow-sm m-1"
                 href={`mailto:skibickiengland@gmail.com`}
               >
                 <i className="far fa-envelope" />
               </a>
               <a
-                className="btn rounded-0 cursor-pointer-scale border shadow-sm m-1"
+                className="btn rounded cursor-pointer-scale border shadow-sm m-1"
                 target="_blank"
                 rel="noopener noreferrer"
                 href="https://www.instagram.com/el.papugo/?hl=en"
@@ -65,7 +65,7 @@ const Footer: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => (
                 <i className="fab fa-instagram" />
               </a>
               <a
-                className="btn rounded-0 cursor-pointer-scale border shadow-sm m-1"
+                className="btn rounded cursor-pointer-scale border shadow-sm m-1"
                 target="_blank"
                 rel="noopener noreferrer"
                 href="https://github.com/mateuszskibicki"
@@ -73,7 +73,7 @@ const Footer: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => (
                 <i className="fab fa-github" />
               </a>
               <a
-                className="btn rounded-0 cursor-pointer-scale border shadow-sm m-1"
+                className="btn rounded cursor-pointer-scale border shadow-sm m-1"
                 target="_blank"
                 rel="noopener noreferrer"
                 href="https://www.linkedin.com/in/mateusz-skibicki-web-dev/"

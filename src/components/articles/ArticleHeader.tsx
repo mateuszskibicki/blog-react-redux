@@ -50,7 +50,7 @@ const ArticleHeader: React.FC<IArticleHeader> = ({
           <div className="d-none d-lg-block col-lg-6">
             <img
               src={big_img.url}
-              className="img-fluid my-3 shadow"
+              className="img-fluid my-3 shadow rounded"
               alt={big_img.alt}
             />
           </div>

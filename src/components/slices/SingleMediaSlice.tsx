@@ -43,7 +43,7 @@ const SingleMediaSlice: React.FC<{ content: ISingleMediaSlice }> = ({
               <img
                 src={image.url}
                 alt={image.alt ? image.alt : ""}
-                className="img-fluid shadow"
+                className="img-fluid shadow rounded"
               />
             )}
             {media_type === "youtube" && (
