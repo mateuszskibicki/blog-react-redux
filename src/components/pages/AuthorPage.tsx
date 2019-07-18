@@ -79,7 +79,13 @@ const AuthorPage: React.FunctionComponent<IProps> = memo(
             {author && <HeadAboutAuthor author={author} />}
             {authorContent && sliceComponentsHelper(authorContent)}
             {authorArticles && authorArticles.length > 0 && (
-              <ArticlesList articles={authorArticles} />
+              <>
+                <hr />
+                <div className="container text-center m-auto">
+                  <h1>Last 3 author articles:</h1>
+                </div>
+                <ArticlesList articles={authorArticles} />
+              </>
             )}
           </Suspense>
         </>

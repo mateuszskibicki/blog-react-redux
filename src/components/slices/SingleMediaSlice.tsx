@@ -23,7 +23,7 @@ const SingleMediaSlice: React.FC<{ content: ISingleMediaSlice }> = ({
 
   return (
     <section className="my-3 single-media-slice">
-      <div className="container-fluid" style={{ maxWidth: "1400px" }}>
+      <div className="container-fluid" style={{ maxWidth: "1300px" }}>
         <div className="row justify-content-center align-items-center">
           <div
             className={`col-12 col-md-6 mt-2 mb-2 ${media_position === "left" &&

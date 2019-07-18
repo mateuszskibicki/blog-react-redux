@@ -1,8 +1,7 @@
 .floating-icons {
   position: fixed;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 50px;
   z-index: 100;
   a {
     background: white;
@@ -12,8 +11,8 @@
 .floating-icons-mobile {
   position: fixed;
   z-index: 100;
-  a,
-  button {
+  right: 0;
+  a {
     background: white;
   }
 }

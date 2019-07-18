@@ -35,27 +35,29 @@ export const SingleArticlePreview: React.FC<IProps> = ({
             />
           </Link>
         )}
-        <div className="py-3 px-3 d-flex flex-column h-100">
+        <div className="py-2 px-3 d-flex flex-column h-100">
           {date && (
-            <p className="mb-1 text-secondary text-right">
+            <p className="mb-1 small text-secondary text-right">
               <b>{date}</b>
             </p>
           )}
           {title && (
-            <Link to={`/articles/${uid}`}>
-              <h4 className="mb-2 cursor-pointer">{title}</h4>
+            <Link to={`/articles/${uid}`} className="text-non-decoration">
+              <h4 className="mb-1 text-dark cursor-pointer">
+                <strong>{title}</strong>
+              </h4>
             </Link>
           )}
           {short_description && (
-            <p className="mb-2 text-secondary">{short_description}</p>
+            <p className="mb-1 text-secondary">{short_description}</p>
           )}
           {author && author.uid && <AuthorPreview author={author} />}
           {categories && <CategoriesList categories={categories} />}
           {series && <SeriesList series={series} />}
           {tags && <TagsList tags={tags} />}
-          <div className="mt-auto text-right">
+          <div className="mt-2 text-right">
             <Link to={`/articles/${uid}`}>
-              <button>article link</button>
+              <button className="btn btn-main shadow-sm">Read more...</button>
             </Link>
           </div>
         </div>

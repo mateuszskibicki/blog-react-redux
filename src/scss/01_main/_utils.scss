@@ -9,3 +9,10 @@
     transform: scale(1.05);
   }
 }
+
+.text-non-decoration {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}

@@ -31,10 +31,7 @@ const ArticleHeader: React.FC<IArticleHeader> = ({
         </div>
       </div>
     )}
-    <div
-      className="container-fluid my-3 mx-auto"
-      style={{ maxWidth: "1400px" }}
-    >
+    <div className="container my-3 mx-auto">
       <div className="row justify-content-center align-items-center">
         <div className="col-12 col-sm-10 col-md-8 col-lg-6 my-2 mx-auto">
           {title && <h2 className="mb-2">{title}</h2>}

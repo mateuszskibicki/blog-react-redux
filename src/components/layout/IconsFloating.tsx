@@ -47,11 +47,11 @@ const IconsFloating: React.FC = (): JSX.Element => {
       </div>
       {/* ONLY MOBILE FROM HERE */}
       <div
-        className="floating-icons-mobile d-flex flex-column d-md-none"
+        className="mr-3 mb-3 floating-icons-mobile d-flex flex-column d-md-none"
         style={{ bottom: "0" }}
       >
         <button
-          className="btn rounded-0 cursor-pointer-scale border shadow-sm"
+          className="btn btn-main rounded-circle cursor-pointer-scale shadow-sm"
           onClick={handleMobileClick}
         >
           <i className={`fas fa-arrow-down ${!isVisible && "d-none"}`} />
