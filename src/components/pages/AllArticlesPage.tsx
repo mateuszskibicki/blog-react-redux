@@ -13,7 +13,7 @@ const HeadSEO: React.FunctionComponent<{ SEO: ISEO | null }> = React.lazy(
   (): Promise<any> => import("../layout/HeadSEO")
 );
 const ErrorPage: React.FunctionComponent<{}> = React.lazy(
-  (): Promise<any> => import("../layout/ErrorPage")
+  (): Promise<any> => import("./ErrorPage")
 );
 const CategorySearch: React.FunctionComponent<{
   searchText: string | null;

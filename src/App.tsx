@@ -16,6 +16,9 @@ const SingleArticlePage: React.FunctionComponent = React.lazy(
 const AllArticlesPage: React.FunctionComponent = React.lazy(
   (): Promise<any> => import("./components/pages/AllArticlesPage")
 );
+const ErrorPage: React.FunctionComponent = React.lazy(
+  (): Promise<any> => import("./components/pages/ErrorPage")
+);
 
 //redux store
 //@ts-ignore
@@ -38,7 +41,7 @@ function App(): JSX.Element {
                 />
                 <Route path="/articles" component={AllArticlesPage} exact />
 
-                <Route component={ErrorComponent} />
+                <Route component={ErrorPage} />
               </Switch>
             </Suspense>
           </MainLayout>
@@ -49,6 +52,5 @@ function App(): JSX.Element {
 }
 
 const Home: React.FunctionComponent = (): JSX.Element => <p>home</p>;
-const ErrorComponent: React.FunctionComponent = (): JSX.Element => <p>Error</p>;
 
 export default App;

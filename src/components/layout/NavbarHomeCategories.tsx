@@ -22,6 +22,10 @@ const NavbarHomeCategories: React.FC = (): JSX.Element => {
         <IconHome />
       </Link>
 
+      <Link to="/about">
+        <IconAbout />
+      </Link>
+
       <div className="dropdown">
         <IconCategories onCategoriesClick={onCategoriesClick} />
         {visibleCategories && (
@@ -30,7 +34,7 @@ const NavbarHomeCategories: React.FC = (): JSX.Element => {
             aria-labelledby="dropdownMenuLink"
             style={{ left: "-100%", display: "block" }}
           >
-            <a className="dropdown-item disabled">Categories</a>
+            <button className="dropdown-item disabled">Categories</button>
             <hr className="my-2" />
             <Link
               to="/articles?category=front-end"
@@ -74,6 +78,24 @@ export const IconHome: React.FC = (): JSX.Element => (
     <path
       fill="currentColor"
       d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"
+    />
+  </svg>
+);
+
+export const IconAbout: React.FC = (): JSX.Element => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    data-prefix="fas"
+    data-icon="briefcase"
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 512"
+    className="svg-inline--fa fa-briefcase fa-w-16 mr-3 cursor-pointer-scale"
+  >
+    <path
+      fill="currentColor"
+      d="M320 336c0 8.84-7.16 16-16 16h-96c-8.84 0-16-7.16-16-16v-48H0v144c0 25.6 22.4 48 48 48h416c25.6 0 48-22.4 48-48V288H320v48zm144-208h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128v32z"
     />
   </svg>
 );

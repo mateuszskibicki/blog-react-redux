@@ -45,6 +45,9 @@
       outline: none;
       transition: 0.3s;
       width: 70px;
+      &::placeholder {
+        color: rgba(#bce7d2, 0.5);
+      }
       @include media-sm {
         width: 120px;
       }

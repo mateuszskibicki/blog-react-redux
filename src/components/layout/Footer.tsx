@@ -33,6 +33,22 @@ const Footer: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => (
               </strong>
               Code - Coffee - Cats
             </p>
+            <div className="small mb-2">
+              <Link to="/" className="text-dark cursor-pointer-scale mr-2">
+                <strong>Home</strong>
+              </Link>
+              |
+              <Link to="/about" className="text-dark cursor-pointer-scale mx-2">
+                <strong>About</strong>
+              </Link>
+              |
+              <Link
+                to="/articles"
+                className="text-dark cursor-pointer-scale ml-2"
+              >
+                <strong>Articles</strong>
+              </Link>
+            </div>
             <div className="d-flex flex-wrap justify-content-start mb-3">
               <a
                 className="btn cursor-pointer-scale border shadow-sm m-1"

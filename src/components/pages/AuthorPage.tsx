@@ -15,7 +15,7 @@ const HeadSEO: React.FunctionComponent<{ SEO: ISEO | null }> = React.lazy(
   (): Promise<any> => import("../layout/HeadSEO")
 );
 const ErrorPage: React.StatelessComponent = React.lazy(
-  (): Promise<any> => import("../layout/ErrorPage")
+  (): Promise<any> => import("./ErrorPage")
 );
 const HeadAboutAuthor: React.FC<{ author: IAuthorSingle }> = React.lazy(
   (): Promise<any> => import("../author/HeadAboutAuthor")

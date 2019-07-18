@@ -22,7 +22,7 @@ const HeadSEO: React.LazyExoticComponent<
   }>
 > = React.lazy(() => import("../layout/HeadSEO"));
 const ErrorPage: React.FunctionComponent<{}> = React.lazy(() =>
-  import("../layout/ErrorPage")
+  import("./ErrorPage")
 );
 const ArticleHeader: React.FunctionComponent<IArticleHeader> = React.lazy(() =>
   import("../articles/ArticleHeader")
