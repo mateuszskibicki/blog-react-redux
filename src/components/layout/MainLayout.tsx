@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import IconsFloating from "./IconsFloating";
 import Loader from "./Loader";
 
 interface IProps {
@@ -15,6 +16,7 @@ const MainLayout = ({ loading, children }: IProps) => {
   return (
     <>
       <Navbar />
+      <IconsFloating />
       <Link to="/author/mateusz-skibicki">
         <button className="btn">user: good</button>
       </Link>
