@@ -86,8 +86,8 @@ const SingleArticlePage: React.FunctionComponent<IProps> = memo(
               sliceComponentsHelper(articleData.content)}
             {article.lastArticles && article.lastArticles.length > 0 && (
               <>
-                <hr />
                 <div className="container text-center m-auto">
+                  <hr />
                   <h1>Last 3 articles:</h1>
                 </div>
                 <ArticlesList articles={article.lastArticles} />

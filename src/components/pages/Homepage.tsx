@@ -49,8 +49,8 @@ const Homepage: React.FC<IProps | any> = memo(
         <Suspense fallback={<Loader />}>
           {articlesArray && articlesArray.length > 0 && (
             <>
-              <hr />
               <div className="container text-center m-auto">
+                <hr />
                 <h1>Last 3 articles:</h1>
               </div>
               <ArticlesList articles={articlesArray.slice(0, 3)} />

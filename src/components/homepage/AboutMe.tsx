@@ -11,7 +11,7 @@ const AboutMe: React.FC = (): JSX.Element => {
               <img
                 src="/img/profile-photo.jpg"
                 alt="Avatar Mateusz Skibicki Code 4 Coffee"
-                className="img-fluid shadow rounded-circle"
+                className="img-fluid shadow rounded-circle mb-3"
               />
             </div>
             <div className="col-12 col-sm-10 col-md-9">

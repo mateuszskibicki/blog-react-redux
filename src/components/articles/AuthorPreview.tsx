@@ -17,7 +17,7 @@ const AuthorPreview: React.FC<IProps> = ({
       <ButtonSmallOutlined
         text={author.full_name}
         internal
-        url={`/articles?category=${`/author/${author.uid}`}`}
+        url={`/author/${author.uid}`}
       />
     </div>
   );
