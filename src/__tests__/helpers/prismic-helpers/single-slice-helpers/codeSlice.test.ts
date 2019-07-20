@@ -28,5 +28,7 @@ describe("codeSlice", () => {
     expect(codeSliceData).toHaveProperty("title");
     expect(codeSliceData).toHaveProperty("language");
     expect(codeSliceData).toHaveProperty("code");
+    expect(codeSliceData).toHaveProperty("margin_top");
+    expect(codeSliceData).toHaveProperty("margin_bottom");
   });
 });

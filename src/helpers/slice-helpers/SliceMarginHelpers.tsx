@@ -1,10 +1,7 @@
-export const marginTopHelper = (marigin_top: string | null): string => {
-  if (
-    !marigin_top ||
-    marigin_top.length === 0 ||
-    typeof marigin_top !== "string"
-  )
-    return "mt-0";
+export const marginTopHelper = (
+  marigin_top: string | number | null
+): string => {
+  if (!marigin_top) return "mt-0";
   let className = "mt-0";
   switch (String(marigin_top)) {
     case "0":
@@ -31,13 +28,10 @@ export const marginTopHelper = (marigin_top: string | null): string => {
   return className;
 };
 
-export const marginBottomHelper = (margin_bottom: string | null): string => {
-  if (
-    !margin_bottom ||
-    margin_bottom.length === 0 ||
-    typeof margin_bottom !== "string"
-  )
-    return "mb-0";
+export const marginBottomHelper = (
+  margin_bottom: string | number | null
+): string => {
+  if (!margin_bottom) return "mb-0";
   let className = "mb-0";
   switch (String(margin_bottom)) {
     case "0":

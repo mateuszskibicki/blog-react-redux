@@ -33,5 +33,7 @@ describe("singleMediaSlice", () => {
     expect(singleMediaSliceData).toHaveProperty("text_align");
     expect(singleMediaSliceData).toHaveProperty("media_type");
     expect(singleMediaSliceData).toHaveProperty("youtube");
+    expect(singleMediaSliceData).toHaveProperty("margin_top");
+    expect(singleMediaSliceData).toHaveProperty("margin_bottom");
   });
 });

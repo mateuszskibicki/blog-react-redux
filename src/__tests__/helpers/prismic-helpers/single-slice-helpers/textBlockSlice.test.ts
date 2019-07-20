@@ -29,5 +29,7 @@ describe("textBlockSlice", () => {
     expect(textBlockData).toHaveProperty("description");
     expect(textBlockData).toHaveProperty("button_title");
     expect(textBlockData).toHaveProperty("button_url");
+    expect(textBlockData).toHaveProperty("margin_top");
+    expect(textBlockData).toHaveProperty("margin_bottom");
   });
 });

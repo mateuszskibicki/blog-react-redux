@@ -28,5 +28,7 @@ describe("multipleMediaSlice", () => {
     expect(multipleMediaSliceData).toHaveProperty("button_title");
     expect(multipleMediaSliceData).toHaveProperty("button_url");
     expect(multipleMediaSliceData).toHaveProperty("media");
+    expect(multipleMediaSliceData).toHaveProperty("margin_top");
+    expect(multipleMediaSliceData).toHaveProperty("margin_bottom");
   });
 });
