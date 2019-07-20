@@ -18,51 +18,68 @@ const NavbarHomeCategories: React.FC = (): JSX.Element => {
 
   return (
     <div className="navbar__categories d-flex align-items-center justify-content-center">
-      <Link to="/">
-        <IconHome />
-      </Link>
-
-      <Link to="/about">
-        <IconAbout />
-      </Link>
-
       <div className="dropdown">
-        <IconCategories onCategoriesClick={onCategoriesClick} />
+        {visibleCategories ? (
+          <IconClose onCategoriesClick={onCategoriesClick} />
+        ) : (
+          <IconCategories onCategoriesClick={onCategoriesClick} />
+        )}
         {visibleCategories && (
           <div
-            className="dropdown-menu shadow border-0 rounded"
+            className="dropdown-menu shadow border-0 rounded mt-2"
             aria-labelledby="dropdownMenuLink"
-            style={{ left: "-100%", display: "block" }}
+            style={{ left: "-120px", display: "block", position: "absolute" }}
           >
-            <button className="dropdown-item disabled">Articles</button>
+            <Link
+              to="/"
+              className="dropdown-item d-flex align-items-center"
+              onClick={onCategoriesClick}
+            >
+              <IconHome /> Home
+            </Link>
+            <Link
+              to="/author/mateusz-skibicki"
+              className="dropdown-item d-flex align-items-center"
+              onClick={onCategoriesClick}
+            >
+              <IconAbout /> About me
+            </Link>
+            <Link
+              to="/projects"
+              className="dropdown-item d-flex align-items-center"
+              onClick={onCategoriesClick}
+            >
+              <IconProjects /> Projects
+            </Link>
             <hr className="my-2" />
+            <button className="dropdown-item py-0 disabled">Articles</button>
             <Link
               to="/articles"
               className="dropdown-item d-flex align-items-center"
               onClick={onCategoriesClick}
             >
-              All <IconAll />
+              <IconAll /> All
             </Link>
             <Link
               to="/articles?category=full-stack"
               className="dropdown-item d-flex align-items-center"
               onClick={onCategoriesClick}
             >
-              Full-Stack <IconFullStack />
+              <IconFullStack /> Full-Stack
             </Link>
             <Link
               to="/articles?category=back-end"
               className="dropdown-item d-flex align-items-center"
               onClick={onCategoriesClick}
             >
-              Back-End <BackEndIcon />
+              <BackEndIcon /> Back-End
             </Link>
             <Link
               to="/articles?category=front-end"
               className="dropdown-item d-flex align-items-center"
               onClick={onCategoriesClick}
             >
-              Front-End <FrontEndIcon />
+              <FrontEndIcon /> Front-End
             </Link>
           </div>
         )}
@@ -71,41 +88,7 @@ const NavbarHomeCategories: React.FC = (): JSX.Element => {
   );
 };
 
-export const IconHome: React.FC = (): JSX.Element => (
-  <svg
-    aria-hidden="true"
-    focusable="false"
-    data-prefix="fas"
-    data-icon="home"
-    role="img"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 576 512"
-    className="svg-inline--fa fa-home fa-w-18 mr-3 cursor-pointer-scale"
-  >
-    <path
-      fill="currentColor"
-      d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"
-    />
-  </svg>
-);
-
-export const IconAbout: React.FC = (): JSX.Element => (
-  <svg
-    aria-hidden="true"
-    focusable="false"
-    data-prefix="fas"
-    data-icon="briefcase"
-    role="img"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 512 512"
-    className="svg-inline--fa fa-briefcase fa-w-16 mr-3 cursor-pointer-scale"
-  >
-    <path
-      fill="currentColor"
-      d="M320 336c0 8.84-7.16 16-16 16h-96c-8.84 0-16-7.16-16-16v-48H0v144c0 25.6 22.4 48 48 48h416c25.6 0 48-22.4 48-48V288H320v48zm144-208h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128v32z"
-    />
-  </svg>
-);
+export default NavbarHomeCategories;
 
 export const IconCategories: React.FC<{
   onCategoriesClick: MouseEventHandler;
@@ -122,12 +105,92 @@ export const IconCategories: React.FC<{
     role="img"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
-    className="svg-inline--fa fa-list fa-w-16 mr-3 cursor-pointer-scale"
+    className="svg-inline--fa fa-list fa-w-16 ml-3 cursor-pointer-scale"
     onClick={onCategoriesClick}
   >
     <path
       fill="currentColor"
       d="M80 368H16a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16v-64a16 16 0 0 0-16-16zm0-320H16A16 16 0 0 0 0 64v64a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16zm0 160H16a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16v-64a16 16 0 0 0-16-16zm416 176H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-320H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16zm0 160H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16z"
+    />
+  </svg>
+);
+
+export const IconClose: React.FC<{
+  onCategoriesClick: MouseEventHandler;
+}> = ({
+  onCategoriesClick
+}: {
+  onCategoriesClick: MouseEventHandler;
+}): JSX.Element => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    data-prefix="far"
+    data-icon="times-circle"
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 512"
+    className="svg-inline--fa fa-times-circle fa-w-16 ml-3 cursor-pointer-scale"
+    onClick={onCategoriesClick}
+  >
+    <path
+      fill="currentColor"
+      d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm101.8-262.2L295.6 256l62.2 62.2c4.7 4.7 4.7 12.3 0 17l-22.6 22.6c-4.7 4.7-12.3 4.7-17 0L256 295.6l-62.2 62.2c-4.7 4.7-12.3 4.7-17 0l-22.6-22.6c-4.7-4.7-4.7-12.3 0-17l62.2-62.2-62.2-62.2c-4.7-4.7-4.7-12.3 0-17l22.6-22.6c4.7-4.7 12.3-4.7 17 0l62.2 62.2 62.2-62.2c4.7-4.7 12.3-4.7 17 0l22.6 22.6c4.7 4.7 4.7 12.3 0 17z"
+    />
+  </svg>
+);
+
+export const IconHome: React.FC = (): JSX.Element => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    data-prefix="fas"
+    data-icon="home"
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 576 512"
+    className="svg-inline--fa fa-home fa-w-18 mr-3 cursor-pointer-scale text-dark"
+  >
+    <path
+      fill="currentColor"
+      d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"
+    />
+  </svg>
+);
+
+export const IconAbout: React.FC = (): JSX.Element => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    data-prefix="far"
+    data-icon="grin-beam"
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 496 512"
+    className="svg-inline--fa fa-grin-beam fa-w-16 mr-3 cursor-pointer-scale text-dark"
+  >
+    <path
+      fill="currentColor"
+      d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 448c-110.3 0-200-89.7-200-200S137.7 56 248 56s200 89.7 200 200-89.7 200-200 200zm105.6-151.4c-25.9 8.3-64.4 13.1-105.6 13.1s-79.6-4.8-105.6-13.1c-9.8-3.1-19.4 5.3-17.7 15.3 7.9 47.1 71.3 80 123.3 80s115.3-32.9 123.3-80c1.6-9.8-7.7-18.4-17.7-15.3zm-235.9-72.9c3.5 1.1 7.4-.5 9.3-3.7l9.5-17c7.7-13.7 19.2-21.6 31.5-21.6s23.8 7.9 31.5 21.6l9.5 17c2.1 3.7 6.2 4.7 9.3 3.7 3.6-1.1 6-4.5 5.7-8.3-3.3-42.1-32.2-71.4-56-71.4s-52.7 29.3-56 71.4c-.3 3.7 2.1 7.2 5.7 8.3zm160 0c3.5 1.1 7.4-.5 9.3-3.7l9.5-17c7.7-13.7 19.2-21.6 31.5-21.6s23.8 7.9 31.5 21.6l9.5 17c2.1 3.7 6.2 4.7 9.3 3.7 3.6-1.1 6-4.5 5.7-8.3-3.3-42.1-32.2-71.4-56-71.4s-52.7 29.3-56 71.4c-.3 3.7 2.1 7.2 5.7 8.3z"
+      className=""
+    />
+  </svg>
+);
+
+export const IconProjects: React.FC = (): JSX.Element => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    data-prefix="fas"
+    data-icon="briefcase"
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 512"
+    className="svg-inline--fa fa-briefcase fa-w-16 mr-3 cursor-pointer-scale text-dark"
+  >
+    <path
+      fill="currentColor"
+      d="M320 336c0 8.84-7.16 16-16 16h-96c-8.84 0-16-7.16-16-16v-48H0v144c0 25.6 22.4 48 48 48h416c25.6 0 48-22.4 48-48V288H320v48zm144-208h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128v32z"
     />
   </svg>
 );
@@ -141,7 +204,7 @@ export const IconAll: React.FC = (): JSX.Element => (
     role="img"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 448 512"
-    className="svg-inline--fa fa-book fa-w-14 ml-3 text-dark"
+    className="svg-inline--fa fa-book fa-w-14 mr-3 text-dark"
   >
     <path
       fill="currentColor"
@@ -159,7 +222,7 @@ export const IconFullStack: React.FC = (): JSX.Element => (
     role="img"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 640 512"
-    className="svg-inline--fa fa-code fa-w-20 ml-3 text-dark"
+    className="svg-inline--fa fa-code fa-w-20 mr-3 text-dark"
     style={{ width: "20px", height: "20px" }}
   >
     <path
@@ -178,7 +241,7 @@ export const BackEndIcon: React.FC = (): JSX.Element => (
     role="img"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 384 512"
-    className="svg-inline--fa fa-code-branch fa-w-12 ml-3 text-dark"
+    className="svg-inline--fa fa-code-branch fa-w-12 mr-3 text-dark"
     style={{ width: "20px", height: "20px" }}
   >
     <path
@@ -197,7 +260,7 @@ export const FrontEndIcon: React.FC = (): JSX.Element => (
     role="img"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
-    className="svg-inline--fa fa-react fa-w-16 ml-3 text-dark"
+    className="svg-inline--fa fa-react fa-w-16 mr-3 text-dark"
     style={{ width: "20px", height: "20px" }}
   >
     <path
@@ -206,5 +269,3 @@ export const FrontEndIcon: React.FC = (): JSX.Element => (
     />
   </svg>
 );
-
-export default NavbarHomeCategories;

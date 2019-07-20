@@ -1,7 +1,12 @@
 import "./scss/styles.scss";
 import React, { Suspense } from "react";
 import { Provider as ReduxProvider } from "react-redux";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  withRouter
+} from "react-router-dom";
 import configureStore from "./store/store";
 
 //components
@@ -27,7 +32,7 @@ const ErrorPage: React.FunctionComponent = React.lazy(
 //@ts-ignore
 const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
 
-function App(): JSX.Element {
+const App = () => {
   return (
     <div className="app">
       <ReduxProvider store={reduxStore}>
@@ -52,6 +57,6 @@ function App(): JSX.Element {
       </ReduxProvider>
     </div>
   );
-}
+};
 
 export default App;

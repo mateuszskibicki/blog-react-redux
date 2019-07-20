@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { ScrollToTop } from "../../../helpers/ScrollToTop";
 interface IProps {
   text: string;
   url?: string;
@@ -30,7 +30,7 @@ export const ButtonSmallOutlined: React.FunctionComponent<IProps> = ({
 
   if (internal)
     return (
-      <Link to={url}>
+      <Link to={url} onClick={() => ScrollToTop()}>
         <button
           className={`btn btn-sm py-0 px-1 btn-outline-secondary rounded shadow-sm mr-2 ${className &&
             className}`}

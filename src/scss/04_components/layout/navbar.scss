@@ -44,16 +44,16 @@
       color: #bce7d2;
       outline: none;
       transition: 0.3s;
-      width: 70px;
+      width: 150px;
       &::placeholder {
         color: rgba(#bce7d2, 0.5);
       }
-      @include media-sm {
-        width: 120px;
-      }
-      @include media-md {
-        width: 150px;
-      }
+      // @include media-sm {
+      //   width: 120px;
+      // }
+      // @include media-md {
+      //   width: 150px;
+      //}
     }
 
     input:hover,

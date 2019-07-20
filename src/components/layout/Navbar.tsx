@@ -34,8 +34,8 @@ const Navbar: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => {
           Coffee
         </h2>
         <div className="navbar__right-part d-flex">
-          <NavbarHomeCategories />
           <NavbarSearch />
+          <NavbarHomeCategories />
         </div>
         <Suspense fallback={null}>
           <SearchResults />
