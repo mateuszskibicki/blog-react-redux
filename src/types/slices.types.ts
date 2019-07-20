@@ -10,6 +10,8 @@ export interface ICodeSlice {
   title: string | null;
   language: string | null;
   code: string | null;
+  margin_top: string | null;
+  margin_bottom: string | null;
 }
 
 //single media slice
@@ -24,6 +26,8 @@ export interface ISingleMediaSlice {
   text_align: string | null;
   media_type: string | null;
   youtube: any | null;
+  margin_top: string | null;
+  margin_bottom: string | null;
 }
 
 //multiple media slice -> single element
@@ -43,6 +47,8 @@ export interface IMultipleMediaSlice {
   button_title: string | null;
   button_url: string | null;
   media: IMultipleMediaSliceSingle[] | null;
+  margin_top: string | null;
+  margin_bottom: string | null;
 }
 
 //text block slice
@@ -53,6 +59,8 @@ export interface ITextBlockSlice {
   button_title: string | null;
   button_url: string | null;
   text_align: string | null;
+  margin_top: string | null;
+  margin_bottom: string | null;
 }
 
 export type TAllSlices =

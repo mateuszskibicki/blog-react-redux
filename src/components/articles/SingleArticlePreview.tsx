@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ScrollToTop } from "../../helpers/ScrollToTop";
 import CategoriesList from "./CategoriesList";
 import TagsList from "./TagsList";
-import SeriesList from "./SeriesList";
+//import SeriesList from "./SeriesList";
 import AuthorPreview from "./AuthorPreview";
 import { ISingleArticle } from "../../types/article.types";
 
@@ -15,7 +15,7 @@ export const SingleArticlePreview: React.FC<IProps> = ({
   article: {
     uid,
     date,
-    series,
+    //series,
     categories,
     short_description,
     tags,
@@ -58,7 +58,7 @@ export const SingleArticlePreview: React.FC<IProps> = ({
           )}
           {author && author.uid && <AuthorPreview author={author} />}
           {categories && <CategoriesList categories={categories} />}
-          {series && <SeriesList series={series} />}
+          {/* {series && <SeriesList series={series} />} */}
           {tags && <TagsList tags={tags} />}
           <div className="mt-2 mb-2 text-right">
             <Link to={`/articles/${uid}`} onClick={() => ScrollToTop()}>

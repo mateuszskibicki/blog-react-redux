@@ -1,12 +1,7 @@
 import "./scss/styles.scss";
 import React, { Suspense } from "react";
 import { Provider as ReduxProvider } from "react-redux";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  withRouter
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import configureStore from "./store/store";
 
 //components

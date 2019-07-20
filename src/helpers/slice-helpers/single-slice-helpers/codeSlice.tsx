@@ -16,6 +16,8 @@ export const codeSlice = (data: any): ICodeSlice | null => {
     type: dataType,
     title: TextHelper(sliceFixedData.title),
     language: SmallTextHelper(sliceFixedData.language),
-    code: TextHelper(sliceFixedData.code)
+    code: TextHelper(sliceFixedData.code),
+    margin_top: SmallTextHelper(sliceFixedData.margin_top),
+    margin_bottom: SmallTextHelper(sliceFixedData.margin_bottom)
   };
 };

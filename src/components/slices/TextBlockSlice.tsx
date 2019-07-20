@@ -1,7 +1,12 @@
 import React from "react";
 //@ts-ignore
 import { RichText } from "prismic-reactjs";
-
+//margin helper
+import {
+  marginTopHelper,
+  marginBottomHelper
+} from "../../helpers/slice-helpers/SliceMarginHelpers";
+//types
 import { ITextBlockSlice } from "../../types/slices.types";
 
 const TextBlockSlice: React.FC<{ content: ITextBlockSlice }> = ({
@@ -16,11 +21,17 @@ const TextBlockSlice: React.FC<{ content: ITextBlockSlice }> = ({
     text_align,
     button_url,
     button_title,
-    description
+    description,
+    margin_bottom,
+    margin_top
   }: ITextBlockSlice = content;
 
   return (
-    <section className="my-2 slice-text-box">
+    <section
+      className={`slice-text-box ${marginTopHelper(
+        margin_top
+      )} ${marginBottomHelper(margin_bottom)}`}
+    >
       <div className={`container ${text_align && "text-" + text_align}`}>
         <div className="row">
           <div className="col-12 col-md-10 col-xl-9 mx-auto">

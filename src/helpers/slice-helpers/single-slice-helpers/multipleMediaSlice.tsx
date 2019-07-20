@@ -27,6 +27,8 @@ export const multipleMediaSlice = (data: any): IMultipleMediaSlice | null => {
     title: TextHelper(sliceFixedData.title),
     button_title: TextHelper(sliceFixedData.button_title),
     button_url: UrlHelper(sliceFixedData.button_url),
+    margin_top: SmallTextHelper(sliceFixedData.margin_top),
+    margin_bottom: SmallTextHelper(sliceFixedData.margin_bottom),
     media: !(sliceRepetableData && sliceRepetableData.length > 0)
       ? null
       : sliceRepetableData.map(

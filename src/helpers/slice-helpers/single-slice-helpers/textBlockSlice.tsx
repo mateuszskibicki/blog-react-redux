@@ -24,6 +24,8 @@ export const textBlockSlice = (data: any): ITextBlockSlice | null => {
     text_align: SmallTextHelper(sliceFixedData.text_align),
     description: ArrayHelper(sliceFixedData.description),
     button_title: TextHelper(sliceFixedData.button_title),
-    button_url: UrlHelper(sliceFixedData.button_url)
+    button_url: UrlHelper(sliceFixedData.button_url),
+    margin_top: SmallTextHelper(sliceFixedData.margin_top),
+    margin_bottom: SmallTextHelper(sliceFixedData.margin_bottom)
   };
 };

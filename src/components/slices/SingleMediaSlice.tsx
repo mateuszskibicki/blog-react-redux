@@ -1,5 +1,10 @@
 import React from "react";
-
+//margin helper
+import {
+  marginTopHelper,
+  marginBottomHelper
+} from "../../helpers/slice-helpers/SliceMarginHelpers";
+//types
 import { ISingleMediaSlice } from "../../types/slices.types";
 
 const SingleMediaSlice: React.FC<{ content: ISingleMediaSlice }> = ({
@@ -18,11 +23,17 @@ const SingleMediaSlice: React.FC<{ content: ISingleMediaSlice }> = ({
     media_position,
     text_align,
     media_type,
-    youtube
+    youtube,
+    margin_bottom,
+    margin_top
   }: ISingleMediaSlice = content;
 
   return (
-    <section className="my-3 single-media-slice">
+    <section
+      className={`single-media-slice ${marginTopHelper(
+        margin_top
+      )} ${marginBottomHelper(margin_bottom)}`}
+    >
       <div className="container-fluid" style={{ maxWidth: "1300px" }}>
         <div className="row justify-content-center align-items-center">
           <div

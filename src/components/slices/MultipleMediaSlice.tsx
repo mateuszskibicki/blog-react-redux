@@ -1,4 +1,10 @@
 import React from "react";
+//margin helper
+import {
+  marginTopHelper,
+  marginBottomHelper
+} from "../../helpers/slice-helpers/SliceMarginHelpers";
+//types
 import {
   IMultipleMediaSlice,
   IMultipleMediaSliceSingle
@@ -15,7 +21,9 @@ const MultipleMediaSlice = ({
     title,
     button_title,
     button_url,
-    media
+    media,
+    margin_bottom,
+    margin_top
   }: IMultipleMediaSlice = content;
 
   const mediaImage: React.FC<IMultipleMediaSliceSingle> = (
@@ -55,7 +63,11 @@ const MultipleMediaSlice = ({
   if (!media || media.length === 0) return null;
 
   return (
-    <section className="my-3 multiple-media-slice">
+    <section
+      className={`multiple-media-slice ${marginTopHelper(
+        margin_top
+      )} ${marginBottomHelper(margin_bottom)}`}
+    >
       <div className="container">
         {title && (
           <h2 className="text-center my-2 multiple-media-slice__title">

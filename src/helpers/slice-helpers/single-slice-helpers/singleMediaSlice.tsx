@@ -29,6 +29,8 @@ export const singleMediaSlice = (data: any): ISingleMediaSlice | null => {
     media_position: SmallTextHelper(sliceFixedData.media_position),
     text_align: SmallTextHelper(sliceFixedData.text_align),
     media_type: SmallTextHelper(sliceFixedData.media_type),
-    youtube: EmbedHelper(sliceFixedData.youtube)
+    youtube: EmbedHelper(sliceFixedData.youtube),
+    margin_top: SmallTextHelper(sliceFixedData.margin_top),
+    margin_bottom: SmallTextHelper(sliceFixedData.margin_bottom)
   };
 };
