@@ -2,6 +2,7 @@ import { textBlockSlice } from "./single-slice-helpers/textBlockSlice";
 import { codeSlice } from "./single-slice-helpers/codeSlice";
 import { singleMediaSlice } from "./single-slice-helpers/singleMediaSlice";
 import { multipleMediaSlice } from "./single-slice-helpers/multipleMediaSlice";
+import { imageSlice } from "./single-slice-helpers/imageSlice";
 
 import { TAllSlices } from "../../types/slices.types";
 
@@ -29,6 +30,7 @@ export const sliceHelper = (body: Array<any>): Array<TAllSlices> | null => {
   slicesData = body.map(
     (slice: any): TAllSlices | null => {
       if (slice.slice_type === "text_block") return textBlockSlice(slice);
+      if (slice.slice_type === "image") return imageSlice(slice);
       if (slice.slice_type === "code_component") return codeSlice(slice);
       if (slice.slice_type === "single_media_block")
         return singleMediaSlice(slice);

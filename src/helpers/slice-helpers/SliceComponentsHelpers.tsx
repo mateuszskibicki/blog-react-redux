@@ -7,6 +7,9 @@ const TextBlockSlice: React.FunctionComponent<
 > = React.lazy(
   (): Promise<any> => import("../../components/slices/TextBlockSlice")
 );
+const ImageSlice: React.FunctionComponent<ISliceComponentProps> = React.lazy(
+  (): Promise<any> => import("../../components/slices/ImageSlice")
+);
 const CodeSlice: React.FunctionComponent<ISliceComponentProps> = React.lazy(
   (): Promise<any> => import("../../components/slices/CodeSlice")
 );
@@ -31,6 +34,8 @@ export const sliceComponentsHelper = (slices: any): JSX.Element | null => {
           if (slice === null || !slice.type) return "";
           if (slice.type === "text_block")
             return <TextBlockSlice key={index} content={slice} />;
+          if (slice.type === "image")
+            return <ImageSlice key={index} content={slice} />;
           if (slice && slice.type === "code_component")
             return <CodeSlice key={index} content={slice} />;
           if (slice.type === "single_media_block")

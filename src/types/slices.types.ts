@@ -63,8 +63,17 @@ export interface ITextBlockSlice {
   margin_bottom: string | null;
 }
 
+export interface IImageSlice {
+  type: string;
+  width: string | null;
+  margin_top: string | null;
+  margin_bottom: string | null;
+  image: IImg | null;
+}
+
 export type TAllSlices =
   | ICodeSlice
   | ISingleMediaSlice
   | IMultipleMediaSlice
-  | ITextBlockSlice;
+  | ITextBlockSlice
+  | IImageSlice;
