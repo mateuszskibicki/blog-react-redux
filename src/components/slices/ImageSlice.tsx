@@ -28,7 +28,7 @@ const ImageSlice: React.FC<{ content: IImageSlice }> = ({
         <img
           src={image.url}
           alt={image.alt ? image.alt : ""}
-          className="w-100"
+          className="w-100 shadow-sm"
         />
       </div>
     );
@@ -44,7 +44,7 @@ const ImageSlice: React.FC<{ content: IImageSlice }> = ({
           <img
             src={image.url}
             alt={image.alt ? image.alt : ""}
-            className="img-fluid"
+            className="img-fluid rounded shadow-sm"
           />
         </div>
       </div>

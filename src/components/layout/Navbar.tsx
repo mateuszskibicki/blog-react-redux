@@ -7,7 +7,7 @@ const SearchResults = React.lazy(() => import("./SearchResults"));
 
 const Navbar: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => {
   return (
-    <div className="container-fluid mx-0 mb-3 navbar shadow">
+    <nav className="container-fluid mx-0 mb-0 navbar shadow-sm">
       <div className="container p-0 navbar__wrapper flex-nowrap">
         <div className="row justify-content-between align-items-center navbar__logo ml-0">
           <Link to="/">
@@ -41,7 +41,7 @@ const Navbar: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => {
           <SearchResults />
         </Suspense>
       </div>
-    </div>
+    </nav>
   );
 });
 

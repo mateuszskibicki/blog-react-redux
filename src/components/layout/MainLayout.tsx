@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Navbar from "./Navbar";
@@ -17,7 +16,7 @@ const MainLayout = ({ loading, children }: IProps) => {
     <>
       <Navbar />
       <IconsFloating />
-      <Link to="/author/mateusz-skibicki">
+      {/* <Link to="/author/mateusz-skibicki">
         <button className="btn">user: good</button>
       </Link>
       <Link to="/author/mateusz-skibicki1">
@@ -43,7 +42,7 @@ const MainLayout = ({ loading, children }: IProps) => {
       </Link>
       <Link to="/articles?searchText=emmm">
         <button className="btn btn-sm btn-info">articles page front-end</button>
-      </Link>
+      </Link> */}
       {loading && <Loader />}
       {!loading && children && children}
       <Footer />

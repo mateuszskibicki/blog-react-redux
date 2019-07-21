@@ -46,7 +46,7 @@ const CodeSlice: React.FC<{ content: ICodeSlice }> = ({
     >
       {title && <h4 className="code-slice__title">{title}</h4>}
       {language === "javascript" && (
-        <pre className="language-javascript shadow rounded">
+        <pre className="language-javascript shadow-sm rounded">
           <code
             className="language-javascript"
             dangerouslySetInnerHTML={{
@@ -60,7 +60,7 @@ const CodeSlice: React.FC<{ content: ICodeSlice }> = ({
         </pre>
       )}
       {language === "html" && (
-        <pre className="language-html shadow rounded">
+        <pre className="language-html shadow-sm rounded">
           <code
             className="language-html"
             dangerouslySetInnerHTML={{
@@ -70,7 +70,7 @@ const CodeSlice: React.FC<{ content: ICodeSlice }> = ({
         </pre>
       )}
       {language === "css" && (
-        <pre className="language-css shadow rounded">
+        <pre className="language-css shadow-sm rounded">
           <code
             className="language-css"
             dangerouslySetInnerHTML={{
@@ -80,7 +80,7 @@ const CodeSlice: React.FC<{ content: ICodeSlice }> = ({
         </pre>
       )}
       {language === "json" && (
-        <pre className="language-javascript shadow rounded">
+        <pre className="language-javascript shadow-sm rounded">
           <code
             className="language-javascript"
             dangerouslySetInnerHTML={{
@@ -95,7 +95,7 @@ const CodeSlice: React.FC<{ content: ICodeSlice }> = ({
       )}
       <button
         onClick={copyToClipboard}
-        className="btn btn-main shadow rounded-sm"
+        className="btn btn-main shadow-sm rounded-sm"
       >
         <i className="far fa-save mr-2" /> Copy to clipboard
       </button>
