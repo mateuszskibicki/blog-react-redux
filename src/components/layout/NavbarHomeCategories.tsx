@@ -46,13 +46,13 @@ const NavbarHomeCategories: React.FC = (): JSX.Element => {
             >
               <IconAbout /> About me
             </Link>
-            <Link
+            {/* <Link
               to="/projects"
               className="dropdown-item d-flex align-items-center"
               onClick={onCategoriesClick}
             >
               <IconProjects /> Projects
-            </Link>
+            </Link> */}
             <hr className="my-2" />
             <button className="dropdown-item py-0 disabled">Articles</button>
             <Link
