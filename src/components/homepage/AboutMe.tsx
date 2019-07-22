@@ -33,7 +33,7 @@ const AboutMe: React.FC = (): JSX.Element => {
                     'About'
                   </span>{" "}
                 </Link>
-                <br />
+                {/* <br />
                 My projects:{" "}
                 <Link
                   to="/projects"
@@ -43,7 +43,7 @@ const AboutMe: React.FC = (): JSX.Element => {
                   <span style={{ fontWeight: 600 }} className="pl-1">
                     'Projects'
                   </span>{" "}
-                </Link>
+                </Link> */}
               </p>
             </div>
           </div>

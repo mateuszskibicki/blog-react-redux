@@ -1,6 +1,7 @@
 // main
 import React, { useEffect, Suspense, memo } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 // actions
 import { getAllArticles } from "../../store/actions/articles/articlesActions";
 //types
@@ -54,6 +55,11 @@ const Homepage: React.FC<IProps | any> = memo(
                 <h1>Last 3 articles:</h1>
               </div>
               <ArticlesList articles={articlesArray.slice(0, 3)} />
+              <div className="container my-3 text-center">
+                <Link to="/articles" className="btn btn-lg btn-main">
+                  All articles
+                </Link>
+              </div>
             </>
           )}
         </Suspense>
