@@ -22,12 +22,12 @@ const CategorySearch: React.FunctionComponent<{
 const ArticlesList: React.FunctionComponent<{
   articles: ISingleArticle[];
 }> = React.lazy((): Promise<any> => import("../articles/ArticlesList"));
-const Pagination: React.FunctionComponent<{
-  activePage: string | number | null;
-  itemsCountPerPage: number;
-  totalItemsCount: number;
-  pageRangeDisplayed: number;
-}> = React.lazy((): Promise<any> => import("../articles/Pagination"));
+// const Pagination: React.FunctionComponent<{
+//   activePage: string | number | null;
+//   itemsCountPerPage: number;
+//   totalItemsCount: number;
+//   pageRangeDisplayed: number;
+// }> = React.lazy((): Promise<any> => import("../articles/Pagination"));
 
 type IProps = {
   location: any;
@@ -71,8 +71,8 @@ const AllArticlesPage: React.FC<IProps | any> = memo(
     }, [params.page, params.category, params.searchText]);
 
     const error: boolean = articles.error;
-    const currentPage: string | null = articles.currentPage;
-    const totalPages: number | null = articles.totalPages;
+    // const currentPage: string | null = articles.currentPage;
+    // const totalPages: number | null = articles.totalPages;
     const category: string | null = articles.category;
     const searchText: string | null = articles.searchText;
     const SEO: ISEO | null = articles.SEO;
@@ -96,29 +96,19 @@ const AllArticlesPage: React.FC<IProps | any> = memo(
             {articlesArray && articlesArray.length > 0 && (
               <ArticlesList articles={articlesArray} />
             )}
-            {totalPages && totalPages > 1 && currentPage && (
+            {/* {totalPages && totalPages > 1 && currentPage && (
               <Pagination
                 activePage={currentPage}
                 itemsCountPerPage={1}
                 totalItemsCount={3}
                 pageRangeDisplayed={3}
               />
-            )}
+            )} */}
           </div>
         </Suspense>
       </>
     );
   }
-  //memo
-  // (prevProps, nextProps): boolean => {
-  //   console.log(11);
-  //   const prevUID = prevProps.match.params.uid;
-  //   const nextUID = nextProps.match.params.uid;
-  //   if (prevUID === nextUID) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
 );
 
 const mapStateToProps = ({ articles }: any) => ({ articles });

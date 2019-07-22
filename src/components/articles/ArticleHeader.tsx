@@ -18,7 +18,7 @@ const ArticleHeader: React.FC<IArticleHeader> = ({
 }: IArticleHeader): JSX.Element => (
   <div className="container mb-3 mx-auto">
     <div className="row justify-content-center align-items-center">
-      <div className="col-12 col-sm-10 col-md-8 mt-3 mb-4 mx-auto">
+      <div className="col-12 col-sm-10 col-md-8 mt-4 mb-4 mx-auto">
         {title && <h1 className="mb-2">{title}</h1>}
         {date && <p className="text-secondary mb-2">{date}</p>}
         {short_description && (

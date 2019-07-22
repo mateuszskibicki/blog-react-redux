@@ -5,6 +5,7 @@ import React, {
   MouseEventHandler
 } from "react";
 import { Link } from "react-router-dom";
+import { ScrollToTop } from "../../helpers/ScrollToTop";
 
 const NavbarHomeCategories: React.FC = (): JSX.Element => {
   const [visibleCategories, setVisibleCategories]: [
@@ -14,6 +15,7 @@ const NavbarHomeCategories: React.FC = (): JSX.Element => {
 
   const onCategoriesClick: React.MouseEventHandler = (): void => {
     setVisibleCategories(!visibleCategories);
+    ScrollToTop();
   };
 
   return (

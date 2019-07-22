@@ -40,7 +40,7 @@ const ErrorPage: React.MemoExoticComponent<() => JSX.Element> = React.memo(
             <div className="col-12 col-sm-10 col-md-8 col-lg-6 mb-4">
               <p className="lead">
                 Whoops... You found an error. Probably this is just unexisting
-                page. If you think this is something bigger and page website is
+                page. If you think this is something bigger and website is
                 broken, please contact me:{" "}
                 <a
                   href="mailto:skibickiengland@gmail.com"

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { ScrollToTop } from "../../helpers/ScrollToTop";
 
 const Footer: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => (
   <div className="container">
@@ -8,7 +9,7 @@ const Footer: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => (
         <div className="footer">
           <div className="d-flex flex-column justify-content-center align-items-center">
             <div className="footer__logo mb-2">
-              <Link to="/">
+              <Link to="/" onClick={() => ScrollToTop()}>
                 <svg
                   aria-hidden="true"
                   focusable="false"
@@ -34,17 +35,26 @@ const Footer: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => (
               Code - Coffee - Cats
             </p>
             <div className="small mb-2">
-              <Link to="/" className="text-dark cursor-pointer-scale mr-2">
+              <Link
+                to="/"
+                className="text-dark cursor-pointer-scale mr-2"
+                onClick={() => ScrollToTop()}
+              >
                 <strong>Home</strong>
               </Link>
               |
-              <Link to="/about" className="text-dark cursor-pointer-scale mx-2">
+              <Link
+                to="/author/mateusz-skibicki"
+                className="text-dark cursor-pointer-scale mx-2"
+                onClick={() => ScrollToTop()}
+              >
                 <strong>About</strong>
               </Link>
               |
               <Link
                 to="/articles"
                 className="text-dark cursor-pointer-scale ml-2"
+                onClick={() => ScrollToTop()}
               >
                 <strong>Articles</strong>
               </Link>

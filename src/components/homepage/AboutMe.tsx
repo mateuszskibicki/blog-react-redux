@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { ScrollToTop } from "../../helpers/ScrollToTop";
+
 const AboutMe: React.FC = (): JSX.Element => {
   return (
     <div className="container my-5">
@@ -25,6 +27,7 @@ const AboutMe: React.FC = (): JSX.Element => {
                 <Link
                   to="/author/mateusz-skibicki"
                   className="text-non-decoration text-dark"
+                  onClick={() => ScrollToTop()}
                 >
                   <span style={{ fontWeight: 600 }} className="pl-1">
                     'About'
@@ -32,7 +35,11 @@ const AboutMe: React.FC = (): JSX.Element => {
                 </Link>
                 <br />
                 My projects:{" "}
-                <Link to="/projects" className="text-non-decoration text-dark">
+                <Link
+                  to="/projects"
+                  className="text-non-decoration text-dark"
+                  onClick={() => ScrollToTop()}
+                >
                   <span style={{ fontWeight: 600 }} className="pl-1">
                     'Projects'
                   </span>{" "}

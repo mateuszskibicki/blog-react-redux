@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { ScrollToTop } from "../../helpers/ScrollToTop";
+
 const IconsFloating: React.FC = (): JSX.Element => {
   const [isVisible, setIsVisible]: [
     boolean,
@@ -18,6 +20,7 @@ const IconsFloating: React.FC = (): JSX.Element => {
         <Link
           className="btn rounded cursor-pointer-scale border mb-1 shadow-sm"
           to={`/author/mateusz-skibicki`}
+          onClick={() => ScrollToTop()}
         >
           <i className="far fa-address-card" />
         </Link>
@@ -69,6 +72,7 @@ const IconsFloating: React.FC = (): JSX.Element => {
             <Link
               className="btn rounded cursor-pointer-scale border my-1 shadow-sm"
               to={`/author/mateusz-skibicki`}
+              onClick={() => ScrollToTop()}
             >
               <i className="far fa-address-card" />
             </Link>
