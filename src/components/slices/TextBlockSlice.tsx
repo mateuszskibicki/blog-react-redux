@@ -28,7 +28,7 @@ const TextBlockSlice: React.FC<{ content: ITextBlockSlice }> = ({
 
   return (
     <section
-      className={`slice-text-box ${marginTopHelper(
+      className={`text-block-slice ${marginTopHelper(
         margin_top
       )} ${marginBottomHelper(margin_bottom)}`}
     >
