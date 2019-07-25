@@ -1,7 +1,4 @@
 import React from "react";
-import CategoriesList from "./CategoriesList";
-import TagsList from "./TagsList";
-//import SeriesList from "./SeriesList";
 import AuthorPreview from "./AuthorPreview";
 
 import { IArticleHeader } from "../../types/article.types";
@@ -9,9 +6,6 @@ import { IArticleHeader } from "../../types/article.types";
 const ArticleHeader: React.FC<IArticleHeader> = ({
   title,
   short_description,
-  //series,
-  categories,
-  tags,
   date,
   big_img,
   author
@@ -24,11 +18,6 @@ const ArticleHeader: React.FC<IArticleHeader> = ({
         {short_description && (
           <p className="text-secondary mb-2">{short_description}</p>
         )}
-        <div>
-          {categories && <CategoriesList categories={categories} />}
-          {/* {series && <SeriesList series={series} />} */}
-          {tags && <TagsList tags={tags} />}
-        </div>
         {author && <AuthorPreview author={author} />}
       </div>
       {big_img && (

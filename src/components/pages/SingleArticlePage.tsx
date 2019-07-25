@@ -12,7 +12,8 @@ import { ISEO } from "../../types/common.types";
 import {
   IArticleHeader,
   ISingleArticlePage,
-  ISingleArticle
+  ISingleArticle,
+  IArticleFooter
 } from "../../types/article.types";
 //components
 import Loader from "../layout/Loader";
@@ -26,6 +27,9 @@ const ErrorPage: React.FunctionComponent<{}> = React.lazy(() =>
 );
 const ArticleHeader: React.FunctionComponent<IArticleHeader> = React.lazy(() =>
   import("../articles/ArticleHeader")
+);
+const ArticleFooter: React.FunctionComponent<IArticleFooter> = React.lazy(() =>
+  import("../articles/ArticleFooter")
 );
 const ArticlesList: React.FunctionComponent<{
   articles: ISingleArticle[];
@@ -69,21 +73,31 @@ const SingleArticlePage: React.FunctionComponent<IProps> = memo(
     if (articleData)
       return (
         <>
+          {/* SEO */}
           <HeadSEO SEO={SEO} />
           <Suspense fallback={<Loader />}>
+            {/* Article header */}
             <ArticleHeader
               title={articleData.title}
               short_description={articleData.short_description}
-              series={articleData.series}
-              categories={articleData.categories}
-              tags={articleData.tags}
               date={articleData.date}
               author={articleData.author}
               big_img={articleData.big_img}
             />
+
+            {/* Main data - slices */}
             {articleData.content &&
               articleData.content.length > 0 &&
               sliceComponentsHelper(articleData.content)}
+
+            {/* Article footer */}
+            <ArticleFooter
+              categories={articleData.categories}
+              tags={articleData.tags}
+              author={articleData.author}
+            />
+
+            {/* List of last 3 articles */}
             {article.lastArticles && article.lastArticles.length > 0 && (
               <>
                 <div className="container text-center m-auto">

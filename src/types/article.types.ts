@@ -43,10 +43,13 @@ export interface ISingleArticle {
 export interface IArticleHeader {
   title: string | null;
   short_description: string | null;
-  series: string | null;
-  categories: string | null;
-  tags: string | null;
   date: string | null;
   author: ISmallAuthor | null;
   big_img: IImg | null;
+}
+
+export interface IArticleFooter {
+  categories: string | null;
+  tags: string | null;
+  author: ISmallAuthor | null;
 }
