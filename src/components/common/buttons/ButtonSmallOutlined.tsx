@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { ScrollToTop } from "../../../helpers/ScrollToTop";
 interface IProps {
   text: string;
@@ -9,7 +10,7 @@ interface IProps {
   className?: string;
 }
 
-export const ButtonSmallOutlined: React.FunctionComponent<IProps> = ({
+const ButtonWithoutStyling: React.FunctionComponent<IProps> = ({
   text,
   url,
   external,
@@ -21,7 +22,7 @@ export const ButtonSmallOutlined: React.FunctionComponent<IProps> = ({
   if (!url)
     return (
       <button
-        className={`btn btn-sm py-0 px-1 btn-outline-secondary rounded shadow-sm mr-2 ${className &&
+        className={`btn btn-sm py-0 px-1 btn-outline-secondary ${className &&
           className}`}
       >
         {text}
@@ -32,7 +33,7 @@ export const ButtonSmallOutlined: React.FunctionComponent<IProps> = ({
     return (
       <Link to={url} onClick={() => ScrollToTop()}>
         <button
-          className={`btn btn-sm py-0 px-1 btn-outline-secondary rounded shadow-sm mr-2 ${className &&
+          className={`btn btn-sm py-0 px-1 btn-outline-secondary ${className &&
             className}`}
         >
           {text}
@@ -44,7 +45,7 @@ export const ButtonSmallOutlined: React.FunctionComponent<IProps> = ({
     return (
       <a href={url} target="_blank" rel="noopener noreferrer">
         <button
-          className={`btn btn-sm py-0 px-1 btn-outline-secondary rounded shadow-sm mr-2 ${className &&
+          className={`btn btn-sm py-0 px-1 btn-outline-secondary ${className &&
             className}`}
         >
           {text}
@@ -54,3 +55,9 @@ export const ButtonSmallOutlined: React.FunctionComponent<IProps> = ({
 
   return null;
 };
+
+export const ButtonSmallOutlined = styled(ButtonWithoutStyling)`
+  margin-right: 0.5rem;
+  box-shadow: ${props => props.theme.shadows.sm};
+  border-radius: ${props => props.theme.rounded.sm};
+`;
