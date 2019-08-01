@@ -33,7 +33,7 @@ const MultipleMediaSlice = ({
     if (!singleMedia.image) return null;
 
     return (
-      <div className="col-12 col-sm-6 col-md-4 col-xl-3 " key={index}>
+      <div className="col-12 col-sm-6 col-md-4 col-xl-4 " key={index}>
         <img
           src={singleMedia.image.url}
           alt={singleMedia.image.alt ? singleMedia.image.alt : ""}
