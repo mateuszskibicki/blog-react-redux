@@ -5,6 +5,7 @@ import authorReducer from "./authorReducer";
 import articlesReducer from "./articlesReducer";
 import articleSingleReducer from "./articleSingleReducer";
 import searchReducer from "./searchReducer";
+import mailchimpReducer from "./mailchimpReducer";
 
 export default combineReducers({
   loading: loadingReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   authors: authorReducer,
   articles: articlesReducer,
   article: articleSingleReducer,
-  search: searchReducer
+  search: searchReducer,
+  mailchimp: mailchimpReducer
 });

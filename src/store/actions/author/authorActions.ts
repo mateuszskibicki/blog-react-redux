@@ -1,13 +1,14 @@
 import Prismic from "prismic-javascript";
+import { Dispatch } from "react";
 import { GET_AUTHOR_BY_UID, SET_ERROR_AUTHOR_BY_UID_TRUE } from "../types";
 // loading
 import { setLoadingStart, setLoadingStop } from "../common/loadingActions";
 // helpers
 import { authorPageHelper } from "../../../helpers/author/AuthorPageHelpers";
 import { articlesListHelper } from "../../../helpers/articles/ArticlesHelpers";
-import { Dispatch } from "react";
 
 import { IgetRelatedToAuthorArticles } from "../../../types/author.types";
+
 // Get author data by UID from prismic CMS
 export const getAuthorByUidPrismic = (uid: any) => async (
   dispatch: Dispatch<any>
@@ -96,6 +97,8 @@ export const getRelatedToAuthorArticles = async (
 ): Promise<any> => {
   const { prismicConnection, userId } = args;
 
+  console.log(process.env.REACT_APP_MAILCHIMP_TOKEN);
+
   if (!prismicConnection.query) return null;
 
   try {
@@ -121,7 +124,8 @@ export const getRelatedToAuthorArticles = async (
           "author.full_name",
           "author.short_description",
           "author.image_avatar"
-        ]
+        ],
+        pageSize: 3
       }
     );
 
