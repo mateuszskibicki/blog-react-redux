@@ -5,7 +5,6 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import IconsFloating from "./IconsFloating";
 import Loader from "./Loader";
-import SubscribeEmailFullWidth from "../common/mailchimp/SubscribeEmailFullWidth";
 
 interface IProps {
   loading: boolean;
@@ -19,7 +18,6 @@ const MainLayout = ({ loading, children }: IProps) => {
       <IconsFloating />
       {loading && <Loader />}
       {!loading && children && children}
-      <SubscribeEmailFullWidth />
       <Footer />
     </>
   );

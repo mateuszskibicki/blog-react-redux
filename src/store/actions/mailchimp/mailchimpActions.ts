@@ -51,50 +51,43 @@ export const setSuccessMailchimpTrue = () => (
 export const subscribeToMailchimp = (email_address: string) => async (
   dispatch: Dispatch<any>
 ) => {
-  //set loading to false
-  dispatch(setLoadingMailchimpStop());
-  //set error to false
-  dispatch(setErrorMailchimpFalse());
+  try {
+    //set loading to false
+    dispatch(setLoadingMailchimpStop());
+    //set error to false
+    dispatch(setErrorMailchimpFalse());
 
-  //check if email is provided
-  if (
-    !email_address ||
-    email_address.trim().length === 0 ||
-    typeof email_address !== "string"
-  ) {
-    return dispatch(setErrorMailchimpTrue("Email is required."));
-  }
-
-  if (!validateEmail(email_address.trim())) {
-    return dispatch(setErrorMailchimpTrue("Email is incorrect."));
-  }
-
-  //set loading to true
-  dispatch(setLoadingMailchimpStart());
-
-  const newMemberMailchimp = JSON.stringify({
-    members: [
-      {
-        email_address,
-        status: "subscribed"
-      }
-    ]
-  });
-
-  const response = await axios({
-    method: "post",
-    url: "https://us3.api.mailchimp.com/3.0/lists/4478287ff6",
-    data: newMemberMailchimp,
-    headers: {
-      Authorization: `auth ${process.env.REACT_APP_MAILCHIMP_TOKEN}`,
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json"
+    //check if email is provided
+    if (
+      !email_address ||
+      email_address.trim().length === 0 ||
+      typeof email_address !== "string"
+    ) {
+      return dispatch(setErrorMailchimpTrue("Email is required."));
     }
-  });
 
-  console.log(response);
+    if (!validateEmail(email_address.trim())) {
+      return dispatch(setErrorMailchimpTrue("Email is incorrect."));
+    }
 
-  //set loading to true
-  dispatch(setLoadingMailchimpStop());
-  dispatch(setSuccessMailchimpTrue());
+    //set loading to true
+    dispatch(setLoadingMailchimpStart());
+
+    await axios({
+      method: "post",
+      url: `https://8k62m54mzi.execute-api.eu-west-2.amazonaws.com/production/create-new-subscription/${email_address.trim()}`
+    });
+
+    //set success to true
+    dispatch(setSuccessMailchimpTrue());
+    //set loading to false
+    dispatch(setLoadingMailchimpStop());
+  } catch (err) {
+    dispatch(
+      setErrorMailchimpTrue(
+        "Something went wrong, probably you are already subscribed."
+      )
+    );
+    dispatch(setLoadingMailchimpStop());
+  }
 };

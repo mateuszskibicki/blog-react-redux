@@ -13,7 +13,6 @@ const AuthorPreview: React.FC<IProps> = ({
   author,
   big
 }: IProps): JSX.Element | null => {
-  console.log(author);
   if (!author || !author.full_name) return null;
 
   if (big)
