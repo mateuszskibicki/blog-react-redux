@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ScrollToTop } from "../../helpers/ScrollToTop";
-import SubscribeEmailFullWidth from "../common/mailchimp/SubscribeEmailFullWidth";
+//import SubscribeEmailFullWidth from "../common/mailchimp/SubscribeEmailFullWidth";
 
 const Footer: React.MemoExoticComponent<() => JSX.Element> = React.memo(() => (
   <>
-    <SubscribeEmailFullWidth />
+    {/* <SubscribeEmailFullWidth /> */}
     <div className="container">
       <div className="row">
         <div className="col-12">

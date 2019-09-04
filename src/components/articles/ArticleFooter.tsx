@@ -3,6 +3,9 @@ import CategoriesList from "./CategoriesList";
 import TagsList from "./TagsList";
 import AuthorPreview from "./AuthorPreview";
 
+//@ts-ignore
+import { FacebookProvider, Comments } from "react-facebook";
+
 import { IArticleFooter } from "../../types/article.types";
 
 const ArticleFooter: React.FC<IArticleFooter> = ({
@@ -19,6 +22,12 @@ const ArticleFooter: React.FC<IArticleFooter> = ({
           {tags && <TagsList tags={tags} />}
           {author && <AuthorPreview author={author} big={true} />}
         </div>
+      </div>
+      <hr />
+      <div className="my-4 mx-auto text-center">
+        <FacebookProvider appId="495288911038281">
+          <Comments href="http://localhost:3000/articles/is-this-possible-to-become-a-full-time-dev-for-1001" />
+        </FacebookProvider>
       </div>
     </div>
   );
